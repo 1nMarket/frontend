@@ -1,0 +1,10 @@
+{
+  "extends": ["plugin:prettier/recommended", "react-app", "eslint:recommended"],
+  "plugins": ["react"],
+  "rules": {
+    "no-var": "error",
+    "prettier/prettier": 0,
+    "require-await": "error",
+    "eqeqeq": "error"
+  }
+}
