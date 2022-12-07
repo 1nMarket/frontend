@@ -4,6 +4,10 @@ import reset from 'styled-reset';
 const GlobalStyled = createGlobalStyle`
   ${reset}
 
+  * {
+    box-sizing: border-box;
+  }
+
   button {
     cursor: pointer;
   }
