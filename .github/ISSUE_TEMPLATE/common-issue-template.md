@@ -1,8 +1,8 @@
 ---
 name: Common issue template
 about: 구현할 기능 작성
-title: ''
-labels: feat✌️
+title: "[주제] 페이지명_작업사항"
+labels: feat✌️, Refactor✂️
 assignees: ''
 
 ---
