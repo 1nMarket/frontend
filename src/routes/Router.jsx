@@ -6,6 +6,7 @@ import Navbar from '../components/common/Navbar';
 // import AuthRequire from '../components/AuthRequire';
 import Public from '../pages/Public';
 import Login from '../pages/Login';
+import RequireAuth from '../components/common/RequireAuth';
 
 const Router = () => {
   return (
@@ -15,9 +16,11 @@ const Router = () => {
           <Route index element={<Public />} />
           <Route path='login' element={<Login />} />
 
-          <Route element={<Navbar />}>
-            <Route path='home' element={<Home />} />
-          </Route>
+          <Route element={<RequireAuth />}>
+            <Route element={<Navbar />}>
+              <Route path='home' element={<Home />} />
+            </Route>
+          </Route >
 
           {/* <Route element={<AuthRequire />}>
             <Route path="profile" element={<Profile />} />

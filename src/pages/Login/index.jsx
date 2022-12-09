@@ -1,14 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from '../../apis/axios';
+import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
+
+  useEffect(() => {
+    if (auth) {
+      navigate('/home');
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
+      const {
+        data: { user },
+      } = await axios.post(
         '/user/login',
         JSON.stringify({
           user: {
@@ -17,13 +29,16 @@ const Login = () => {
           },
         }),
       );
-      console.log(res);
+      localStorage.setItem('accessToken', JSON.stringify(user.token));
+      localStorage.setItem('accountname', JSON.stringify(user.accountname));
+      setAuth(user.accessToken);
+      setEmail('');
+      setPassword('');
+      navigate('/home');
     } catch (err) {
-      console.log(err.status);
       console.log(err.message);
     }
   };
-  
 
   return (
     <form onSubmit={handleSubmit}>
