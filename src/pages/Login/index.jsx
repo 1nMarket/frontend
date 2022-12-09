@@ -1,26 +1,19 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from '../../apis/axios';
-import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { auth, setAuth } = useAuth();
+  const location = useLocation();
 
-  useEffect(() => {
-    if (auth) {
-      navigate('/home');
-    }
-  }, [])
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const {
-        data: { user },
-      } = await axios.post(
+      const { data } = await axios.post(
         '/user/login',
         JSON.stringify({
           user: {
@@ -29,16 +22,22 @@ const Login = () => {
           },
         }),
       );
-      localStorage.setItem('accessToken', JSON.stringify(user.token));
-      localStorage.setItem('accountname', JSON.stringify(user.accountname));
-      setAuth(user.accessToken);
+      console.log(data);
+      localStorage.setItem('token', JSON.stringify(data?.user?.token));
+      localStorage.setItem('accountname', JSON.stringify(data?.user?.accountname));
       setEmail('');
       setPassword('');
-      navigate('/home');
+      navigate(from, { replace: true });
     } catch (err) {
       console.log(err.message);
     }
   };
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem('token'))) {
+      navigate('/home');
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
