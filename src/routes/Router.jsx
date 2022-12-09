@@ -4,19 +4,26 @@ import Layout from '../components/common/Layout';
 import Navbar from '../components/common/Navbar';
 // import Profile from '../pages/profile';
 // import AuthRequire from '../components/AuthRequire';
+import Public from '../pages/Public';
+import Login from '../pages/Login';
+import RequireAuth from '../components/common/RequireAuth';
+import Profile from '../pages/Profile';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route element={<Navbar />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route index element={<Public />} />
+          <Route path='login' element={<Login />} />
 
-          {/* <Route element={<AuthRequire />}>
-            <Route path="profile" element={<Profile />} />
-          </Route> */}
+          <Route element={<RequireAuth />}>
+            <Route element={<Navbar />}>
+              <Route path='home' element={<Home />} />
+              <Route path='profile' element={<Profile />} />
+            </Route>
+          </Route >
+
         </Route>
       </Routes>
     </BrowserRouter>
