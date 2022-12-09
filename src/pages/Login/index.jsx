@@ -1,18 +1,32 @@
 import { useState } from 'react';
+import axios from '../../apis/axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  // }
-  console.log(email);
-  console.log(password);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        '/user/login',
+        JSON.stringify({
+          user: {
+            email,
+            password,
+          },
+        }),
+      );
+      console.log(res);
+    } catch (err) {
+      console.log(err.status);
+      console.log(err.message);
+    }
+  };
+  
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <p>
         <label htmlFor='email'>Email</label>
         <input
@@ -30,6 +44,8 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </p>
+
+      <button>Login</button>
     </form>
   );
 };
