@@ -1,8 +1,8 @@
 ---
 name: Common issue template
-about: Common issue template
+about: 구현할 기능 작성
 title: ''
-labels: ''
+labels: feat✌️
 assignees: ''
 
 ---
