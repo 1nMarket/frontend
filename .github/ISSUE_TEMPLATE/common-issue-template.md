@@ -2,7 +2,7 @@
 name: Common issue template
 about: 구현할 기능 작성
 title: "[주제] 페이지명_작업사항"
-labels: feat✌️, Refactor✂️
+labels: feat✌️
 assignees: ''
 
 ---
