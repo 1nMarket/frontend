@@ -20,7 +20,7 @@ const Router = () => {
           <Route element={<RequireAuth />}>
             <Route element={<Navbar />}>
               <Route path='home' element={<Home />} />
-              <Route path='profile' element={<Profile />} />
+              <Route path='profile/:accountname' element={<Profile />} />
             </Route>
           </Route >
 
