@@ -1,7 +1,7 @@
 const palette = {
   primary: '#495573',
   disabled: '#abb9d6',
-  border: '#bdbdbd',
+  border: '#dbdbdb',
   white: '#ffffff',
   lightGray: '#c4c4c4',
   mediumGray: '#767676',
@@ -9,6 +9,7 @@ const palette = {
   black: '#000000',
   kakao: '#f2c94c',
   facebook: '#2d9cdb',
+  alarm: '#eb7f5f',
 };
 
 const common = {
