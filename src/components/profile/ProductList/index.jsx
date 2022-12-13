@@ -23,19 +23,20 @@ const ProductList = () => {
 
   return (
     <>
-      <S.ProductListWrapper>
-        <S.Title>판매 중인 상품</S.Title>
-        <S.ProductList>
-          {productList.length &&
-            productList.map((product, i) => (
+      {productList.length === 0 ? null : (
+        <S.ProductListWrapper>
+          <S.Title>판매 중인 상품</S.Title>
+          <S.ProductList>
+            {productList.map((product, i) => (
               <S.ProductItem key={product.id}>
-                <img src='' alt='' />
-                <p>제목</p>
-                <strong>가격원</strong>
+                <img src={product.itemImage} alt='' />
+                <p>{product.itemName}</p>
+                <strong>{product.price.toLocaleString()}원</strong>
               </S.ProductItem>
             ))}
-        </S.ProductList>
-      </S.ProductListWrapper>
+          </S.ProductList>
+        </S.ProductListWrapper>
+      )}
     </>
   );
 };
