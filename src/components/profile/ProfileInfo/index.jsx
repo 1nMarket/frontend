@@ -11,6 +11,8 @@ const ProfileInfo = () => {
   const [profile, setProfile] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+  const { followerCount, followingCount, image, intro, isfollow, username } = profile;
+
   useEffect(() => {
     const getUserInfo = async () => {
       const {
@@ -21,33 +23,45 @@ const ProfileInfo = () => {
     };
     getUserInfo();
   }, []);
-  console.log(profile);
 
   const isMyProfile =
-    JSON.parse(localStorage.getItem('accountname')) === profile.accountname
+    JSON.parse(localStorage.getItem('accountname')) === accountname
       ? true
       : false;
 
-  if (!isLoading) return <PulseLoader color='#000' />
+  const handleFollow = async () => {
+    const { data: { profile } } = await axiosPrivate.post(`/profile/${accountname}/follow`);
+    setProfile(profile);
+  };
+
+  const handleUnfollow = async () => {
+    const { data: { profile }} = await axiosPrivate.delete(`/profile/${accountname}/unfollow`);
+    setProfile(profile);
+  };
+
+  if (!isLoading) return <PulseLoader color='#000' />;
 
   return (
     <S.ProfileSection>
       <S.TopContent>
-        <S.CustomLink to={`/follow/${profile.accountname}/follower`}>
-          <S.Count>{profile.followerCount}</S.Count>
+        <S.CustomLink to={`/follow/${accountname}/follower`}>
+          <S.Count>{followerCount}</S.Count>
           <S.CountInfo>followers</S.CountInfo>
         </S.CustomLink>
-        <S.ProfileImg src={profile.image} alt={`${profile.accountname}의 프로필 사진`} />
+        <S.ProfileImg
+          src={image}
+          alt={`${accountname}의 프로필 사진`}
+        />
 
-        <S.CustomLink to={`/follow/${profile.accountname}/follower`}>
-          <S.Count>{profile.followingCount}</S.Count>
+        <S.CustomLink to={`/follow/${accountname}/follower`}>
+          <S.Count>{followingCount}</S.Count>
           <S.CountInfo>followings</S.CountInfo>
         </S.CustomLink>
       </S.TopContent>
 
-      <S.Name>{profile.username}</S.Name>
-      <S.AccountName>{profile.accountname}</S.AccountName>
-      <S.Intro>{profile.intro}</S.Intro>
+      <S.Name>{username}</S.Name>
+      <S.AccountName>{accountname}</S.AccountName>
+      <S.Intro>{intro}</S.Intro>
 
       <S.ButtonWrapper>
         {isMyProfile ? (
@@ -64,9 +78,21 @@ const ProfileInfo = () => {
             <S.IconButton>
               <MessageIcon />
             </S.IconButton>
-            {profile.isfollow
-              ? <S.YourProfileButton isfollow={profile.isfollow}>언팔로우</S.YourProfileButton>
-              : <S.YourProfileButton isfollow={profile.isfollow}>팔로우</S.YourProfileButton>}
+            {isfollow ? (
+              <S.YourProfileButton
+                onClick={handleUnfollow}
+                isfollow={isfollow}
+              >
+                언팔로우
+              </S.YourProfileButton>
+            ) : (
+              <S.YourProfileButton
+                onClick={handleFollow}
+                isfollow={isfollow}
+              >
+                팔로우
+              </S.YourProfileButton>
+            )}
             <S.IconButton>
               <ShareIcon />
             </S.IconButton>
