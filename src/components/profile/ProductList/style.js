@@ -2,10 +2,8 @@ import styled from 'styled-components';
 
 export const ProductListWrapper = styled.article`
   width: inherit;
-  height: 208px;
   margin-top: 6px;
   padding: 20px 0 20px 16px;
-  background-color: #dbdbdbd;
   border-top: 0.5px solid ${({ theme }) => theme.palette.border};
   border-bottom: 0.5px solid ${({ theme }) => theme.palette.border};
 `;
@@ -29,10 +27,15 @@ export const ProductItem = styled.li`
   img {
     width: 140px;
     height: 90px;
+    border-radius: 8px;
+    object-fit: cover;
   }
 
   p {
     font-size: 14px;
+    line-height: 18px;
+    margin-top: 4px;
+    margin-bottom: 2px;
   }
 
   strong {
