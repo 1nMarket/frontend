@@ -1,13 +1,12 @@
-import Home from '../pages/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from '../components/common/Layout';
 import Navbar from '../components/common/Navbar';
-// import Profile from '../pages/profile';
-// import AuthRequire from '../components/AuthRequire';
-import Public from '../pages/Public';
-import Login from '../pages/Login';
 import RequireAuth from '../components/common/RequireAuth';
+import Follows from '../pages/Follows';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
 import Profile from '../pages/Profile';
+import Public from '../pages/Public';
 
 const Router = () => {
   return (
@@ -20,10 +19,14 @@ const Router = () => {
           <Route element={<RequireAuth />}>
             <Route element={<Navbar />}>
               <Route path='home' element={<Home />} />
-              <Route path='profile/:accountname' element={<Profile />} />
+
+              <Route path='profile/:accountname'>
+                <Route index element={<Profile />} />
+                <Route path='followings' element={<Follows />} />
+                <Route path='followers' element={<Follows />} />
+              </Route>
             </Route>
           </Route >
-
         </Route>
       </Routes>
     </BrowserRouter>
