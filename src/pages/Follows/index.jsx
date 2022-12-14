@@ -36,7 +36,6 @@ const Follows = () => {
     }
 
     const io = new IntersectionObserver((entries, observer) => {
-      console.log(entries[0].isIntersecting);
       if (entries[0].isIntersecting) {
         getUsersData();
       }
