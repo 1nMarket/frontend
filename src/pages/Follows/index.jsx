@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { axiosPrivate } from '../../apis/axios';
-import Header from '../../components/common/Header';
+import FollowHeader from '../../components/common/Header/FollowHeader';
 import * as S from './style';
 import FolowUser from '../../components/profile/FollowUser';
 
@@ -49,7 +49,7 @@ const Follows = () => {
 
   return (
     <>
-      <Header />
+      <FollowHeader />
       <S.Content>
         <S.UsersList>
           {usersList.map((user, i) => (
