@@ -44,7 +44,7 @@ const ProfileInfo = () => {
   return (
     <S.ProfileSection>
       <S.TopContent>
-        <S.CustomLink to={`/follow/${accountname}/follower`}>
+        <S.CustomLink to={`followers`}>
           <S.Count>{followerCount}</S.Count>
           <S.CountInfo>followers</S.CountInfo>
         </S.CustomLink>
@@ -53,7 +53,7 @@ const ProfileInfo = () => {
           alt={`${accountname}의 프로필 사진`}
         />
 
-        <S.CustomLink to={`/follow/${accountname}/follower`}>
+        <S.CustomLink to={`followings`}>
           <S.Count>{followingCount}</S.Count>
           <S.CountInfo>followings</S.CountInfo>
         </S.CustomLink>
