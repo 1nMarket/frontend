@@ -8,7 +8,3 @@ export const UsersList = styled.ul`
 display: flex;
 flex-direction: column;
 `
-
-export const FollowButton = styled.ul`
-  
-`
