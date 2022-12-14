@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
+import { axiosPrivate } from '../../../apis/axios';
 import * as S from './style';
 
 const FollowUser = ({ image, accountname, username, intro, isfollow }) => {
   const [follow, setFollow] = useState(isfollow);
+
+  const handleFollow = async () => {
+    console.log(accountname);
+    await axiosPrivate.post(`/profile/${accountname}/follow`);
+    setFollow(!follow);
+  };
+
+  const handleUnfollow = async () => {
+    console.log(accountname);
+    await axiosPrivate.delete(`/profile/${accountname}/unfollow`);
+    setFollow(!follow);
+  };
 
   return (
     <S.User>
@@ -16,7 +29,7 @@ const FollowUser = ({ image, accountname, username, intro, isfollow }) => {
       </S.StyleLink>
 
       <S.FollowButton
-        onClick={() => setFollow(!follow)}
+        onClick={follow ? handleUnfollow : handleFollow}
         style={{
           backgroundColor: !follow ? '#495573' : '#fff',
           color: !follow ? '#fff' : '#767676',
