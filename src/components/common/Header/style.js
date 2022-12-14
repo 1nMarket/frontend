@@ -8,5 +8,5 @@ export const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   border-bottom: 1px solid ${({ theme }) => theme.palette.border};
-  background-color: ${({ theme }) => theme.palette.primary}
+  // background-color: ${({ theme }) => theme.palette.primary}
 `
