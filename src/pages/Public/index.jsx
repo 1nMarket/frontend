@@ -1,10 +1,10 @@
 import React from 'react'
-import ProfileHeader from '../../components/common/Header/ProfileHeader';
+import UploadHeader from '../../components/common/Header/UploadHeader';
 
 const Public = () => {
   return (
     <>
-      <ProfileHeader/>
+    <UploadHeader/>
     </>
   )
 }
