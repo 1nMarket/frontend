@@ -26,7 +26,7 @@ const Router = () => {
                 <Route path='followers' element={<Follows />} />
               </Route>
             </Route>
-          </Route >
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
