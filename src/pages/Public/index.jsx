@@ -1,10 +1,10 @@
 import React from 'react'
-import SaveHeader from '../../components/common/Header/SaveHeader';
+import ProfileHeader from '../../components/common/Header/ProfileHeader';
 
 const Public = () => {
   return (
     <>
-      <SaveHeader></SaveHeader>
+      <ProfileHeader/>
     </>
   )
 }
