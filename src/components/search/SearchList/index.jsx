@@ -3,7 +3,15 @@ import React from 'react'
 const SearchList = ({ searchList }) => {
   console.log(searchList);
 
-  return <div>SearchList</div>
+  return (
+    <ul>
+      {searchList.map((item) => (
+        <li key={item._id}>
+           <p>{item.username}</p>
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 export default SearchList
