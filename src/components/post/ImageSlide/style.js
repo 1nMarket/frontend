@@ -4,6 +4,7 @@ export const SlideContainer = styled.div`
   width: 100%;
   position: relative;
   overflow: hidden;
+  margin-bottom: 12px;
 `;
 
 export const Slide = styled.ul`

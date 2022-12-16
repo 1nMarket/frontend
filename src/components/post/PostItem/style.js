@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const PostArticle = styled.article`
   width: 100%;
@@ -40,12 +41,40 @@ export const AccountName = styled.span`
 `;
 
 export const PostContent = styled.section`
-  padding-left: 50px;
+  padding-left: 55px;
 `;
 
 export const PostText = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+`;
+
+export const LikeCommentCount = styled.div`
+  display: flex;
+  column-gap: 16px;
+`
+
+export const LikeBtn = styled.button`
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  color: ${({ theme }) => theme.palette.mediumGray};
+  background-color: ${({ theme }) => theme.palette.white};
+  border: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
+`
+
+export const CommentLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.mediumGray};
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 12px;
 `;
