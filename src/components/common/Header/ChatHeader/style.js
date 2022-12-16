@@ -10,10 +10,10 @@ export const LeftIcon = styled.img.attrs({
 
 export const MiddleIcon = styled.img.attrs({
     src: ChatHeaderText,
-    alt: '뒤로가기',
+    alt: '채팅상대',
   })``;
 
 export const RightIcon = styled.img.attrs({
   src: ModalIcon,
-  alt: '업로드',
+  alt: '모달창',
 })``;
