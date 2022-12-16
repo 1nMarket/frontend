@@ -54,6 +54,7 @@ export const PostText = styled.p`
 export const LikeCommentCount = styled.div`
   display: flex;
   column-gap: 16px;
+  margin-bottom: 18px;
 `
 
 export const LikeBtn = styled.button`
@@ -76,5 +77,12 @@ export const CommentLink = styled(Link)`
   color: ${({ theme }) => theme.palette.mediumGray};
   font-weight: 400;
   font-size: 12px;
+  line-height: 12px;
+`;
+
+export const DateText = styled.p`
+  color: ${({ theme }) => theme.palette.mediumGray};
+  font-weight: 400;
+  font-size: 10px;
   line-height: 12px;
 `;
