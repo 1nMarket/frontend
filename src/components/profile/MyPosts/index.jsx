@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosPrivate } from '../../../apis/axios';
-import PostContent from '../../post/PostContent';
+import PostsList from '../../post/PostsList';
 
-const PostList = () => {
+const MyPosts = () => {
   const { accountname } = useParams();
   const [postsList, setPostsList] = useState([]);
 
@@ -19,12 +19,11 @@ const PostList = () => {
   }, []);
 
   return (
-    <ul>
-      {postsList.map((post) => (
-        <PostContent key={post.id} post={post} />
-      ))}
-    </ul>
+    <>
+      <div style={{ borderBottom: '1px solid #dbdbdb' }}>sectionHeader</div>
+      <PostsList postsList={postsList} />
+    </>
   );
 };
 
-export default PostList;
+export default MyPosts;

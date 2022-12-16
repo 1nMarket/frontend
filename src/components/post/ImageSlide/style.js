@@ -38,8 +38,8 @@ export const ButtonWrapper = styled.div`
 `
 
 export const SlideButton = styled.button`
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background-color: ${({ theme }) => theme.palette.white};
   border: none;
   border-radius: 50%;
