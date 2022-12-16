@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileInfo from '../../components/profile/ProfileInfo';
 import ProductList from '../../components/profile/ProductList';
 import * as S from './style';
-import PostList from './../../components/profile/PostList/index';
+import PostsList from '../../components/profile/PostsList/index';
 
 const Profile = () => {
   return (
@@ -10,7 +10,7 @@ const Profile = () => {
       <S.Content>
         <ProfileInfo />
         <ProductList />
-        <PostList />
+        <PostsList />
       </S.Content>
     </>
   );

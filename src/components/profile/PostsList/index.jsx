@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosPrivate } from '../../../apis/axios';
+import PostContent from '../../post/PostContent';
 
 const PostList = () => {
-  // GET /post/:accountname/userpost
-  const { accountname } = useParams(); // { accountname: await2 }
+  const { accountname } = useParams();
   const [postsList, setPostsList] = useState([]);
 
   useEffect(() => {
-    // 2
     const getAllPosts = async () => {
       const {
         data: { post },
       } = await axiosPrivate.get(`/post/${accountname}/userpost`);
 
-      setPostsList(post); // 3
+      setPostsList(post);
     };
     getAllPosts();
   }, []);
 
-  console.log('postsList', postsList); // 1 -> 4
-
-  return <div>PostList</div>;
+  return (
+    <ul>
+      {postsList.map((post) => (
+        <PostContent key={post.id} post={post} />
+      ))}
+    </ul>
+  );
 };
 
 export default PostList;

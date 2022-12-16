@@ -9,6 +9,7 @@ const GlobalStyled = createGlobalStyle`
   }
 
   button {
+    padding: 0;
     cursor: pointer;
   }
 
