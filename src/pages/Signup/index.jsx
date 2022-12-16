@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { axiosPrivate } from '../../apis/axios';
 
 // 이메일 유효성 체크
@@ -9,6 +8,7 @@ const EMAIL_REGEX =
 const PWD_REGEX = /^[a-zA-Z0-9]{6,}$/;
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState(''); //
   const [validEmail, setValidEmail] = useState(false);
   const [errEmailMsg, setErrEmailMsg] = useState('');
@@ -21,7 +21,7 @@ const Signup = () => {
   const canNext = validEmail && validPassword;
 
   const emailCheck = async () => {
-    if (!validEmail) return console.log('서버 요청 안함');
+    if (!validEmail) return;
 
     const { data } = await axiosPrivate.post(
       `/user/emailvalid/`,
@@ -31,8 +31,20 @@ const Signup = () => {
         },
       }),
     );
-    console.log(data.message);
+    if (data.message !== '사용 가능한 이메일 입니다.') setValidEmail(false);
     setErrEmailMsg(data.message);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validEmail || errPasswordlMsg) return;
+
+    navigate('/signup/profile', {
+      state: {
+        email,
+        password,
+      },
+    });
   };
 
   // input focus
@@ -65,7 +77,7 @@ const Signup = () => {
   }, [password]);
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor='email'>이메일</label>
       <br />
       <input

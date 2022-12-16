@@ -9,6 +9,7 @@ import Profile from '../pages/Profile';
 import Public from '../pages/Public';
 import Search from '../pages/Search';
 import Signup from '../pages/Signup';
+import SignupProfile from '../pages/SignupProfile';
 
 const Router = () => {
   return (
@@ -17,7 +18,11 @@ const Router = () => {
         <Route path='/' element={<Layout />}>
           <Route index element={<Public />} />
           <Route path='login' element={<Login />} />
-          <Route path='signup' element={<Signup />} />
+
+          <Route path='signup'>
+            <Route index element={<Signup />} />
+            <Route path='profile' element={<SignupProfile />} />
+          </Route>
 
           <Route element={<RequireAuth />}>
             <Route element={<Navbar />}>
