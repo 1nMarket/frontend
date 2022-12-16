@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { axiosPrivate } from '../../../apis/axios';
 import PostsList from '../../post/PostsList';
-import { ReactComponent as PostListOnIcon } from '../../../assets/icons/icon-post-list-on.svg';
-import { ReactComponent as PostListOffIcon } from '../../../assets/icons/icon-post-list-off.svg';
-import { ReactComponent as PostAlbumOnIcon } from '../../../assets/icons/icon-post-album-on.svg';
-import { ReactComponent as PostAlbumOffIcon } from '../../../assets/icons/icon-post-album-off.svg';
+import PostAlbum from '../../post/PostAlbum';
+
 import * as S from './style';
 
 const MyPosts = () => {
   const { accountname } = useParams();
   const [postsList, setPostsList] = useState([]);
-  const [selectPost] = useState(true);
+  const [selectList, setSelectList] = useState(true);
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -27,19 +25,23 @@ const MyPosts = () => {
   return (
     <>
       <S.PostHeader>
-        {selectPost ? (
+        {selectList ? (
           <>
-            <PostListOnIcon />
-            <PostAlbumOffIcon />
+            <S.PostListOnIcon />
+            <S.PostAlbumOffIcon onClick={() => setSelectList(false)} />
           </>
         ) : (
           <>
-            <PostListOffIcon />
-            <PostAlbumOnIcon />
+            <S.PostListOffIcon onClick={() => setSelectList(true)} />
+            <S.PostAlbumOnIcon />
           </>
         )}
       </S.PostHeader>
-      <PostsList postsList={postsList} />
+      {selectList ? (
+        <PostsList postsList={postsList} />
+      ) : (
+        <PostAlbum postsList={postsList} />
+      )}
     </>
   );
 };
