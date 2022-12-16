@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-// import axios from 'axios';
+import { axiosPrivate } from '../../apis/axios';
 
+// 이메일 유효성 체크
 const EMAIL_REGEX =
   /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-const PWD_REGEX = /^[0-9]{6,12}$/;
+const PWD_REGEX = /^[a-zA-Z0-9]{6,}$/;
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); //
   const [validEmail, setValidEmail] = useState(false);
   const [errEmailMsg, setErrEmailMsg] = useState('');
   const [password, setPassword] = useState('');
@@ -19,9 +20,24 @@ const Signup = () => {
   // 버튼 활성화 조건 처리
   const canNext = validEmail && validPassword;
 
+  const emailCheck = async () => {
+    if (!validEmail) return console.log('서버 요청 안함');
+
+    const { data } = await axiosPrivate.post(
+      `/user/emailvalid/`,
+      JSON.stringify({
+        user: {
+          email,
+        },
+      }),
+    );
+    console.log(data.message);
+    setErrEmailMsg(data.message);
+  };
+
   // input focus
   useEffect(() => {
-    inputRef.current.focus();
+    if (inputRef.current !== null) inputRef.current.focus();
   }, []);
 
   // 다음 버튼 활성화
@@ -30,24 +46,23 @@ const Signup = () => {
     setValidEmail(result);
 
     // email.length가 0인 경우
-    // reesult가 true인 경우
-    // email.lengthrk 0이면서 result인 경우
-    if (!email.length || result)
-      setErrEmailMsg(''); // email.length가 0이거나  경우
-    else setErrEmailMsg('*올바른 이메일 형식이 아닙니다'); // email.length가 0 아니면서 result가 false인 경우
+    // result가 true인 경우
+    // email.length가 0이면서 result인 경우
+    if (!email.length || result) {
+      setErrEmailMsg(''); // email.length가 0이거나 result값이 있는 경우
+    } else {
+      setErrEmailMsg('잘못된 이메일 형식입니다.'); // email.length가 0 아니면서 result가 false인 경우
+    }
   }, [email]);
 
   useEffect(() => {
     const result = PWD_REGEX.test(password);
-    console.log(result);
     setValidPassword(result);
 
-    if (password.length && !result)
-      setErrPasswordMsg('*비밀번호는 6자 이상이여야 합니다.');
-    else setErrPasswordMsg('');
+    if (password.length && !result) {
+      setErrPasswordMsg('비밀번호는 6자 이상이어야 합니다.');
+    } else setErrPasswordMsg('');
   }, [password]);
-
-  console.log(errEmailMsg);
 
   return (
     <form>
@@ -59,6 +74,7 @@ const Signup = () => {
         placeholder='이메일 주소를 입력해 주세요.'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        onBlur={emailCheck}
         ref={inputRef}
       />
       {errEmailMsg && <p>{errEmailMsg}</p>}
