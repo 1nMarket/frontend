@@ -14,8 +14,16 @@ display: flex;
 justify-content: space-between;
 align-items: center;`;
 
-export const NavItem = styled.li``;
+export const NavItem = styled.li`
+display: flex;
+flex-direction: column;
+align-items: center;
+row-gap: 4px;
+`;
 
-export const NavIconText = styled.p``;
+export const NavIconText = styled.p`
+font-size: 10px;
+color: ${({theme}) => theme.palette.mediumGray}
+`;
 
 
