@@ -1,22 +1,21 @@
-// import React, { useState } from 'react';
+import { useState } from 'react';
 import { axiosImgUpload } from '../../apis/axios';
 
 const PostUpload = () => {
-  // const [imgFiles, setImgFiles] = useState([]);
+  const [imgFiles, setImgFiles] = useState([]);
 
   const handleImgUpload = async (e) => {
+    if (imgFiles.length > 2) return window.alert('이미지는 세 개 이하로 업로드가 가능합니다!');
     const form = new FormData();
-
-    for (let img of e.target.files) {
-      form.append('image', img);
-    }
-
-    const response = await axiosImgUpload.post(
-      '/image/uploadfiles',
+    form.append('image', e.target.files[0]);
+    const { data } = await axiosImgUpload.post(
+      '/image/uploadfile',
       form
     );
-    console.log(response);
+    
+    setImgFiles((prev) => [...prev, `https://mandarin.api.weniv.co.kr/${data.filename}`]);
   };
+  console.log(imgFiles);
 
   return (
     <div>
@@ -25,9 +24,11 @@ const PostUpload = () => {
         id='img'
         type='file'
         accept='.jpg, .gif, .png, .jpeg, .bmp, .tif, .heic'
-        multiple
         onChange={handleImgUpload}
       />
+      {imgFiles.length && imgFiles.map((img, i) => (
+        <img key={i} src={img} alt='' />
+      ))}
     </div>
   );
 };
