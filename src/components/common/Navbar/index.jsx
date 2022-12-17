@@ -16,22 +16,22 @@ const Navbar = () => {
         <S.NavList>
           <S.NavItem>
             <HomeIcon/>
-            <S.NavText>홈</S.NavText>
+            <S.NavIconText>홈</S.NavIconText>
           </S.NavItem>
 
           <S.NavItem>
             <ChatIcon/>
-            <S.NavText>채팅</S.NavText>
+            <S.NavIconText>채팅</S.NavIconText>
           </S.NavItem>
 
           <S.NavItem>
             <PostIcon/>
-            <S.NavText>게시글 작성</S.NavText>
+            <S.NavIconText>게시글 작성</S.NavIconText>
           </S.NavItem>
 
           <S.NavItem>
             <ProfileIcon/>
-            <S.NavText>프로필</S.NavText>
+            <S.NavIconText>프로필</S.NavIconText>
           </S.NavItem>
         </S.NavList>
 

@@ -16,9 +16,6 @@ align-items: center;`;
 
 export const NavItem = styled.li``;
 
-export const NavText = styled.p`
-font-size: 10px;
-color: ${({theme}) => theme.palette.mediumGray};
-`;
+export const NavIconText = styled.p``;
 
 
