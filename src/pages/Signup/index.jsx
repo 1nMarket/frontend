@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosPrivate } from '../../apis/axios';
+import * as S from './style';
 
 // 이메일 유효성 체크
 const EMAIL_REGEX =
@@ -77,35 +78,47 @@ const Signup = () => {
   }, [password]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor='email'>이메일</label>
-      <br />
-      <input
-        id='email'
-        type='text'
-        placeholder='이메일 주소를 입력해 주세요.'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        onBlur={emailCheck}
-        ref={inputRef}
-      />
-      {errEmailMsg && <p>{errEmailMsg}</p>}
-      <br />
-      <label htmlFor='pwd'>비밀번호</label>
-      <br />
-      <input
-        id='pwd'
-        type='password'
-        placeholder='비밀번호를 설정해 주세요.'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
-      <br />
-      <button disabled={!canNext}>다음</button> <br />
-      <br />
-      <span>입력된 값: {email}</span>
-    </form>
+    <>
+      <S.SignupWrapper>
+        <S.Title>이메일로 회원가입</S.Title>
+        <S.SignupForm onSubmit={handleSubmit}>
+          <S.InputWrapper length='16px'>
+            <label htmlFor='email'>이메일</label>
+            <input
+              length='16px'
+              id='email'
+              type='text'
+              placeholder='이메일 주소를 입력해 주세요.'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={emailCheck}
+              ref={inputRef}
+            />
+            {errEmailMsg && <p>{errEmailMsg}</p>}
+          </S.InputWrapper>
+
+          <S.InputWrapper length='30px'>
+            <label htmlFor='pwd'>비밀번호</label>
+            <input
+              id='pwd'
+              type='password'
+              placeholder='비밀번호를 설정해 주세요.'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
+          </S.InputWrapper>
+
+          {/* <S.NextButton disabled={!canNext}>다음</S.NextButton> */}
+          <S.NextButton
+            disabled={!canNext}
+            style={{ background: canNext ? '#495573' : '#abb9d6' }}
+          >
+            다음
+          </S.NextButton>
+        </S.SignupForm>
+      </S.SignupWrapper>
+    </>
   );
 };
 
