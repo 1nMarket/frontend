@@ -109,7 +109,13 @@ const Signup = () => {
             {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
           </S.InputWrapper>
 
-          <S.NextButton disabled={!canNext}>다음</S.NextButton>
+          {/* <S.NextButton disabled={!canNext}>다음</S.NextButton> */}
+          <S.NextButton
+            disabled={!canNext}
+            style={{ background: canNext ? '#495573' : '#abb9d6' }}
+          >
+            다음
+          </S.NextButton>
         </S.SignupForm>
       </S.SignupWrapper>
     </>
