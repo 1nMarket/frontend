@@ -7,7 +7,7 @@ import { ReactComponent as CommentIcon } from '../../../assets/icons/message-cir
 
 const PostItem = ({ post }) => {
   const images = post.image.split(',');
-  console.log(post);
+  console.log(images);
 
   return (
     <S.PostArticle>
@@ -21,7 +21,7 @@ const PostItem = ({ post }) => {
 
       <S.PostContent>
         <S.PostText>{post.content}</S.PostText>
-        <ImageSlide images={images} />
+        {!!images[0] && <ImageSlide images={images} />}
         <S.LikeCommentCount>
           <S.LikeBtn>
             {post.hearted ? <LikeIcon /> : <UnLikeIcon />}
