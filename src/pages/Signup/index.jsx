@@ -82,9 +82,10 @@ const Signup = () => {
       <S.SignupWrapper>
         <S.Title>이메일로 회원가입</S.Title>
         <S.SignupForm onSubmit={handleSubmit}>
-          <S.InputWrapper>
-            <S.Label htmlFor='email'>이메일</S.Label>
-            <S.SignupInput
+          <S.InputWrapper length='16px'>
+            <label htmlFor='email'>이메일</label>
+            <input
+              length='16px'
               id='email'
               type='text'
               placeholder='이메일 주소를 입력해 주세요.'
@@ -94,17 +95,21 @@ const Signup = () => {
               ref={inputRef}
             />
             {errEmailMsg && <p>{errEmailMsg}</p>}
-            <S.Label htmlFor='pwd'>비밀번호</S.Label>
-            <S.SignupInput
+          </S.InputWrapper>
+
+          <S.InputWrapper length='30px'>
+            <label htmlFor='pwd'>비밀번호</label>
+            <input
               id='pwd'
               type='password'
               placeholder='비밀번호를 설정해 주세요.'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
           </S.InputWrapper>
-          {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
-          <button disabled={!canNext}>다음</button>
+
+          <S.NextButton disabled={!canNext}>다음</S.NextButton>
         </S.SignupForm>
       </S.SignupWrapper>
     </>

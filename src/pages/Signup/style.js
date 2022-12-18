@@ -8,6 +8,7 @@ export const SignupWrapper = styled.section`
 `;
 
 export const Title = styled.h1`
+  text-align: center;
   font-size: 24px;
   font-weight: 500;
   line-height: 30px;
@@ -22,19 +23,51 @@ export const SignupForm = styled.form`
 
 export const InputWrapper = styled.div`
   width: 100%;
-`;
+  margin-bottom: ${(props) => props.length};
 
-export const Label = styled.label`
-  display: block;
-  margin-bottom: 10px;
-  line-height: 15px;
-`;
+  input {
+    width: 100%;
+    font-size: 14px;
+    border: none;
+    border-bottom: 1px solid ${({ theme }) => theme.palette.border};
+    padding: 0 0 8px 0;
+    line-height: 14px;
+    outline: none;
+  }
 
-export const SignupInput = styled.input`
-  width: 100%;
-  margin-bottom: 15px;
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.palette.mediumGray};
+    margin-bottom: 10px;
+    line-height: 15px;
+  }
+
+  input::placeholder {
+    font-weight: 400;
+    color: ${({ theme }) => theme.palette.lightGray};
+  }
+
+  &:focus {
+    border-bottom: 1px solid ${({ theme }) => theme.palette.primary};
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.palette.alarm};
+    margin-top: 6px;
+  }
 `;
 
 export const NextButton = styled.button`
-  margin-top: 30px;
+  width: 100%;
+  height: 44px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 44px;
+  border: none;
+  color: ${({ theme }) => theme.palette.white};
+  background-color: ${({ theme }) => theme.palette.disabled};
 `;
