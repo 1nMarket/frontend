@@ -9,6 +9,13 @@ export default axios.create({
   },
 });
 
+export const axiosImgUpload = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});
+
 export const axiosPrivate = axios.create({
   baseURL: BASE_URL,
   headers: {

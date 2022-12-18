@@ -1,12 +1,14 @@
-import React from "react";
-import * as S from "./style"
-import { HeaderWrapper } from "../style";
+import React from 'react';
+import * as S from './style';
+import { HeaderWrapper } from '../style';
 
-const UploadHeader = () => {
+const UploadHeader = ({ canSave, handleUpload }) => {
   return (
     <HeaderWrapper>
-        <S.LeftIcon/>
-        <S.RightIcon/>
+      <S.BackIcon />
+      <S.UploadButton disabled={!canSave} onClick={handleUpload}>
+        업로드
+      </S.UploadButton>
     </HeaderWrapper>
   );
 };

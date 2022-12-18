@@ -5,6 +5,7 @@ import RequireAuth from '../components/common/RequireAuth';
 import Follows from '../pages/Follows';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
+import PostUpload from '../pages/PostUpload';
 import Profile from '../pages/Profile';
 import Public from '../pages/Public';
 import Search from '../pages/Search';
@@ -32,6 +33,10 @@ const Router = () => {
                 <Route index element={<Profile />} />
                 <Route path='followings' element={<Follows />} />
                 <Route path='followers' element={<Follows />} />
+              </Route>
+
+              <Route path='post'>
+                <Route path='upload' element={<PostUpload />} />
               </Route>
 
               <Route path='search' element={<Search />} />
