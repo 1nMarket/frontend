@@ -28,12 +28,14 @@ const PostUpload = () => {
     ]);
   };
 
-  const resize = (e) => {
-    if (e.keyCode !== 13) return;
-    textRef.current.style.height = 14 + textRef.current.scrollHeight + 'px';
+  const autoResizeTextarea = (e) => {
+    textRef.current.style.height = 'auto';
+    let height = textRef.current.scrollHeight; // 높이
+    textRef.current.style.height = `${height + 16}px`;
   };
 
-  const handleUpload = async (e) => {
+  const handlePostUpload = async (e) => {
+    console.log(content, imgFiles);
     e.preventDefault();
     if (!canSave) return;
     await axiosPrivate.post(
@@ -48,9 +50,13 @@ const PostUpload = () => {
     navigate('/home');
   };
 
+  const handleRemoveImg = (idx) => {
+    setImgFiles((prev) => prev.filter((_, i) => idx !== i));
+  }
+
   return (
     <>
-      <UploadHeader canSave={canSave} handleUpload={handleUpload} />
+      <UploadHeader canSave={canSave} handlePostUpload={handlePostUpload} />
       <S.Conatiner>
         <S.ProfileImg
           src={JSON.parse(localStorage.getItem('profile-img'))}
@@ -62,7 +68,8 @@ const PostUpload = () => {
             value={content}
             placeholder='게시글 입력하기...'
             onChange={(e) => setContent(e.target.value)}
-            onKeyDown={resize}
+            onKeyDown={autoResizeTextarea}
+            onKeyUp={autoResizeTextarea}
           />
           <S.ImgLabel htmlFor='img'>
             <UploadIcon />
@@ -76,9 +83,9 @@ const PostUpload = () => {
           />
           <S.ImgList>
             {imgFiles?.map((img, i) => (
-              <S.ImgItem>
-                <S.PostImg key={i} src={img} alt='' />
-                <S.RemoveButton type='button'>
+              <S.ImgItem key={img.slice(10)} >
+                <S.PostImg src={img} alt='' />
+                <S.RemoveButton type='button' onClick={() => handleRemoveImg(i)}>
                   <span className='ir'>이미지 삭제</span>
                 </S.RemoveButton>
               </S.ImgItem>

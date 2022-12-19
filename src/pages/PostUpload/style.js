@@ -2,10 +2,11 @@ import styled from 'styled-components';
 // import imgUpload from '../../assets/icons/icon-upload.svg';
 
 export const Conatiner = styled.main`
-  min-height: calc(100vh - 48px);
+  min-height: 100vh;
   padding: 68px 16px 20px;
   display: flex;
   column-gap: 12px;
+  position: relative;
 `;
 
 export const ProfileImg = styled.img`
@@ -14,6 +15,7 @@ export const ProfileImg = styled.img`
 `;
 
 export const PostForm = styled.form`
+  padding-top: 10px;
   width: 100%;
 `
 
@@ -35,7 +37,7 @@ export const ImgLabel = styled.label`
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 0;
+  bottom: 16px;;
   right: 16px;
   width: 50px;
   height: 50px;
