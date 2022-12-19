@@ -1,9 +1,21 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { axiosImgUpload } from '../../apis/axios';
 
 const SignupProfile = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+  console.log(state);
+
+  const handleImgUpload = async (e) => {
+    let form = new FormData();
+    form.append('image', e.target.files[0]);
+    console.log(e.target.files[0]);
+
+    // 서버에 파일 전달
+    const response = await axiosImgUpload.post('/image/uploadfile', form);
+    console.log(response);
+  };
 
   useEffect(() => {
     if (!state?.email || !state?.password) navigate('/signup');
@@ -16,10 +28,13 @@ const SignupProfile = () => {
         <p>나중에 언제든지 변경할 수 있습니다.</p>
         <form>
           <div>
-            <label htmlFor='profileImg'>
-              <img src='' />
-            </label>
-            <input id='profileImg' type='file' placeholder='파일등록' />
+            <label htmlFor='profileImg'>{/* <img src='' /> */}</label>
+            <input
+              id='profileImg'
+              type='file'
+              accept='.jpg, .gif, .png, .jpeg, .bmp, .tif, .heic'
+              onChange={handleImgUpload}
+            />
           </div>
           <div>
             <label htmlFor='userName'>사용자 이름</label> <br />
