@@ -2,11 +2,11 @@ import React from "react";
 import * as S from "./style"
 import { HeaderWrapper } from "../style";
 
-const ProfileHeader = () => {
+const ProfileHeader = ({ setOpen }) => {
   return (
     <HeaderWrapper>
         <S.LeftIcon/>
-        <S.RightIcon/>
+        <S.RightIcon onClick={() => setOpen(true)} />
     </HeaderWrapper>
   );
 };
