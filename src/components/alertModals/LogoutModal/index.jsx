@@ -1,5 +1,5 @@
-import React from 'react'
-import AlertModalLayout from '../AlertModalLayout'
+import React from 'react';
+import AlertModalLayout from '../AlertModalLayout';
 
 const LogoutModal = () => {
   return (
@@ -7,7 +7,7 @@ const LogoutModal = () => {
       <li>취소</li>
       <li>로그아웃</li>
     </AlertModalLayout>
-  )
-}
+  );
+};
 
-export default LogoutModal
+export default LogoutModal;
