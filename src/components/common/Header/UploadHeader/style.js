@@ -4,7 +4,10 @@ import LeftArrowIcon from '../../../../assets/icons/icon-arrow-left.svg';
 export const BackIcon = styled.img.attrs({
   src: LeftArrowIcon,
   alt: '뒤로가기',
-})``;
+})`
+  cursor: pointer;
+`;
+
 
 export const UploadButton = styled.button`
   padding: 7px 25px;
