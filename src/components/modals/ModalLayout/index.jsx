@@ -3,7 +3,8 @@ import * as S from './style';
 
 const ModalLayout = ({ children, setOpen }) => {
   return (
-    <S.ModalContainer onClick={() => setOpen(false)}>
+    <S.ModalContainer>
+      <S.ModalBackground onClick={() => setOpen(false)} />
       <S.ModalList>
         {children}
       </S.ModalList>

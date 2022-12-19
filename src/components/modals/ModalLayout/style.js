@@ -6,8 +6,13 @@ export const ModalContainer = styled.section`
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 120;
+`;
+
+export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 110;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ModalList = styled.ul`
@@ -17,6 +22,7 @@ export const ModalList = styled.ul`
   background-color: ${({ theme }) => theme.palette.white};
   padding: 36px 0 16px 20px;
   border-radius: 10px 10px 0 0;
+  z-index: 130;
 
   &::before {
     content: '';
