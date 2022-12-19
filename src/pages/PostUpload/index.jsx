@@ -30,8 +30,8 @@ const PostUpload = () => {
 
   const resize = (e) => {
     if (e.keyCode !== 13) return;
-    textRef.current.style.height = (14+ textRef.current.scrollHeight)+"px";
-  }
+    textRef.current.style.height = 14 + textRef.current.scrollHeight + 'px';
+  };
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -74,9 +74,16 @@ const PostUpload = () => {
             accept='.jpg, .gif, .png, .jpeg, .bmp, .tif, .heic'
             onChange={handleImgUpload}
           />
-          {imgFiles?.map((img, i) => (
-            <img key={i} src={img} alt='' width='50px' height='50px' />
-          ))}
+          <S.ImgList>
+            {imgFiles?.map((img, i) => (
+              <S.ImgItem>
+                <S.PostImg key={i} src={img} alt='' />
+                <S.RemoveButton type='button'>
+                  <span className='ir'>이미지 삭제</span>
+                </S.RemoveButton>
+              </S.ImgItem>
+            ))}
+          </S.ImgList>
         </S.PostForm>
       </S.Conatiner>
     </>
