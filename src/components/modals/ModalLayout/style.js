@@ -31,9 +31,8 @@ export const ModalList = styled.ul`
 
   > li {
     padding: 14px 0;
-  }
-
-  > li button {
-    border: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
   }
 `;
