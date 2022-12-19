@@ -31,6 +31,7 @@ const Login = () => {
       return setErrMsg(data?.message);
     }
     localStorage.setItem('token', JSON.stringify(data?.user?.token));
+    localStorage.setItem('profile-img', JSON.stringify(data?.user?.image));
     localStorage.setItem(
       'accountname',
       JSON.stringify(data?.user?.accountname),

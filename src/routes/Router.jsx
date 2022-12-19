@@ -35,12 +35,12 @@ const Router = () => {
                 <Route path='followers' element={<Follows />} />
               </Route>
 
-              <Route path='post'>
-                <Route path='upload' element={<PostUpload />} />
-              </Route>
-
               <Route path='search' element={<Search />} />
             </Route>
+            
+            <Route path='post'>
+                <Route path='upload' element={<PostUpload />} />
+              </Route>
           </Route>
         </Route>
       </Routes>

@@ -1,12 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './style';
 import { HeaderWrapper } from '../style';
 
-const UploadHeader = ({ canSave, handleUpload }) => {
+const UploadHeader = ({ canSave, handlePostUpload }) => {
+  const navigate = useNavigate();
+
   return (
     <HeaderWrapper>
-      <S.BackIcon />
-      <S.UploadButton disabled={!canSave} onClick={handleUpload}>
+      <S.BackIcon onClick={() => navigate(-1)} />
+      <S.UploadButton disabled={!canSave} onClick={handlePostUpload}>
         업로드
       </S.UploadButton>
     </HeaderWrapper>

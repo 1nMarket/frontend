@@ -8,4 +8,6 @@ export const HeaderWrapper = styled.header`
   position: fixed;
   top: 0;
   border-bottom: 1px solid ${({ theme }) => theme.palette.border};
+  z-index: 100;
+  background-color: ${({ theme }) => theme.palette.white};
 `
