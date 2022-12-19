@@ -1,7 +1,7 @@
 import React from 'react';
 import AlertModalLayout from '../AlertModalLayout';
 
-const RemoveModal = () => {
+const ProductRemoveModal = () => {
   return (
     <AlertModalLayout comment='게시글을 삭제할까요?'>
       <li>취소</li>
@@ -10,4 +10,4 @@ const RemoveModal = () => {
   );
 };
 
-export default RemoveModal;
+export default ProductRemoveModal;

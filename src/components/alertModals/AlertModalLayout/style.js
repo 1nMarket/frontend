@@ -35,6 +35,7 @@ export const ModalList = styled.ul`
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
+    cursor: pointer;
 
     &:first-child {
       border-right: .5px solid ${({ theme }) => theme.palette.border};
