@@ -15,12 +15,13 @@ const SignupProfile = () => {
   const [userName, setUserName] = useState('');
   console.log('userName :' + !!userName);
   const [validUserName, setValidUserName] = useState('false');
-  console.log(validUserName);
   const [errUserNameMsg, setErrUserNameMsg] = useState('');
   const [accountName, setAccountName] = useState('');
   const [validAccountName, setValidAccountName] = useState('false');
-  console.log(validAccountName);
   const [errAccountNameMsg, setErrAccountNameMsg] = useState('');
+
+  // 가입 버튼 활성화 처리
+  const canSignup = validUserName && validAccountName;
 
   const handleImgUpload = async (e) => {
     let form = new FormData();
@@ -111,7 +112,7 @@ const SignupProfile = () => {
             <label htmlFor='introduce'>소개</label> <br />
             <input id='introduce' placeholder='자신에 대해 소개해 주세요!' />
           </div>
-          <button disabled>1n마켓 시작하기</button>
+          <button disabled={!canSignup}>1n마켓 시작하기</button>
         </form>
       </section>
     </>
