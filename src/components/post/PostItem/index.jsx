@@ -7,11 +7,10 @@ import { ReactComponent as CommentIcon } from '../../../assets/icons/message-cir
 import MyPostModal from '../../modals/MyPostModal';
 import PostModal from '../../modals/PostModal';
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, setPostsList }) => {
   const [openModal, setOpenModal] = useState(false);
   const images = post.image.split(',');
-  const accountname = JSON.parse(localStorage.getItem('accountname'))
-  console.log(post);
+  const accountname = JSON.parse(localStorage.getItem('accountname'));
 
   return (
     <>
@@ -23,7 +22,7 @@ const PostItem = ({ post }) => {
             <S.AccountName>{post.author.accountname}</S.AccountName>
           </S.AuthorNameWrapper>
         </S.AuthorInfo>
-  
+
         <S.PostContent>
           <S.PostText>{post.content}</S.PostText>
           {!!images[0] && <ImageSlide images={images} />}
@@ -43,16 +42,15 @@ const PostItem = ({ post }) => {
             )}
           </S.DateText>
         </S.PostContent>
-  
+
         <S.RightIcon onClick={() => setOpenModal(true)} />
       </S.PostArticle>
-      {openModal && (
-        accountname === post.author.username ? (
-          <MyPostModal setOpenModal={setOpenModal} />
+      {openModal &&
+        (accountname === post.author.username ? (
+          <MyPostModal setOpenModal={setOpenModal} postId={post.id} setPostsList={setPostsList} />
         ) : (
           <PostModal setOpenModal={setOpenModal} />
-        )
-      )}
+        ))}
     </>
   );
 };

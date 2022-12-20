@@ -38,7 +38,7 @@ const MyPosts = () => {
         )}
       </S.PostHeader>
       {selectList ? (
-        <PostsList postsList={postsList} />
+        <PostsList postsList={postsList} setPostsList={setPostsList} />
       ) : (
         <PostAlbum postsList={postsList} />
       )}

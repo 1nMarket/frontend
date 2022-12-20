@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ModalLayout from '../ModalLayout';
 import PostRemoveModal from '../../alertModals/PostRemoveModal';
 
-const MyPostModal = ({ setOpenModal }) => {
+const MyPostModal = ({ setOpenModal, postId, setPostsList }) => {
   const [openAelrt, setOpenAlert] = useState(false);
 
   return (
@@ -13,7 +13,12 @@ const MyPostModal = ({ setOpenModal }) => {
         <li>수정</li>
       </ModalLayout>
       {openAelrt && (
-        <PostRemoveModal setOpenModal={setOpenModal} setOpenAlert={setOpenAlert} />
+        <PostRemoveModal
+          postId={postId}
+          setOpenModal={setOpenModal}
+          setOpenAlert={setOpenAlert}
+          setPostsList={setPostsList}
+        />
       )}
     </>
   );

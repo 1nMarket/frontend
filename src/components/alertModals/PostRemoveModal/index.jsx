@@ -1,14 +1,18 @@
 import React from 'react';
 import AlertModalLayout from '../AlertModalLayout';
+import { axiosPrivate } from '../../../apis/axios';
 
-const PostRemoveModal = ({ setOpenModal, setOpenAlert }) => {
+const PostRemoveModal = ({ postId, setOpenModal, setOpenAlert, setPostsList }) => {
   const handleCancel = () => {
     setOpenAlert(false);
     setOpenModal(false);
   };
 
   const handleRemove = async () => {
-
+    await axiosPrivate.delete(`post/${postId}`);
+    setOpenAlert(false);
+    setOpenModal(false);
+    setPostsList((prev) => prev.filter(({ id }) => id !== postId));
   }
 
   return (
