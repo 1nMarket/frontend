@@ -9,26 +9,39 @@ const ProductUpload = () => {
     <>
       <SaveHeader/>
       
-      <S.Content>
+      <S.Form>
 
         <S.ImgWrapper>
             <S.ImgLabel>이미지 등록</S.ImgLabel>
-            <S.ProductImg>
+            <S.ProductImgDiv>
                 {/* 이미지 */}
-                <S.ImgBtn/>
-            </S.ProductImg>
+                <S.BtnImg/>
+            </S.ProductImgDiv>
         </S.ImgWrapper>
 
         <S.InputWrapper>      
             <S.ProductInputInfo>상품명</S.ProductInputInfo>
-            <S.ProductInput placeholder='2~15자 이내여야 합니다.'/>
+            <S.ProductInput
+              required
+              placeholder='2~15자 이내여야 합니다.'
+              type="text"
+              minLength="2"
+              maxLength="15"
+            />
             <S.ProductInputInfo>가격</S.ProductInputInfo>
-            <S.ProductInput placeholder='숫자만 입력 가능합니다.'/>
+            <S.ProductInput
+              required
+              placeholder='숫자만 입력 가능합니다.'
+              type="number"
+            />
             <S.ProductInputInfo>판매 링크</S.ProductInputInfo>
-            <S.ProductInput placeholder='URL을 입력해 주세요.'/>
+            <S.ProductInput
+              required
+              placeholder='URL을 입력해 주세요.'
+            />
         </S.InputWrapper>
 
-      </S.Content>
+      </S.Form>
     </>
   )
 }

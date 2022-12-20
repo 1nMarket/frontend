@@ -33,6 +33,7 @@ const Router = () => {
 
               <Route path='profile/:accountname'>
                 <Route index element={<Profile />} />
+                <Route path='product' element={<ProdcutUpload />} />
                 <Route path='followings' element={<Follows />} />
                 <Route path='followers' element={<Follows />} />
               </Route>
@@ -44,8 +45,6 @@ const Router = () => {
             <Route path='post'>
                 <Route path='upload' element={<PostUpload />} />
             </Route>
-
-            <Route path='product/upload' element={<ProdcutUpload/>}/>
           </Route>
 
           <Route path='*' element={<Missing />} />

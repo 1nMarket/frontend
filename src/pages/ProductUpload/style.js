@@ -3,8 +3,8 @@ import FindImgBtn from '../../assets/icons/img-button.svg';
 
 
 // 헤더 제외 모든부분 감싸기 ----------------------
-export const Content = styled.main`
-    padding: 80px 34px 0px;
+export const Form = styled.form`
+    padding: 78px 34px 0px;
 `;
 
 // 이미지 파트 감싸기 ----------------------
@@ -20,7 +20,7 @@ export const ImgLabel = styled.label`
 `;
 
 // 이미지 들어갈 곳(버튼 포함한 회색창) - 감싸기 태그 아님 !!
-export const ProductImg = styled.div`
+export const ProductImgDiv = styled.div`
     width: 322px;
     height: 204px;
     margin-top: 18px;
@@ -30,7 +30,7 @@ export const ProductImg = styled.div`
 `;
 
 // 이미지 내 버튼
-export const ImgBtn = styled.img.attrs({
+export const BtnImg = styled.img.attrs({
     src: FindImgBtn,
     alt: "이미지 업로드"
 })`
@@ -50,8 +50,7 @@ export const InputWrapper = styled.div`
 export const ProductInputInfo = styled.p`
     color: ${({theme}) => theme.palette.mediumGray};
     font-size: 12px;
-
-`
+`;
 
 // 인풋창
 export const ProductInput = styled.input`
@@ -63,6 +62,9 @@ export const ProductInput = styled.input`
     ::placeholder {
         color: ${({ theme }) => theme.palette.border};
     }
+    ::-webkit-outer-spin-button,
+    ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
 `;
 
 
