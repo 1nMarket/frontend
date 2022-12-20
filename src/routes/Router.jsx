@@ -39,13 +39,13 @@ const Router = () => {
 
               <Route path='search' element={<Search />} />
 
-              <Route path='product/upload' element={<ProdcutUpload/>}/>
-    
             </Route>
             
             <Route path='post'>
                 <Route path='upload' element={<PostUpload />} />
             </Route>
+
+            <Route path='product/upload' element={<ProdcutUpload/>}/>
           </Route>
 
           <Route path='*' element={<Missing />} />
