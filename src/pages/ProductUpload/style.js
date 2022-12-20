@@ -47,7 +47,7 @@ export const InputWrapper = styled.div`
 `;
 
 // 인풋박스 이름
-export const ProductInputInfo = styled.p`
+export const ProductInputLabel = styled.label`
     color: ${({theme}) => theme.palette.mediumGray};
     font-size: 12px;
 `;

@@ -4,7 +4,7 @@ import * as S from './style';
 
 
 const ProductUpload = () => {
-
+  
   return (
     <>
       <SaveHeader/>
@@ -20,22 +20,25 @@ const ProductUpload = () => {
         </S.ImgWrapper>
 
         <S.InputWrapper>      
-            <S.ProductInputInfo>상품명</S.ProductInputInfo>
+            <S.ProductInputLabel htmlFor="itemName">상품명</S.ProductInputLabel>
             <S.ProductInput
+              id="itemName"
               required
               placeholder='2~15자 이내여야 합니다.'
               type="text"
               minLength="2"
               maxLength="15"
             />
-            <S.ProductInputInfo>가격</S.ProductInputInfo>
+            <S.ProductInputLabel htmlFor="price">가격</S.ProductInputLabel>
             <S.ProductInput
+              id="price"
               required
               placeholder='숫자만 입력 가능합니다.'
               type="number"
             />
-            <S.ProductInputInfo>판매 링크</S.ProductInputInfo>
+            <S.ProductInputLabel htmlFor="link">판매 링크</S.ProductInputLabel>
             <S.ProductInput
+              id="link"
               required
               placeholder='URL을 입력해 주세요.'
             />
