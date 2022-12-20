@@ -9,7 +9,7 @@ function Missing() {
     <S.ErrorWrapper>
       <S.ErrorIcon />
       <S.ErrorText>페이지를 찾을 수 없습니다. :(</S.ErrorText>
-      <S.PreButton onClick={() => navigate('/home')}>이전 페이지</S.PreButton>
+      <S.PreButton onClick={() => navigate(-1)}>이전 페이지</S.PreButton>
     </S.ErrorWrapper>
   );
 }
