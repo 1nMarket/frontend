@@ -38,6 +38,8 @@ const PostItem = ({ post }) => {
           )}
         </S.DateText>
       </S.PostContent>
+
+      <S.RightIcon />
     </S.PostArticle>
   );
 };
