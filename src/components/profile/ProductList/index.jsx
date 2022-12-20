@@ -38,6 +38,7 @@ const ProductList = () => {
                 </S.ProductItem>
                 {openModal && (
                   <ProductModal
+                    link={product.link}
                     productId={product.id}
                     setProductList={setProductList}
                     setOpenModal={setOpenModal}

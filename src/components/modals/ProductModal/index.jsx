@@ -1,20 +1,25 @@
 import React from 'react';
 import { useState } from 'react';
-import ProductRemoveModal from '../../alertModals/ProductRemoveModal';
+import ProductAlertModal from '../../alertModals/ProductAlertModal';
 import ModalLayout from '../ModalLayout';
+import * as S from './style';
 
-const ProductModal = ({ productId, setProductList, setOpenModal }) => {
+const ProductModal = ({ link, productId, setProductList, setOpenModal }) => {
   const [openAlert, setOpenAlert] = useState(false);
 
   return (
     <>
       <ModalLayout setOpenModal={setOpenModal}>
         <li onClick={() => setOpenAlert(true)}>삭제</li>
-        <li>수정</li>
-        <li>웹사이트에서 상품 보기</li>
+        <li>
+          <S.StyledLink to={`product/${productId}/edit`}>수정</S.StyledLink>
+        </li>
+        <li>
+          <S.ProductLink href={`${link}`}>웹사이트에서 상품 보기</S.ProductLink>
+        </li>
       </ModalLayout>
       {openAlert && (
-        <ProductRemoveModal
+        <ProductAlertModal
           productId={productId}
           setProductList={setProductList}
           setOpenAlert={setOpenAlert}
