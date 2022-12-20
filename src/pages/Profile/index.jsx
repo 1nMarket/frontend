@@ -8,17 +8,17 @@ import ProfileModal from '../../components/modals/ProfileModal';
 
 
 const Profile = () => {
-  const [open, setOpen] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
-      <ProfileHeader setOpen={setOpen} />
+      <ProfileHeader setOpenModal={setOpenModal} />
       <S.Content>
         <ProfileInfo />
         <ProductList />
         <MyPosts />
       </S.Content>
-      {open && <ProfileModal setOpen={setOpen} />}
+      {openModal && <ProfileModal setOpenModal={setOpenModal} />}
     </>
   );
 };

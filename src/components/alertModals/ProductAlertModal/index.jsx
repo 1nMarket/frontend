@@ -1,26 +1,26 @@
 import React from 'react';
-import AlertModalLayout from '../AlertModalLayout';
 import { axiosPrivate } from '../../../apis/axios';
+import AlertModalLayout from '../AlertModalLayout';
 
-const PostRemoveModal = ({ postId, setOpenModal, setOpenAlert, setPostsList }) => {
+const ProductRemoveModal = ({ productId, setOpenModal, setOpenAlert, setProductList }) => {
   const handleCancel = () => {
     setOpenAlert(false);
     setOpenModal(false);
   };
 
   const handleRemove = async () => {
-    await axiosPrivate.delete(`post/${postId}`);
+    await axiosPrivate.delete(`product/${productId}`);
     setOpenAlert(false);
     setOpenModal(false);
-    setPostsList((prev) => prev.filter(({ id }) => id !== postId));
+    setProductList((prev) => prev.filter(({ id }) => id !== productId));
   }
 
   return (
-    <AlertModalLayout comment='게시글을 삭제할까요?'>
+    <AlertModalLayout comment='상품을 삭제할까요?'>
       <li onClick={handleCancel}>취소</li>
       <li onClick={handleRemove}>삭제</li>
     </AlertModalLayout>
   );
 };
 
-export default PostRemoveModal;
+export default ProductRemoveModal;

@@ -2,11 +2,11 @@ import React from "react";
 import * as S from "./style"
 import { HeaderWrapper } from "../style";
 
-const ProfileHeader = ({ setOpen }) => {
+const ProfileHeader = ({ setOpenModal }) => {
   return (
     <HeaderWrapper>
         <S.LeftIcon/>
-        <S.RightIcon onClick={() => setOpen(true)} />
+        <S.RightIcon onClick={() => setOpenModal(true)} />
     </HeaderWrapper>
   );
 };

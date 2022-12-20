@@ -1,10 +1,10 @@
 import React from 'react';
 import ModalLayout from '../ModalLayout';
 
-const PostModal = ({ setOpen }) => {
+const PostModal = ({ setOpenModal }) => {
 
   return (
-    <ModalLayout setOpen={setOpen}>
+    <ModalLayout setOpenModal={setOpenModal}>
       <li>신고하기</li>
     </ModalLayout>
   );

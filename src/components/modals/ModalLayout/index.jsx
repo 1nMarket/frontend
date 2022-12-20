@@ -1,10 +1,10 @@
 import React from 'react';
 import * as S from './style';
 
-const ModalLayout = ({ children, setOpen }) => {
+const ModalLayout = ({ children, setOpenModal }) => {
   return (
     <S.ModalContainer>
-      <S.ModalBackground onClick={() => setOpen(false)} />
+      <S.ModalBackground onClick={() => setOpenModal(false)} />
       <S.ModalList>
         {children}
       </S.ModalList>

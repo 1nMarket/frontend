@@ -1,13 +1,29 @@
 import React from 'react';
+import { useState } from 'react';
 import ModalLayout from '../ModalLayout';
+import PostRemoveModal from '../../alertModals/PostRemoveModal';
+import * as S from './style';
 
-const MyPostModal = ({ setOpen }) => {
+const MyPostModal = ({ setOpenModal, postId, setPostsList }) => {
+  const [openAelrt, setOpenAlert] = useState(false);
 
   return (
-    <ModalLayout setOpen={setOpen}>
-      <li>삭제</li>
-      <li>수정</li>
-    </ModalLayout>
+    <>
+      <ModalLayout setOpenModal={setOpenModal}>
+        <li onClick={() => setOpenAlert(true)}>삭제</li>
+        <li>
+          <S.StyledLink to={`post/${postId}/edit`}>수정</S.StyledLink>
+        </li>
+      </ModalLayout>
+      {openAelrt && (
+        <PostRemoveModal
+          postId={postId}
+          setOpenModal={setOpenModal}
+          setOpenAlert={setOpenAlert}
+          setPostsList={setPostsList}
+        />
+      )}
+    </>
   );
 };
 

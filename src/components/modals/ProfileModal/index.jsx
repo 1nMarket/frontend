@@ -3,16 +3,18 @@ import { useState } from 'react';
 import LogoutModal from '../../alertModals/LogoutModal';
 import ModalLayout from '../ModalLayout';
 
-const ProfileModal = ({ setOpen }) => {
+const ProfileModal = ({ setOpenModal }) => {
   const [openAlert, setOpenAlert] = useState(false);
 
   return (
     <>
-      <ModalLayout setOpen={setOpen}>
+      <ModalLayout setOpenModal={setOpenModal}>
         <li>설정 및 개인정보</li>
-        <li onClick={() => {setOpenAlert(true); console.log('hi')}}>로그아웃</li>
+        <li onClick={() => setOpenAlert(true)}>로그아웃</li>
       </ModalLayout>
-      {openAlert && <LogoutModal setOpenAlert={setOpenAlert} />}
+      {openAlert && (
+        <LogoutModal setOpenAlert={setOpenAlert} setOpenModal={setOpenModal} />
+      )}
     </>
   );
 };

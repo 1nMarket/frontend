@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import ModalIcon from '../../../assets/icons/icon-more-vertical.svg';
 
 export const PostArticle = styled.article`
   width: 100%;
   margin-bottom: 20px;
+  position: relative;
 `;
 
 export const AuthorInfo = styled.section`
@@ -85,4 +87,16 @@ export const DateText = styled.p`
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
+`;
+
+export const RightIcon = styled.img.attrs({
+  src: ModalIcon,
+  alt: '모달창',
+})`
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
 `;
