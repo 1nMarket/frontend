@@ -11,6 +11,7 @@ import Public from '../pages/Public';
 import Search from '../pages/Search';
 import Signup from '../pages/Signup';
 import SignupProfile from '../pages/SignupProfile';
+import Missing from '../pages/Missing';
 
 const Router = () => {
   return (
@@ -42,6 +43,8 @@ const Router = () => {
               <Route path='search' element={<Search />} />
             </Route>
           </Route>
+
+          <Route path='*' element={<Missing />} />
         </Route>
       </Routes>
     </BrowserRouter>
