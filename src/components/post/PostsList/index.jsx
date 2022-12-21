@@ -3,7 +3,6 @@ import * as S from './style';
 import PostItem from '../PostItem';
 
 const PostsList = ({ postsList, setPostsList }) => {
-  console.log(postsList);
 
   return (
     <S.PostsContainer>
