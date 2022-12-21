@@ -62,7 +62,7 @@ const Signup = () => {
       setErrEmailMsg('');
       setValidRegEmail(false);
     } else {
-      setErrEmailMsg('잘못된 이메일 형식입니다.');
+      setErrEmailMsg('이메일 형식을 맞춰주세요.');
       setValidRegEmail(false);
     }
   }, [email]);

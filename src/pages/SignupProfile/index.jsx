@@ -4,25 +4,24 @@ import { axiosImgUpload, axiosPrivate } from '../../apis/axios';
 
 const USERNAME_REGEX = /^[a-zA-Z0-9가-힣]{2,10}$/;
 // eslint-disable-next-line
-const ACCOUNTNAME_REGEX = /^(?=[a-z])[a-z0-9\.\_]{5,15}$/;
+const ACCOUNTNAME_REGEX = /^[a-z0-9\.\_]{5,15}$/;
 
 const SignupProfile = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [profileImg, setProfileImg] = useState('');
+  const [profileImg, setProfileImg] = useState(
+    'https://mandarin.api.weniv.co.kr/1671431659709.png',
+  );
   const [userName, setUserName] = useState('');
-  const [validUserName, setValidUserName] = useState('false');
+  const [validUserName, setValidUserName] = useState(false);
   const [errUserNameMsg, setErrUserNameMsg] = useState('');
   const [accountname, setAccountname] = useState('');
-  const [validAccountName, setValidAccountName] = useState('false');
+  const [validAccountName, setValidAccountName] = useState(false);
+  const [validDupAccountName, setValidDupAccountName] = useState(false);
   const [errAccountNameMsg, setErrAccountNameMsg] = useState('');
 
-  // 가입 버튼 활성화 처리
-  const canSignup = validUserName && validAccountName;
-
-  if (profileImg === '') {
-    setProfileImg('https://mandarin.api.weniv.co.kr/1671431659709.png');
-  }
+  // 버튼 활성화 조건 처리
+  const canSignup = validUserName && validAccountName & validDupAccountName;
 
   const handleImgUpload = async (e) => {
     let form = new FormData();
@@ -39,27 +38,54 @@ const SignupProfile = () => {
     } = await axiosImgUpload.post('/image/uploadfile', form);
 
     setProfileImg(`https://mandarin.api.weniv.co.kr/${filename}`);
-    console.log(profileImg);
   };
 
   // 계정 ID 중복확인
   const accountNameCheck = async () => {
-    if (!validAccountName) return;
-
-    const res = await axiosPrivate.post(
-      `/user/accountnamevalid`,
-      JSON.stringify({
-        user: {
-          accountname,
-        },
-      }),
-    );
-    console.log(res);
+    if (validAccountName === true) {
+      try {
+        const { data } = await axiosPrivate.post(
+          `/user/accountnamevalid`,
+          JSON.stringify({
+            user: {
+              accountname,
+            },
+          }),
+        );
+        if (data.message === '사용 가능한 계정ID 입니다.') {
+          setValidDupAccountName(true);
+          setErrAccountNameMsg(data.message);
+        } else if (data.message === '잘못된 접근입니다.') {
+          setValidDupAccountName(false);
+          setErrAccountNameMsg('');
+        } else {
+          setValidDupAccountName(false);
+          setErrAccountNameMsg(data.message);
+        }
+      } catch (error) {
+        console.error('err');
+      }
+    } else {
+      setValidDupAccountName(false);
+      return;
+    }
   };
 
+  // 계정 ID 유효성 체크
   useEffect(() => {
-    if (!state?.email || !state?.password) navigate('/signup');
-  }, []);
+    setValidDupAccountName(false);
+    const result = ACCOUNTNAME_REGEX.test(accountname);
+
+    if (accountname.length && !result) {
+      setErrAccountNameMsg(
+        '영문 소문자,숫자와 특수문자 마침표(.),밑줄(_)만 사용 가능합니다.',
+      );
+      setValidAccountName(false);
+    } else {
+      setErrAccountNameMsg('');
+      setValidAccountName(true);
+    }
+  }, [accountname]);
 
   // 사용자 이름 유효성 체크
   useEffect(() => {
@@ -68,24 +94,16 @@ const SignupProfile = () => {
 
     if (userName.length && !result) {
       setErrUserNameMsg('2~10자의 한글,영어,숫자만 사용 가능합니다.');
+      setValidAccountName(false);
     } else {
       setErrUserNameMsg('');
+      setValidAccountName(true);
     }
   }, [userName]);
 
-  // 계정 ID 유효성 체크
   useEffect(() => {
-    const result = ACCOUNTNAME_REGEX.test(accountname);
-    setValidAccountName(result);
-
-    if (accountname.length && !result) {
-      setErrAccountNameMsg(
-        '영문 소문자,숫자와 특수문자 마침표(.),밑줄(_)만 사용 가능합니다.',
-      );
-    } else {
-      setErrAccountNameMsg('');
-    }
-  }, [accountname]);
+    if (!state?.email || !state?.password) navigate('/signup');
+  }, []);
 
   return (
     <>
