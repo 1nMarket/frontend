@@ -39,6 +39,14 @@ export const BtnImg = styled.img.attrs({
     cursor: pointer;
 `;
 
+// 업로드 된 이미지
+export const ProductImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: none;
+`;
+
 // 인풋박스 감싸기 ----------------------
 export const InputWrapper = styled.div`
     display: flex;

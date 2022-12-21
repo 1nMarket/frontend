@@ -2,11 +2,11 @@ import React from 'react'
 import { axiosImgUpload } from '../../apis/axios';
 import SaveHeader from '../../components/common/Header/SaveHeader';
 import * as S from './style';
-// import { useState } from 'react';
+import { useState } from 'react';
 
 const ProductUpload = () => {
   
-  // const [imgFiles, setImgFiles] = useState([]);
+  const [imgFiles, setImgFiles] = useState('');
   // const [prodcutImg, setProductImg] = useState('');
 
   const handleImgUpload = async (e) => {
@@ -19,12 +19,14 @@ const ProductUpload = () => {
     const { data } = await axiosImgUpload.post("/image/uploadfile", form);
     console.log(data.filename);
     
-    // setImgFiles((prev) => [
-    //   ...prev, `https://mandarin.api.weniv.co.kr/${data.filename}`
-    // ]);
- 
+    // 업로드 취소시 나타나는 엑스박스 이미지 없애기 위한 조건문
+    if (!e.target.files[0]) return setImgFiles(''); 
+
+    setImgFiles(`https://mandarin.api.weniv.co.kr/${data.filename}`)
+    // console.log(e.target.files[0]);
   };
 
+  console.log(imgFiles);
   return (
     <>
       <SaveHeader/>
@@ -36,7 +38,7 @@ const ProductUpload = () => {
             <S.ProductImgDiv>
               
               <label htmlFor="img">
-                  {/* 이미지 */}
+                  {imgFiles ? <S.ProductImg src={imgFiles} /> : null}
                   <S.BtnImg/>
                   <input 
                     type="file"
