@@ -13,8 +13,7 @@ export const ImgWrapper = styled.div`
 `;
 
 // 이미지 라벨
-export const ImgLabel = styled.label`
-    padding-bottom: 50px;
+export const ImgUploadText = styled.p`
     font-size: 12px;
     color: ${({theme}) => theme.palette.mediumGray};
 `;
@@ -29,7 +28,7 @@ export const ProductImgDiv = styled.div`
     background-color: ${({ theme }) => theme.palette.border};
 `;
 
-// 이미지 내 버튼
+// 이미지 내 업로드 버튼
 export const BtnImg = styled.img.attrs({
     src: FindImgBtn,
     alt: "이미지 업로드"
