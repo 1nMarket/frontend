@@ -24,8 +24,8 @@ const Signup = () => {
   console.log(validDupEmail);
 
   // 이메일 중복검사
-  const emailCheck = async () => {
-    if (EMAIL_REGEX.test(email)) {
+  const handleDupEmail = async () => {
+    if (validRegEmail === true) {
       try {
         const { data } = await axiosPrivate.post(
           `/user/emailvalid/`,
@@ -110,7 +110,7 @@ const Signup = () => {
               placeholder='이메일 주소를 입력해 주세요.'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={emailCheck}
+              onBlur={handleDupEmail}
               ref={inputRef}
             />
             {errEmailMsg && (
@@ -134,7 +134,7 @@ const Signup = () => {
 
           <S.NextButton
             disabled={!canNext}
-            onClick={emailCheck}
+            onClick={handleDupEmail}
             style={{ background: canNext ? '#495573' : '#abb9d6' }}
           >
             다음
