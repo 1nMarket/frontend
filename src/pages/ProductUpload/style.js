@@ -72,6 +72,7 @@ export const ProductInput = styled.input`
     ::-webkit-outer-spin-button,
     ::-webkit-inner-spin-button {
         -webkit-appearance: none;
+    }
 `;
 
 

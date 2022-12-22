@@ -7,7 +7,9 @@ import { useState } from 'react';
 const ProductUpload = () => {
   
   const [imgFiles, setImgFiles] = useState('');
-  // const [prodcutImg, setProductImg] = useState('');
+  const [productName, setProductName] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+  const [productLink, setProductLink] = useState('');
 
   const handleImgUpload = async (e) => {
     e.preventDefault();
@@ -26,10 +28,12 @@ const ProductUpload = () => {
     // console.log(e.target.files[0]);
   };
 
+  const canSave = !!imgFiles && !!productName && !!productPrice && !!productLink ;
+
   console.log(imgFiles);
   return (
     <>
-      <SaveHeader/>
+      <SaveHeader canSave={canSave}/>
       
       <S.Form>
 
@@ -60,6 +64,8 @@ const ProductUpload = () => {
               type="text"
               minLength="2"
               maxLength="15"
+              value={productName}
+              onChange={(e) => setProductName(e.target.value)}
             />
             <S.ProductInputLabel htmlFor="price">가격</S.ProductInputLabel>
             <S.ProductInput
@@ -67,12 +73,16 @@ const ProductUpload = () => {
               required
               placeholder='숫자만 입력 가능합니다.'
               type="number"
+              value={productPrice}
+              onChange={(e) => setProductPrice(e.target.value)}
             />
             <S.ProductInputLabel htmlFor="link">판매 링크</S.ProductInputLabel>
             <S.ProductInput
               id="link"
               required
               placeholder='URL을 입력해 주세요.'
+              value={productLink}
+              onChange={(e) => setProductLink(e.target.value)}
             />
         </S.InputWrapper>
 
