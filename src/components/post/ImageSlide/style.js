@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SlideContainer = styled.div`
-  width: 100%;
+  width: 292px;
   position: relative;
   overflow: hidden;
   margin-bottom: 12px;

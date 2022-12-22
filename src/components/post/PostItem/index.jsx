@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import ImageSlide from '../ImageSlide';
 import * as S from './style';
 import { ReactComponent as UnLikeIcon } from '../../../assets/icons/unheart.svg';
@@ -7,7 +7,6 @@ import { ReactComponent as CommentIcon } from '../../../assets/icons/message-cir
 import MyPostModal from '../../modals/MyPostModal';
 import PostModal from '../../modals/PostModal';
 import { axiosPrivate } from '../../../apis/axios';
-// import { useEffect } from 'react';
 
 const PostItem = ({ post, setPostsList }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -25,20 +24,17 @@ const PostItem = ({ post, setPostsList }) => {
     setHeart((prev) => !prev);
   };
 
-  console.log(heart);
-  // useEffect(() => {
-  //   setHeart(post.hearted)
-  // }, []);
-
   return (
     <>
       <S.PostArticle>
         <S.AuthorInfo>
-          <S.AuthorImage src={post.author.image} />
-          <S.AuthorNameWrapper>
-            <S.UserName>{post.author.username}</S.UserName>
-            <S.AccountName>{post.author.accountname}</S.AccountName>
-          </S.AuthorNameWrapper>
+          <S.AuthorProfileLink to={`/profile/${post.author.accountname}`}>
+            <S.AuthorImage src={post.author.image} />
+            <S.AuthorNameWrapper>
+              <S.UserName>{post.author.username}</S.UserName>
+              <S.AccountName>{post.author.accountname}</S.AccountName>
+            </S.AuthorNameWrapper>
+          </S.AuthorProfileLink>
         </S.AuthorInfo>
 
         <S.PostContent>
@@ -73,4 +69,4 @@ const PostItem = ({ post, setPostsList }) => {
   );
 };
 
-export default PostItem;
+export default memo(PostItem);
