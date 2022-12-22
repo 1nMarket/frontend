@@ -21,7 +21,6 @@ const Signup = () => {
 
   // 버튼 활성화 조건 처리
   const canNext = validRegEmail && validPassword && validDupEmail;
-  console.log(validDupEmail);
 
   // 이메일 중복검사
   const handleDupEmail = async () => {
