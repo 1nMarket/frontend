@@ -1,13 +1,15 @@
 import styled from 'styled-components';
-import SearchIcon from '../../../../assets/icons/icon-search.svg';
-import HomeHeaderText from '../../../../assets/icons/HomeHeaderText.svg';
+import search from '../../../../assets/icons/icon-search.svg';
 
-export const LeftIcon = styled.img.attrs({
-  src: SearchIcon,
-  alt: '검색하기',
-})``;
+export const Title = styled.h1`
+  font-weight: 500;
+  font-size: 18px;
+  color: ${({ theme }) => theme.palette.black};
+  line-height: 1;
+  margin-bottom: -3px;
+`;
 
-export const RightIcon = styled.img.attrs({
-  src: HomeHeaderText,
-  alt: '1N마켓 피드',
-})``;
+  export const SearchIcon = styled.img.attrs({
+    src: search,
+    alt: '검색하기',
+  })``;
