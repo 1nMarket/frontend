@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { axiosImgUpload } from '../../apis/axios';
 import SaveHeader from '../../components/common/Header/SaveHeader';
 import * as S from './style';
 import { useState } from 'react';
 
 const ProductUpload = () => {
-  
+
+  // eslint-disable-next-line
+  const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+
   const [imgFiles, setImgFiles] = useState('');
+
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productLink, setProductLink] = useState('');
 
+  // 유효성 검사를 위한 State
+  const [validProductName, setValidProductName] = useState(false);
+  const [errProductNameMsg, setErrProductNameMsg] = useState('');
+
+  const [validProductLink, setValidProductLink] = useState(false);
+  const [errProductLinkMsg, setErrProductLinkMsg] = useState('');
+
+  // const [validProductPrice, setValidProductPrice] = useState(false);
+  // const [errProductPriceMsg, setErrProductPriceMsg] = useState('');
+
+  const canSave = !!imgFiles && validProductName && !!productPrice && validProductLink;
+
   const handleImgUpload = async (e) => {
     e.preventDefault();
-    // if (imgFiles.length > 0)
-    //   return window.alert("이미지는 한 개만 업로드가 가능합니다!");
 
     const form = new FormData();
     form.append("image", e.target.files[0]);
@@ -25,12 +39,32 @@ const ProductUpload = () => {
     if (!e.target.files[0]) return setImgFiles(''); 
 
     setImgFiles(`https://mandarin.api.weniv.co.kr/${data.filename}`)
-    // console.log(e.target.files[0]);
   };
 
-  const canSave = !!imgFiles && !!productName && !!productPrice && !!productLink ;
+
+  // 상품명 유효성 검사(두 글자 이상 정규식 구하기)
+  useEffect(() => {
+    const result = !!(productName.length >= 2);
+    setValidProductName(result);
+
+    if (productName.length && !result) setErrProductNameMsg('상품명은 최소 두 글자 이상 입력해주세요.');
+    else setErrProductNameMsg('');
+
+  }, [productName]);
+
+
+  // 링크 유효성 검사 
+  useEffect(()=> {
+    const result = URL_REGEX.test(productLink);
+    setValidProductLink(result);
+
+    if (productLink.length && !result) setErrProductLinkMsg('잘못된 URL 형식입니다.');
+    else setErrProductLinkMsg('');
+
+  }, [productLink]);
 
   console.log(imgFiles);
+
   return (
     <>
       <SaveHeader canSave={canSave}/>
@@ -67,6 +101,8 @@ const ProductUpload = () => {
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
             />
+            {errProductNameMsg && <p>{errProductNameMsg}</p>}
+
             <S.ProductInputLabel htmlFor="price">가격</S.ProductInputLabel>
             <S.ProductInput
               id="price"
@@ -76,6 +112,7 @@ const ProductUpload = () => {
               value={productPrice}
               onChange={(e) => setProductPrice(e.target.value)}
             />
+
             <S.ProductInputLabel htmlFor="link">판매 링크</S.ProductInputLabel>
             <S.ProductInput
               id="link"
@@ -84,11 +121,13 @@ const ProductUpload = () => {
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}
             />
+            {errProductLinkMsg && <p>{errProductLinkMsg}</p>}
         </S.InputWrapper>
 
       </S.Form>
     </>
   )
 }
+
 
 export default ProductUpload;

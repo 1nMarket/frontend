@@ -51,6 +51,12 @@ export const ProductImg = styled.img`
 export const InputWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    p {
+        font-size: 12px;
+        font-weight: 500;
+        color: ${({ theme }) => theme.palette.alarm};
+        margin: -10px 0 15px 0;
+      }
 `;
 
 // 인풋박스 이름
@@ -66,6 +72,7 @@ export const ProductInput = styled.input`
     margin-bottom: 16px;
     border: none;
     border-bottom: 1px solid ${({ theme }) => theme.palette.border};;
+    outline: none;
     ::placeholder {
         color: ${({ theme }) => theme.palette.border};
     }
@@ -73,7 +80,7 @@ export const ProductInput = styled.input`
     ::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
+    &:focus {
+        border-bottom: 1px solid ${({ theme }) => theme.palette.primary};
+    }
 `;
-
-
-
