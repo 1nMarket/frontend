@@ -9,14 +9,20 @@ export const PostArticle = styled.article`
 `;
 
 export const AuthorInfo = styled.section`
-  display: flex;
-  align-items: center;
   margin-bottom: 12px;
 `;
+
+export const AuthorProfileLink = styled(Link)`
+  color: ${({ theme }) => theme.palette.black};
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+`
 
 export const AuthorImage = styled.img`
   width: 42px;
   height: 42px;
+  border-radius: 50%;
 `;
 
 export const AuthorNameWrapper = styled.div`

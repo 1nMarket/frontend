@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { axiosPrivate } from '../../apis/axios';
 import PostsList from '../../components/post/PostsList';
+import HomeHeader from '../../components/common/Header/HomeHeader'
+import * as S from './style';
 
 const Home = () => {
   const [postsList, setPostList] = useState([]);
@@ -34,11 +36,12 @@ const Home = () => {
 
   return (
     <>
-      <main>
+      <HomeHeader />
+      <S.Container>
         <PostsList postsList={postsList} />
 
         <div ref={observerTargetEl} />
-      </main>
+      </S.Container>
     </>
   );
 };
