@@ -20,7 +20,7 @@ const MyPosts = () => {
       setPostsList(post);
     };
     getAllPosts();
-  }, []);
+  }, [accountname]);
 
   return (
     <>

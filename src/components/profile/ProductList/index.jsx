@@ -21,7 +21,7 @@ const ProductList = () => {
       setProductList(product);
     };
     getProductList();
-  }, []);
+  }, [accountname]);
 
   return (
     <>
