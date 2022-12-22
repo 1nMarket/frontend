@@ -17,6 +17,7 @@ export const AuthorInfo = styled.section`
 export const AuthorImage = styled.img`
   width: 42px;
   height: 42px;
+  border-radius: 50%;
 `;
 
 export const AuthorNameWrapper = styled.div`
