@@ -49,7 +49,7 @@ export const InputWrapper = styled.div`
     color: ${({ theme }) => theme.palette.lightGray};
   }
 
-  &:focus {
+  input:focus {
     border-bottom: 1px solid ${({ theme }) => theme.palette.primary};
   }
 
