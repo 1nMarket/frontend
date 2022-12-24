@@ -21,8 +21,6 @@ const Signup = () => {
 
   // 버튼 활성화 조건 처리
   const canNext = validRegEmail && validPassword && validDupEmail;
-  console.log(validRegEmail, validPassword, validDupEmail);
-  console.log(password.length);
 
   // 이메일 중복검사
   const handleDupEmail = async () => {
@@ -118,9 +116,7 @@ const Signup = () => {
               ref={inputRef}
             />
             {errEmailMsg && (
-              <p style={{ color: validDupEmail ? '#495573' : '#EB7F5F' }}>
-                {errEmailMsg}
-              </p>
+              <S.ErrMsg styledd={validDupEmail}>{errEmailMsg}</S.ErrMsg>
             )}
           </S.InputWrapper>
 
@@ -133,14 +129,10 @@ const Signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
+            {errPasswordlMsg && <S.ErrMsg>{errPasswordlMsg}</S.ErrMsg>}
           </S.InputWrapper>
 
-          <S.NextButton
-            disabled={!canNext}
-            onClick={handleDupEmail}
-            style={{ background: canNext ? '#495573' : '#abb9d6' }}
-          >
+          <S.NextButton disabled={!canNext} onClick={handleDupEmail}>
             다음
           </S.NextButton>
         </S.SignupForm>

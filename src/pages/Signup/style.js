@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 export const SignupWrapper = styled.section`
   width: 100%;
@@ -29,7 +30,7 @@ export const InputWrapper = styled.div`
     width: 100%;
     font-size: 14px;
     border: none;
-    border-bottom: 1px solid ${({ theme }) => theme.palette.border};
+    border-bottom: 1px solid ${theme.palette.border};
     padding: 0 0 8px 0;
     line-height: 14px;
     outline: none;
@@ -39,26 +40,31 @@ export const InputWrapper = styled.div`
     display: block;
     font-size: 12px;
     font-weight: 500;
-    color: ${({ theme }) => theme.palette.mediumGray};
+    color: ${theme.palette.mediumGray};
     margin-bottom: 10px;
     line-height: 15px;
   }
 
   input::placeholder {
     font-weight: 400;
-    color: ${({ theme }) => theme.palette.lightGray};
+    color: ${theme.palette.lightGray};
   }
 
   input:focus {
-    border-bottom: 1px solid ${({ theme }) => theme.palette.primary};
+    border-bottom: 1px solid ${theme.palette.primary};
   }
 
-  p {
-    font-size: 12px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.palette.alarm};
-    margin-top: 6px;
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
   }
+`;
+
+export const ErrMsg = styled.p`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ styledd }) =>
+    styledd ? theme.palette.primary : theme.palette.alarm};
+  margin-top: 6px;
 `;
 
 export const NextButton = styled.button`
@@ -68,6 +74,8 @@ export const NextButton = styled.button`
   font-weight: 500;
   border-radius: 44px;
   border: none;
-  color: ${({ theme }) => theme.palette.white};
-  background-color: ${({ theme }) => theme.palette.disabled};
+  color: ${theme.palette.white};
+  background-color: ${({ disabled }) =>
+    disabled ? theme.palette.disabled : theme.palette.primary};
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `;
