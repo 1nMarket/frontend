@@ -81,7 +81,7 @@ export const ProfileInput = styled.input`
 export const ErrMsg = styled.p`
   font-size: 12px;
   font-weight: 500;
-  color: ${({ dupcheck }) =>
-    dupcheck ? theme.palette.primary : theme.palette.alarm};
+  color: ${({ validcheck }) =>
+    validcheck ? theme.palette.primary : theme.palette.alarm};
   margin-top: 6px;
 `;

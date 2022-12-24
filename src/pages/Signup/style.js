@@ -25,36 +25,36 @@ export const SignupForm = styled.form`
 export const InputWrapper = styled.div`
   width: 100%;
   margin-bottom: ${(props) => props.length};
+`;
 
-  input {
-    width: 100%;
-    font-size: 14px;
-    border: none;
-    border-bottom: 1px solid ${theme.palette.border};
-    padding: 0 0 8px 0;
-    line-height: 14px;
-    outline: none;
-  }
+export const SignupLabel = styled.label`
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: ${theme.palette.mediumGray};
+  margin-bottom: 10px;
+  line-height: 15px;
+`;
 
-  label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: ${theme.palette.mediumGray};
-    margin-bottom: 10px;
-    line-height: 15px;
-  }
+export const SignupInput = styled.input`
+  width: 100%;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid ${theme.palette.border};
+  padding: 0 0 8px 0;
+  line-height: 14px;
+  outline: none;
 
-  input::placeholder {
+  &::placeholder {
     font-weight: 400;
     color: ${theme.palette.lightGray};
   }
 
-  input:focus {
+  &:focus {
     border-bottom: 1px solid ${theme.palette.primary};
   }
 
-  input:-webkit-autofill {
+  &:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #fff inset;
   }
 `;
@@ -62,8 +62,8 @@ export const InputWrapper = styled.div`
 export const ErrMsg = styled.p`
   font-size: 12px;
   font-weight: 500;
-  color: ${({ styledd }) =>
-    styledd ? theme.palette.primary : theme.palette.alarm};
+  color: ${({ validcheck }) =>
+    validcheck ? theme.palette.primary : theme.palette.alarm};
   margin-top: 6px;
 `;
 

@@ -104,8 +104,8 @@ const Signup = () => {
         <S.Title>이메일로 회원가입</S.Title>
         <S.SignupForm onSubmit={handleSubmit}>
           <S.InputWrapper length='16px'>
-            <label htmlFor='email'>이메일</label>
-            <input
+            <S.SignupLabel htmlFor='email'>이메일</S.SignupLabel>
+            <S.SignupInput
               length='16px'
               id='email'
               type='text'
@@ -116,20 +116,22 @@ const Signup = () => {
               ref={inputRef}
             />
             {errEmailMsg && (
-              <S.ErrMsg styledd={validDupEmail}>{errEmailMsg}</S.ErrMsg>
+              <S.ErrMsg validcheck={validDupEmail}>{errEmailMsg}</S.ErrMsg>
             )}
           </S.InputWrapper>
 
           <S.InputWrapper length='30px'>
-            <label htmlFor='pwd'>비밀번호</label>
-            <input
+            <S.SignupLabel htmlFor='pwd'>비밀번호</S.SignupLabel>
+            <S.SignupInput
               id='pwd'
               type='password'
               placeholder='비밀번호를 설정해 주세요.'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errPasswordlMsg && <S.ErrMsg>{errPasswordlMsg}</S.ErrMsg>}
+            {errPasswordlMsg && (
+              <S.ErrMsg validcheck={validPassword}>{errPasswordlMsg}</S.ErrMsg>
+            )}
           </S.InputWrapper>
 
           <S.NextButton disabled={!canNext} onClick={handleDupEmail}>

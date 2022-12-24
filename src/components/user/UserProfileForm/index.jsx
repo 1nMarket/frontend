@@ -131,7 +131,7 @@ const UserProfileForm = ({
             onChange={(e) => setUsername(e.target.value)}
           />
           {errUserNameMsg && (
-            <S.ErrMsg dupcheck={validUserName}>{errUserNameMsg}</S.ErrMsg>
+            <S.ErrMsg validcheck={validUserName}>{errUserNameMsg}</S.ErrMsg>
           )}
         </S.InputWrapper>
         <S.InputWrapper length='16px'>
@@ -145,7 +145,7 @@ const UserProfileForm = ({
             onBlur={handleDupAccountName}
           />
           {errAccountNameMsg && (
-            <S.ErrMsg dupcheck={validDupAccountName}>
+            <S.ErrMsg validcheck={validDupAccountName}>
               {errAccountNameMsg}
             </S.ErrMsg>
           )}
