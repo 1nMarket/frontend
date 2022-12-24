@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosImgUpload, axiosPrivate } from '../../../apis/axios';
+import * as S from './style';
 
 const USERNAME_REGEX = /^[a-zA-Z0-9가-힣]{2,10}$/;
 // eslint-disable-next-line
@@ -107,24 +108,19 @@ const UserProfileForm = ({
 
   return (
     <>
-      <form>
-        <div>
-          <label htmlFor='profileImg' style={{ cursor: 'pointer' }}>
-            <img
-              src={profileImg}
-              alt='프로필 사진'
-              width='110px'
-              height='110px'
-            />
-          </label>
+      <S.ProfileForm>
+        <S.FileWrapper>
+          <S.FileLabel htmlFor='profileImg'>
+            <S.ProfileImg src={profileImg} alt='프로필 사진' />
+          </S.FileLabel>
           <input
             id='profileImg'
             type='file'
             accept='.jpg, .gif, .png, .jpeg, .bmp, .tif, .heic'
             onChange={handleImgUpload}
-            style={{ display: 'none' }}
+            className='ir'
           />
-        </div>
+        </S.FileWrapper>
         <div>
           <label htmlFor='userName'>사용자 이름</label> <br />
           <input
@@ -157,7 +153,7 @@ const UserProfileForm = ({
             onChange={(e) => setIntro(e.target.value)}
           />
         </div>
-      </form>
+      </S.ProfileForm>
     </>
   );
 };

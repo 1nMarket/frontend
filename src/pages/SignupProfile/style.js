@@ -19,6 +19,7 @@ export const Title = styled.h2`
 export const Desc = styled.p`
   text-align: center;
   font-size: 14px;
+  margin-bottom: 30px;
   color: ${({ theme }) => theme.palette.mediumGray};
 `;
 
