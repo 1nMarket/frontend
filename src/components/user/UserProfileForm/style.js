@@ -10,7 +10,7 @@ export const ProfileForm = styled.form`
 
 export const FileWrapper = styled.div`
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
 `;
 
 export const FileLabel = styled.label`
@@ -34,7 +34,54 @@ export const FileLabel = styled.label`
 `;
 
 export const ProfileImg = styled.img`
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   border: 1px solid ${theme.palette.border};
+`;
+
+export const InputWrapper = styled.div`
+  width: 100%;
+  margin-bottom: ${(props) => props.length};
+`;
+
+export const ProfileLabel = styled.label`
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: ${theme.palette.mediumGray};
+  margin-bottom: 10px;
+  line-height: 15px;
+`;
+
+export const ProfileInput = styled.input`
+  width: 100%;
+  font-size: 14px;
+  border: none;
+  border-bottom: 1px solid ${theme.palette.border};
+  padding: 0 0 8px 0;
+  line-height: 14px;
+  outline: none;
+
+  &::placeholder {
+    font-weight: 400;
+    color: ${theme.palette.lightGray};
+  }
+
+  &:focus {
+    border-bottom: 1px solid ${theme.palette.primary};
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  }
+`;
+
+export const ErrMsg = styled.p`
+  font-size: 12px;
+  font-weight: 500;
+  color: ${({ dupcheck }) =>
+    dupcheck ? theme.palette.primary : theme.palette.alarm};
+  margin-top: 6px;
 `;

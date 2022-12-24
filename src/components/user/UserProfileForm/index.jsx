@@ -121,38 +121,44 @@ const UserProfileForm = ({
             className='ir'
           />
         </S.FileWrapper>
-        <div>
-          <label htmlFor='userName'>사용자 이름</label> <br />
-          <input
+        <S.InputWrapper length='16px'>
+          <S.ProfileLabel htmlFor='userName'>사용자 이름</S.ProfileLabel>
+          <S.ProfileInput
             id='userName'
-            placeholder='2~10자의 한글,영어,숫자만 사용 가능'
+            placeholder='2~10자의 한글,영어,숫자만 사용 가능합니다.'
             maxLength='10'
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          {errUserNameMsg && <p>{errUserNameMsg}</p>}
-        </div>
-        <div>
-          <label htmlFor='accountName'>계정 ID</label> <br />
-          <input
+          {errUserNameMsg && (
+            <S.ErrMsg dupcheck={validUserName}>{errUserNameMsg}</S.ErrMsg>
+          )}
+        </S.InputWrapper>
+        <S.InputWrapper length='16px'>
+          <S.ProfileLabel htmlFor='accountName'>계정 ID</S.ProfileLabel>
+          <S.ProfileInput
             id='accountName'
-            placeholder='영문 소문자,숫자와 특수문자 마침표(.),밑줄(_)만 사용 가능'
+            placeholder='영문 소문자,숫자, 특수문자(.),(_)만 사용 가능합니다.'
             maxLength='15'
             value={accountname}
             onChange={(e) => setAccountname(e.target.value)}
             onBlur={handleDupAccountName}
           />
-          {errAccountNameMsg && <p>{errAccountNameMsg}</p>}
-        </div>
-        <div>
-          <label htmlFor='introduce'>소개</label> <br />
-          <input
+          {errAccountNameMsg && (
+            <S.ErrMsg dupcheck={validDupAccountName}>
+              {errAccountNameMsg}
+            </S.ErrMsg>
+          )}
+        </S.InputWrapper>
+        <S.InputWrapper length='30px'>
+          <S.ProfileLabel htmlFor='introduce'>소개</S.ProfileLabel>
+          <S.ProfileInput
             id='introduce'
             placeholder='간단한 자기소개를 적어주세요!'
             value={intro}
             onChange={(e) => setIntro(e.target.value)}
           />
-        </div>
+        </S.InputWrapper>
       </S.ProfileForm>
     </>
   );

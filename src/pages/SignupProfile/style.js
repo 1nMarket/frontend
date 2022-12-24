@@ -24,7 +24,7 @@ export const Desc = styled.p`
 `;
 
 export const SignupButton = styled.button`
-  width: 100%;
+  width: calc(100% - 70px);
   height: 44px;
   font-size: 15px;
   font-weight: 500;
