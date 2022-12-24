@@ -40,7 +40,7 @@ const SignupProfile = () => {
   return (
     <>
       <section>
-        <h1>프로필 설정</h1>
+        <h2>프로필 설정</h2>
         <p>나중에 언제든지 변경할 수 있습니다.</p>
         <UserProfileForm
           canSignup={canSignup}

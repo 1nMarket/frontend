@@ -90,6 +90,9 @@ const UserProfileForm = ({
     if (username.length && !result) {
       setErrUserNameMsg('2~10자의 한글,영어,숫자만 사용 가능합니다.');
       setValidAccountName(false);
+    } else if (!username) {
+      setErrUserNameMsg('');
+      setValidAccountName(false);
     } else {
       setErrUserNameMsg('');
       setValidAccountName(true);

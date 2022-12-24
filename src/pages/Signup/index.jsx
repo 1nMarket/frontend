@@ -21,6 +21,8 @@ const Signup = () => {
 
   // 버튼 활성화 조건 처리
   const canNext = validRegEmail && validPassword && validDupEmail;
+  console.log(validRegEmail, validPassword, validDupEmail);
+  console.log(password.length);
 
   // 이메일 중복검사
   const handleDupEmail = async () => {
@@ -71,6 +73,9 @@ const Signup = () => {
     const result = PWD_REGEX.test(password);
     if (password.length && !result) {
       setErrPasswordMsg('비밀번호는 6자 이상이어야 합니다.');
+      setValidPassword(false);
+    } else if (!password) {
+      setErrPasswordMsg('');
       setValidPassword(false);
     } else {
       setErrPasswordMsg('');
