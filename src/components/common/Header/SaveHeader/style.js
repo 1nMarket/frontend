@@ -5,7 +5,9 @@ import SaveIcon from '../../../../assets/icons/Ms--Disabled-button.svg';
 export const LeftIcon = styled.img.attrs({
   src: LeftArrowIcon,
   alt: '검색하기',
-})``;
+})`
+  cursor: pointer;
+`;
 
 export const RightIcon = styled.img.attrs({
   src: SaveIcon,
