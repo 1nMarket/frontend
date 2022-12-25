@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react'
-import { axiosImgUpload } from '../../apis/axios';
+import { axiosImgUpload, axiosPrivate } from '../../apis/axios';
 import SaveHeader from '../../components/common/Header/SaveHeader';
 import * as S from './style';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ProductUpload = () => {
+
+const {accountname} = useParams();
+
+const navigate = useNavigate();
 
   // eslint-disable-next-line
   const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
@@ -33,12 +38,30 @@ const ProductUpload = () => {
     const form = new FormData();
     form.append("image", e.target.files[0]);
     const { data } = await axiosImgUpload.post("/image/uploadfile", form);
-    console.log(data.filename);
+    // console.log(data.filename);
     
     // 업로드 취소시 나타나는 엑스박스 이미지 없애기 위한 조건문
     if (!e.target.files[0]) return setImgFiles(''); 
 
     setImgFiles(`https://mandarin.api.weniv.co.kr/${data.filename}`)
+  };
+
+  const handleProductUpload = async (e) => {
+    console.log(productName, productPrice, productLink, imgFiles);
+    e.preventDefault();
+    if (!canSave) return;
+    await axiosPrivate.post(
+      '/product',
+      {
+        product: {
+          itemName: productName,
+          price: Number(productPrice.replaceAll(",", "")), //1원 이상
+          link: productLink,
+          itemImage: imgFiles
+        },
+      },
+    )
+    navigate(`/profile/${accountname}`);
   };
 
   // 상품명 유효성 검사(두 글자 이상 정규식 구하기)
@@ -74,11 +97,9 @@ const ProductUpload = () => {
 
   }, [productLink]);
 
-  console.log(imgFiles);
-
   return (
     <>
-      <SaveHeader canSave={canSave}/>
+      <SaveHeader canSave={canSave} handleProductUpload={handleProductUpload}/>
       
       <S.Form>
 
@@ -97,6 +118,7 @@ const ProductUpload = () => {
                     onChange={handleImgUpload}
                     />
               </label>
+
             </S.ProductImgDiv>
         </S.ImgWrapper>
 
@@ -129,6 +151,7 @@ const ProductUpload = () => {
               id="link"
               required
               placeholder='URL을 입력해 주세요.'
+              type="text"
               value={productLink}
               onChange={(e) => setProductLink(e.target.value)}
             />
