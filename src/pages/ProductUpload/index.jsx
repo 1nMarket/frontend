@@ -41,7 +41,6 @@ const ProductUpload = () => {
     setImgFiles(`https://mandarin.api.weniv.co.kr/${data.filename}`)
   };
 
-
   // 상품명 유효성 검사(두 글자 이상 정규식 구하기)
   useEffect(() => {
     const result = !!(productName.length >= 2);
@@ -52,6 +51,18 @@ const ProductUpload = () => {
 
   }, [productName]);
 
+  // 가격에 컴마 찍기
+  const priceComma = (productPrice) => {
+    const comma = (productPrice) => {
+      productPrice = String(productPrice);
+      return productPrice.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+    };
+    const uncomma = (productPrice) => {
+      productPrice = String(productPrice);
+      return productPrice.replace(/[^\d]+/g, '');
+    };
+    return comma(uncomma(productPrice));
+  };
 
   // 링크 유효성 검사 
   useEffect(()=> {
@@ -108,9 +119,9 @@ const ProductUpload = () => {
               id="price"
               required
               placeholder='숫자만 입력 가능합니다.'
-              type="number"
+              type="text"
               value={productPrice}
-              onChange={(e) => setProductPrice(e.target.value)}
+              onChange={(e) => {setProductPrice(priceComma(e.target.value))}}
             />
 
             <S.ProductInputLabel htmlFor="link">판매 링크</S.ProductInputLabel>
