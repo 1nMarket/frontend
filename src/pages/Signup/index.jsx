@@ -72,6 +72,9 @@ const Signup = () => {
     if (password.length && !result) {
       setErrPasswordMsg('비밀번호는 6자 이상이어야 합니다.');
       setValidPassword(false);
+    } else if (!password) {
+      setErrPasswordMsg('');
+      setValidPassword(false);
     } else {
       setErrPasswordMsg('');
       setValidPassword(true);
@@ -101,8 +104,8 @@ const Signup = () => {
         <S.Title>이메일로 회원가입</S.Title>
         <S.SignupForm onSubmit={handleSubmit}>
           <S.InputWrapper length='16px'>
-            <label htmlFor='email'>이메일</label>
-            <input
+            <S.SignupLabel htmlFor='email'>이메일</S.SignupLabel>
+            <S.SignupInput
               length='16px'
               id='email'
               type='text'
@@ -113,29 +116,25 @@ const Signup = () => {
               ref={inputRef}
             />
             {errEmailMsg && (
-              <p style={{ color: validDupEmail ? '#495573' : '#EB7F5F' }}>
-                {errEmailMsg}
-              </p>
+              <S.ErrMsg validcheck={validDupEmail}>{errEmailMsg}</S.ErrMsg>
             )}
           </S.InputWrapper>
 
           <S.InputWrapper length='30px'>
-            <label htmlFor='pwd'>비밀번호</label>
-            <input
+            <S.SignupLabel htmlFor='pwd'>비밀번호</S.SignupLabel>
+            <S.SignupInput
               id='pwd'
               type='password'
               placeholder='비밀번호를 설정해 주세요.'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
+            {errPasswordlMsg && (
+              <S.ErrMsg validcheck={validPassword}>{errPasswordlMsg}</S.ErrMsg>
+            )}
           </S.InputWrapper>
 
-          <S.NextButton
-            disabled={!canNext}
-            onClick={handleDupEmail}
-            style={{ background: canNext ? '#495573' : '#abb9d6' }}
-          >
+          <S.NextButton disabled={!canNext} onClick={handleDupEmail}>
             다음
           </S.NextButton>
         </S.SignupForm>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import UserProfileForm from '../../components/user/UserProfileForm';
 import { axiosPrivate } from '../../apis/axios';
+import * as S from './style';
 
 const SignupProfile = () => {
   const { state } = useLocation();
@@ -39,9 +40,9 @@ const SignupProfile = () => {
 
   return (
     <>
-      <section>
-        <h1>프로필 설정</h1>
-        <p>나중에 언제든지 변경할 수 있습니다.</p>
+      <S.SignupWrapper>
+        <S.Title>프로필 설정</S.Title>
+        <S.Desc>나중에 언제든지 변경할 수 있습니다.</S.Desc>
         <UserProfileForm
           canSignup={canSignup}
           setCanSignup={setCanSignup}
@@ -55,10 +56,10 @@ const SignupProfile = () => {
           profileImg={profileImg}
           setProfileImg={setProfileImg}
         />
-        <button disabled={!canSignup} onClick={handleUserSignup}>
+        <S.SignupButton disabled={!canSignup} onClick={handleUserSignup}>
           1n마켓 시작하기
-        </button>
-      </section>
+        </S.SignupButton>
+      </S.SignupWrapper>
     </>
   );
 };

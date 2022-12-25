@@ -1,25 +1,44 @@
 import styled from 'styled-components';
-import theme from '../../styles/theme';
+import theme from '../../../styles/theme';
+import uploadIcon from '../../../assets/icons/upload-file.svg';
 
-export const SignupWrapper = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const Title = styled.h1`
-  text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 30px;
-  margin: 30px 0 40px 0;
-`;
-
-export const SignupForm = styled.form`
+export const ProfileForm = styled.form`
   width: calc(100% - 70px);
   display: flex;
   flex-direction: column;
+`;
+
+export const FileWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+`;
+
+export const FileLabel = styled.label`
+  display: block;
+  width: 110px;
+  height: 110px;
+  position: relative;
+  color: ${theme.palette.mediumGray};
+  cursor: pointer;
+  margin: 0 auto;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 36px;
+    height: 36px;
+    bottom: 0;
+    right: 0;
+    background: url(${uploadIcon}) no-repeat center / 36px 36px;
+  }
+`;
+
+export const ProfileImg = styled.img`
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid ${theme.palette.border};
 `;
 
 export const InputWrapper = styled.div`
@@ -27,7 +46,7 @@ export const InputWrapper = styled.div`
   margin-bottom: ${(props) => props.length};
 `;
 
-export const SignupLabel = styled.label`
+export const ProfileLabel = styled.label`
   display: block;
   font-size: 12px;
   font-weight: 500;
@@ -36,7 +55,7 @@ export const SignupLabel = styled.label`
   line-height: 15px;
 `;
 
-export const SignupInput = styled.input`
+export const ProfileInput = styled.input`
   width: 100%;
   font-size: 14px;
   border: none;
@@ -65,17 +84,4 @@ export const ErrMsg = styled.p`
   color: ${({ validcheck }) =>
     validcheck ? theme.palette.primary : theme.palette.alarm};
   margin-top: 6px;
-`;
-
-export const NextButton = styled.button`
-  width: 100%;
-  height: 44px;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 44px;
-  border: none;
-  color: ${theme.palette.white};
-  background-color: ${({ disabled }) =>
-    disabled ? theme.palette.disabled : theme.palette.primary};
-  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `;
