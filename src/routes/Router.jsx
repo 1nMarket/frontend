@@ -13,6 +13,7 @@ import Search from '../pages/Search';
 import Signup from '../pages/Signup';
 import SignupProfile from '../pages/SignupProfile';
 import Missing from '../pages/Missing';
+import Post from '../pages/Post';
 
 const Router = () => {
   return (
@@ -39,11 +40,11 @@ const Router = () => {
               </Route>
 
               <Route path='search' element={<Search />} />
-
             </Route>
-            
+
             <Route path='post'>
-                <Route path='upload' element={<PostUpload />} />
+              <Route path='upload' element={<PostUpload />} />
+              <Route path=':postId' element={<Post />} />
             </Route>
           </Route>
 
