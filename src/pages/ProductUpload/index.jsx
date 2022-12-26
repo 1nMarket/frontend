@@ -1,49 +1,57 @@
 import React from 'react'
+import { axiosPrivate } from '../../apis/axios';
 import SaveHeader from '../../components/common/Header/SaveHeader';
-import * as S from './style';
-
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import ProductForm from '../../components/post/ProductForm';
 
 const ProductUpload = () => {
+  const { accountname } = useParams();
+  const navigate = useNavigate();
+
+  const [imgFiles, setImgFiles] = useState('');
+  const [productName, setProductName] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+  const [productLink, setProductLink] = useState('');  
+  const [canSave, setCansave] = useState(false); 
+  
+  // 전체 폼 데이터 전송
+  const handleProductUpload = async (e) => {
+    console.log(productName, productPrice, productLink, imgFiles);
+    e.preventDefault();
+    if (!canSave) return;
+    await axiosPrivate.post(
+      '/product',
+      {
+        product: {
+          itemName: productName,
+          price: Number(productPrice.replaceAll(",", "")),
+          link: productLink,
+          itemImage: imgFiles
+        },
+      },
+    )
+    navigate(`/profile/${accountname}`);
+  };
 
   return (
     <>
-      <SaveHeader/>
+      <SaveHeader canSave={canSave} handleProductUpload={handleProductUpload}/>
       
-      <S.Form>
-
-        <S.ImgWrapper>
-            <S.ImgLabel>이미지 등록</S.ImgLabel>
-            <S.ProductImgDiv>
-                {/* 이미지 */}
-                <S.BtnImg/>
-            </S.ProductImgDiv>
-        </S.ImgWrapper>
-
-        <S.InputWrapper>      
-            <S.ProductInputInfo>상품명</S.ProductInputInfo>
-            <S.ProductInput
-              required
-              placeholder='2~15자 이내여야 합니다.'
-              type="text"
-              minLength="2"
-              maxLength="15"
-            />
-            <S.ProductInputInfo>가격</S.ProductInputInfo>
-            <S.ProductInput
-              required
-              placeholder='숫자만 입력 가능합니다.'
-              type="number"
-            />
-            <S.ProductInputInfo>판매 링크</S.ProductInputInfo>
-            <S.ProductInput
-              required
-              placeholder='URL을 입력해 주세요.'
-            />
-        </S.InputWrapper>
-
-      </S.Form>
+      <ProductForm
+        imgFiles={imgFiles}
+        setImgFiles={setImgFiles}
+        productName={productName}
+        setProductName={setProductName}
+        productPrice={productPrice}
+        setProductPrice={setProductPrice}
+        productLink={productLink}
+        setProductLink={setProductLink}
+        setCansave={setCansave}
+      />
     </>
   )
 }
+
 
 export default ProductUpload;
