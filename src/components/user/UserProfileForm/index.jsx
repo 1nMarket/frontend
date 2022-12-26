@@ -7,7 +7,7 @@ const USERNAME_REGEX = /^[a-zA-Z0-9가-힣]{2,10}$/;
 const ACCOUNTNAME_REGEX = /^[a-z0-9\.\_]{2,15}$/;
 
 const UserProfileForm = ({
-  setCanSignup,
+  setCanSave,
   username,
   setUsername,
   accountname,
@@ -101,7 +101,7 @@ const UserProfileForm = ({
   }, [username]);
 
   useEffect(() => {
-    setCanSignup(validUserName && validAccountName & validDupAccountName);
+    setCanSave(validUserName && validAccountName & validDupAccountName);
   }, [validUserName, validAccountName, validDupAccountName]);
 
   // 회원가입처리
