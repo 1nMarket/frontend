@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import * as S from './style';
 import { axiosPrivate } from '../../../apis/axios';
 
 const CommentInput = ({ postId, setCommentList }) => {
@@ -22,25 +23,24 @@ const CommentInput = ({ postId, setCommentList }) => {
   };
 
   return (
-    <footer>
-      <div>
-        <img src={image} alt='프로필 이미지' />
-        <input
-          className='input_chat-comment'
+    <S.FooterConatiner>
+      <S.InputSection>
+        <S.ProfileImg src={image} alt='프로필 이미지' />
+        <S.InputText
           type='text'
           placeholder='댓글 입력하기...'
           onChange={onChangeInput}
           value={txt}
         />
-        <button
+        <S.CommentBtn
           className={txt ? 'active' : null}
           disabled={txt ? false : true}
           onClick={AddComment}
         >
           게시
-        </button>
-      </div>
-    </footer>
+        </S.CommentBtn>
+      </S.InputSection>
+    </S.FooterConatiner>
   );
 };
 

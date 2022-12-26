@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import PostsList from '../../components/post/PostsList';
 import CommentCard from '../../components/comment/CommentCard';
 import CommentInput from '../../components/comment/CommentInput';
+import ProfileHeader from './../../components/common/Header/ProfileHeader/index';
+import * as S from './style';
 
 const Post = () => {
   const { postId } = useParams();
@@ -33,12 +35,15 @@ const Post = () => {
 
   return (
     <>
-      <PostsList postsList={postsList} setPostsList={setPostsList} />
-      <CommentCard
-        postId={postId}
-        comments={comments}
-        setComments={setComments}
-      />
+      <ProfileHeader />
+      <S.PostContainer>
+        <PostsList postsList={postsList} setPostsList={setPostsList} />
+        <CommentCard
+          postId={postId}
+          comments={comments}
+          setComments={setComments}
+        />
+      </S.PostContainer>
       <CommentInput postId={postId} setComments={setComments} />
     </>
   );
