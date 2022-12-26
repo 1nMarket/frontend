@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { axiosImgUpload, axiosPrivate } from '../../../apis/axios';
 import * as S from './style';
 
-const USERNAME_REGEX = /^[a-zA-Z0-9가-힣]{2,10}$/;
+const USERNAME_REGEX = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{2,10}$/;
 // eslint-disable-next-line
 const ACCOUNTNAME_REGEX = /^[a-z0-9\.\_]{2,15}$/;
 
@@ -17,11 +18,15 @@ const UserProfileForm = ({
   profileImg,
   setProfileImg,
 }) => {
+  const { pathname } = useLocation();
   const [validUserName, setValidUserName] = useState(false);
   const [errUserNameMsg, setErrUserNameMsg] = useState('');
   const [validAccountName, setValidAccountName] = useState(false);
-  const [validDupAccountName, setValidDupAccountName] = useState(false);
+  const [validDupAccountName, setValidDupAccountName] = useState(
+    pathname.includes('/edit') ? true : false,
+  );
   const [errAccountNameMsg, setErrAccountNameMsg] = useState('');
+  const userAccountname = JSON.parse(localStorage.getItem('accountname')) || '';
 
   const handleImgUpload = async (e) => {
     if (!e.target.files[0]) return;
@@ -38,7 +43,7 @@ const UserProfileForm = ({
 
   // 계정 ID 중복확인
   const handleDupAccountName = async () => {
-    if (validAccountName === true) {
+    if (validAccountName === true && userAccountname !== accountname) {
       try {
         const { data } = await axiosPrivate.post(
           `/user/accountnamevalid`,
@@ -61,16 +66,17 @@ const UserProfileForm = ({
       } catch (error) {
         console.error('err');
       }
+    } else if (userAccountname === accountname) {
+      setValidDupAccountName(true);
     } else {
       setValidDupAccountName(false);
-      return;
     }
   };
 
   // 계정 ID 유효성 체크
   useEffect(() => {
-    setValidDupAccountName(false);
     const result = ACCOUNTNAME_REGEX.test(accountname);
+    setValidDupAccountName(false);
 
     if (accountname.length && !result) {
       setErrAccountNameMsg(

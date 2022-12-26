@@ -5,7 +5,6 @@ import UserProfileForm from '../../components/user/UserProfileForm';
 
 const ProfileModify = () => {
   const { state } = useLocation();
-  console.log(state);
   const [profileImg, setProfileImg] = useState(state.image || '');
   const [username, setUsername] = useState(state.username || '');
   const [accountname, setAccountname] = useState(state.accountname || '');
