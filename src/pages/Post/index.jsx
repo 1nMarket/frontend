@@ -9,7 +9,6 @@ import * as S from './style';
 
 const Post = () => {
   const { postId } = useParams();
-  console.log(postId);
 
   const [postsList, setPostsList] = useState([]);
   const [comments, setComments] = useState([]);
@@ -44,7 +43,11 @@ const Post = () => {
           setComments={setComments}
         />
       </S.PostContainer>
-      <CommentInput postId={postId} setComments={setComments} />
+      <CommentInput
+        setPostsList={setPostsList}
+        postId={postId}
+        setComments={setComments}
+      />
     </>
   );
 };

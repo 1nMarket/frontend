@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as S from './style';
 import { axiosPrivate } from '../../../apis/axios';
 
-const CommentInput = ({ postId, setCommentList }) => {
+const CommentInput = ({ setPostsList, postId, setComments }) => {
   const image = JSON.parse(localStorage.getItem('profile-img'));
   const [txt, setTxt] = useState('');
 
@@ -11,7 +11,9 @@ const CommentInput = ({ postId, setCommentList }) => {
   };
 
   const AddComment = async () => {
-    const response = await axiosPrivate.post(
+    const {
+      data: { comment },
+    } = await axiosPrivate.post(
       `/post/${postId}/comments`,
       JSON.stringify({
         comment: {
@@ -19,7 +21,14 @@ const CommentInput = ({ postId, setCommentList }) => {
         },
       }),
     );
-    console.log(response);
+    setComments((prev) => [...prev, comment]);
+    setPostsList((prev) => [
+      {
+        ...prev[0],
+        commentCount: prev[0].commentCount + 1,
+      },
+    ]);
+    setTxt('');
   };
 
   return (
