@@ -12,9 +12,11 @@ const ProfileModify = () => {
   const [intro, setIntro] = useState(state.intro || '');
   const [canSave, setCanSave] = useState(false);
 
+  const handleProductUpload = async (e) => {};
+
   return (
     <>
-      <SaveHeader />
+      <SaveHeader canSave={canSave} handleProductUpload={handleProductUpload} />
       <UserProfileForm
         profileImg={profileImg}
         setProfileImg={setProfileImg}
