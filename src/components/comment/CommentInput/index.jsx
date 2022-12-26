@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { axiosPrivate } from '../../../apis/axios';
 
 const CommentInput = ({ postId, setCommentList }) => {
-  const image = localStorage.getItem('profile-img');
+  const image = JSON.parse(localStorage.getItem('profile-img'));
   const [txt, setTxt] = useState('');
 
   const onChangeInput = (e) => {
@@ -10,28 +10,19 @@ const CommentInput = ({ postId, setCommentList }) => {
   };
 
   const AddComment = async () => {
-    try {
-      await axios.post(
-        `https://mandarin.api.weniv.co.kr/post/${postId}/comments`,
-        {
-          comment: {
-            content: txt,
-          },
+    const response = await axiosPrivate.post(
+      `/post/${postId}/comments`,
+      JSON.stringify({
+        comment: {
+          content: txt,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-type': 'application/json',
-          },
-        },
-      );
-      setCommentList();
-      setTxt('');
-    } catch (error) {}
+      }),
+    );
+    console.log(response);
   };
 
   return (
-    <divdd>
+    <footer>
       <div>
         <img src={image} alt='프로필 이미지' />
         <input
@@ -49,7 +40,7 @@ const CommentInput = ({ postId, setCommentList }) => {
           게시
         </button>
       </div>
-    </div>
+    </footer>
   );
 };
 

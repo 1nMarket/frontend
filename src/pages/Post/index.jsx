@@ -3,6 +3,7 @@ import { axiosPrivate } from '../../apis/axios';
 import { useParams } from 'react-router-dom';
 import PostsList from '../../components/post/PostsList';
 import CommentCard from '../../components/comment/CommentCard';
+import CommentInput from '../../components/comment/CommentInput';
 
 const Post = () => {
   const { postId } = useParams();
@@ -33,7 +34,12 @@ const Post = () => {
   return (
     <>
       <PostsList postsList={postsList} setPostsList={setPostsList} />
-      <CommentCard postId={postId} comments={comments} />
+      <CommentCard
+        postId={postId}
+        comments={comments}
+        setComments={setComments}
+      />
+      <CommentInput postId={postId} setComments={setComments} />
     </>
   );
 };
