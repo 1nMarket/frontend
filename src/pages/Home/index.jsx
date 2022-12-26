@@ -38,7 +38,14 @@ const Home = () => {
     <>
       <HomeHeader />
       <S.Container>
-        <PostsList postsList={postsList} />
+        {postsList.length ? (
+          <PostsList postsList={postsList} />
+        ) : (
+          <S.NoneFeedBox>
+            <S.NoneFeedAlert>유저를 검색해 팔로우 해보세요!</S.NoneFeedAlert>
+            <S.SearchLink to='/search'>검색하기</S.SearchLink>
+          </S.NoneFeedBox>
+        )}
 
         <div ref={observerTargetEl} />
       </S.Container>
