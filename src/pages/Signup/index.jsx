@@ -10,8 +10,9 @@ const PWD_REGEX = /^[a-zA-Z0-9]{6,}$/;
 
 const Signup = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(''); //
-  const [validEmail, setValidEmail] = useState(false);
+  const [email, setEmail] = useState('');
+  const [validRegEmail, setValidRegEmail] = useState(false);
+  const [validDupEmail, setValidDupEmail] = useState(false);
   const [errEmailMsg, setErrEmailMsg] = useState('');
   const [password, setPassword] = useState('');
   const [validPassword, setValidPassword] = useState(false);
@@ -19,63 +20,83 @@ const Signup = () => {
   const inputRef = useRef();
 
   // 버튼 활성화 조건 처리
-  const canNext = validEmail && validPassword;
+  const canNext = validRegEmail && validPassword && validDupEmail;
 
-  const emailCheck = async () => {
-    if (!validEmail) return;
-
-    const { data } = await axiosPrivate.post(
-      `/user/emailvalid/`,
-      JSON.stringify({
-        user: {
-          email,
-        },
-      }),
-    );
-    if (data.message !== '사용 가능한 이메일 입니다.') setValidEmail(false);
-    setErrEmailMsg(data.message);
+  // 이메일 중복검사
+  const handleDupEmail = async () => {
+    if (validRegEmail === true) {
+      try {
+        const { data } = await axiosPrivate.post(
+          `/user/emailvalid/`,
+          JSON.stringify({
+            user: {
+              email,
+            },
+          }),
+        );
+        if (data.message === '사용 가능한 이메일 입니다.') {
+          setValidDupEmail(true);
+          setErrEmailMsg(data.message);
+        } else {
+          setValidDupEmail(false);
+          setErrEmailMsg(data.message);
+        }
+      } catch (error) {
+        console.error('err');
+      }
+    } else {
+      setValidDupEmail(false);
+      return;
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validEmail || errPasswordlMsg) return;
+  // 이메일 정규식 체크
+  useEffect(() => {
+    setValidDupEmail(false);
+    const result = EMAIL_REGEX.test(email);
+    if (email.length && result) {
+      setErrEmailMsg('');
+      setValidRegEmail(true);
+    } else if (email === '') {
+      setErrEmailMsg('');
+      setValidRegEmail(false);
+    } else {
+      setErrEmailMsg('이메일 형식을 맞춰주세요.');
+      setValidRegEmail(false);
+    }
+  }, [email]);
 
-    navigate('/signup/profile', {
-      state: {
-        email,
-        password,
-      },
-    });
-  };
+  // 비밀번호 정규식 체크
+  useEffect(() => {
+    const result = PWD_REGEX.test(password);
+    if (password.length && !result) {
+      setErrPasswordMsg('비밀번호는 6자 이상이어야 합니다.');
+      setValidPassword(false);
+    } else if (!password) {
+      setErrPasswordMsg('');
+      setValidPassword(false);
+    } else {
+      setErrPasswordMsg('');
+      setValidPassword(true);
+    }
+  }, [password]);
 
-  // input focus
   useEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
   }, []);
 
-  // 다음 버튼 활성화
-  useEffect(() => {
-    const result = EMAIL_REGEX.test(email);
-    setValidEmail(result);
-
-    // email.length가 0인 경우
-    // result가 true인 경우
-    // email.length가 0이면서 result인 경우
-    if (!email.length || result) {
-      setErrEmailMsg(''); // email.length가 0이거나 result값이 있는 경우
-    } else {
-      setErrEmailMsg('잘못된 이메일 형식입니다.'); // email.length가 0 아니면서 result가 false인 경우
+  // 페이지 이동
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (canNext) {
+      navigate('/signup/profile', {
+        state: {
+          email,
+          password,
+        },
+      });
     }
-  }, [email]);
-
-  useEffect(() => {
-    const result = PWD_REGEX.test(password);
-    setValidPassword(result);
-
-    if (password.length && !result) {
-      setErrPasswordMsg('비밀번호는 6자 이상이어야 합니다.');
-    } else setErrPasswordMsg('');
-  }, [password]);
+  };
 
   return (
     <>
@@ -83,37 +104,37 @@ const Signup = () => {
         <S.Title>이메일로 회원가입</S.Title>
         <S.SignupForm onSubmit={handleSubmit}>
           <S.InputWrapper length='16px'>
-            <label htmlFor='email'>이메일</label>
-            <input
+            <S.SignupLabel htmlFor='email'>이메일</S.SignupLabel>
+            <S.SignupInput
               length='16px'
               id='email'
               type='text'
               placeholder='이메일 주소를 입력해 주세요.'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={emailCheck}
+              onBlur={handleDupEmail}
               ref={inputRef}
             />
-            {errEmailMsg && <p>{errEmailMsg}</p>}
+            {errEmailMsg && (
+              <S.ErrMsg validcheck={validDupEmail}>{errEmailMsg}</S.ErrMsg>
+            )}
           </S.InputWrapper>
 
           <S.InputWrapper length='30px'>
-            <label htmlFor='pwd'>비밀번호</label>
-            <input
+            <S.SignupLabel htmlFor='pwd'>비밀번호</S.SignupLabel>
+            <S.SignupInput
               id='pwd'
               type='password'
               placeholder='비밀번호를 설정해 주세요.'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {errPasswordlMsg && <p>{errPasswordlMsg}</p>}
+            {errPasswordlMsg && (
+              <S.ErrMsg validcheck={validPassword}>{errPasswordlMsg}</S.ErrMsg>
+            )}
           </S.InputWrapper>
 
-          {/* <S.NextButton disabled={!canNext}>다음</S.NextButton> */}
-          <S.NextButton
-            disabled={!canNext}
-            style={{ background: canNext ? '#495573' : '#abb9d6' }}
-          >
+          <S.NextButton disabled={!canNext} onClick={handleDupEmail}>
             다음
           </S.NextButton>
         </S.SignupForm>

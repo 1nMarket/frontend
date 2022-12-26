@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import UserProfile from '../../../assets/basic-profile-img.png';
-import ProfileInfo from '../../profile/ProfileInfo';
 
 const CommentInput = ({ postId, setCommentList }) => {
-  const token = localStorage.getItem('token');
+  const image = localStorage.getItem('profile-img');
   const [txt, setTxt] = useState('');
 
   const onChangeInput = (e) => {
@@ -31,26 +29,27 @@ const CommentInput = ({ postId, setCommentList }) => {
       setTxt('');
     } catch (error) {}
   };
+
   return (
-    <InputWrap>
-      <InputFlexContainer>
-        <Profile size='42px' imgSrc={UserProfile} imgAlt='프로필 이미지' />
-        <Input
+    <divdd>
+      <div>
+        <img src={image} alt='프로필 이미지' />
+        <input
           className='input_chat-comment'
           type='text'
           placeholder='댓글 입력하기...'
           onChange={onChangeInput}
           value={txt}
         />
-        <InputBtn
+        <button
           className={txt ? 'active' : null}
           disabled={txt ? false : true}
           onClick={AddComment}
         >
           게시
-        </InputBtn>
-      </InputFlexContainer>
-    </InputWrap>
+        </button>
+      </div>
+    </div>
   );
 };
 

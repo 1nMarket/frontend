@@ -12,7 +12,7 @@ const MyPostModal = ({ setOpenModal, postId, setPostsList }) => {
       <ModalLayout setOpenModal={setOpenModal}>
         <li onClick={() => setOpenAlert(true)}>삭제</li>
         <li>
-          <S.StyledLink to={`post/${postId}/edit`}>수정</S.StyledLink>
+          <S.PostEditLink to={`/post/${postId}/edit`}>수정</S.PostEditLink>
         </li>
       </ModalLayout>
       {openAelrt && (

@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { axiosPrivate } from '../../apis/axios';
 import PostsList from '../../components/post/PostsList';
+import HomeHeader from '../../components/common/Header/HomeHeader'
+import * as S from './style';
 
 const Home = () => {
   const [postsList, setPostList] = useState([]);
@@ -34,11 +36,19 @@ const Home = () => {
 
   return (
     <>
-      <main>
-        <PostsList postsList={postsList} />
+      <HomeHeader />
+      <S.Container>
+        {postsList.length ? (
+          <PostsList postsList={postsList} />
+        ) : (
+          <S.NoneFeedBox>
+            <S.NoneFeedAlert>유저를 검색해 팔로우 해보세요!</S.NoneFeedAlert>
+            <S.SearchLink to='/search'>검색하기</S.SearchLink>
+          </S.NoneFeedBox>
+        )}
 
         <div ref={observerTargetEl} />
-      </main>
+      </S.Container>
     </>
   );
 };

@@ -1,17 +1,16 @@
 import React from 'react';
-import CommentList from './CommentList';
-import CommentReply from './CommentReply';
-import { CommentListBox } from './style';
+// import CommentList from './CommentList';
+// import CommentInput from './../CommentInput/index';
 
-function CommentCard({ postId, comments, setComments }) {
+const CommentCard = ({ postId, comments, setComments }) => {
   return (
     <>
-      <CommentListBox>
+      {/* <CommentListBox>
         <CommentList comments={comments} />
       </CommentListBox>
-      <CommentReply setComments={setComments} postId={postId} />
+      <CommentReply setComments={setComments} postId={postId} /> */}
     </>
   );
-}
+};
 
 export default CommentCard;

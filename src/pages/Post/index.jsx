@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import PostsList from '../../components/post/PostsList';
 import CommentCard from '../../components/comment/CommentCard';
 
-function Post() {
+const Post = () => {
   const { postId } = useParams();
   console.log(postId);
 
@@ -36,6 +36,6 @@ function Post() {
       <CommentCard postId={postId} comments={comments} />
     </>
   );
-}
+};
 
 export default Post;

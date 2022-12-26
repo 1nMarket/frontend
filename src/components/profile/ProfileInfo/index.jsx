@@ -22,7 +22,7 @@ const ProfileInfo = () => {
       setIsLoading(true);
     };
     getUserInfo();
-  }, []);
+  }, [accountname]);
 
   const isMyProfile =
     JSON.parse(localStorage.getItem('accountname')) === accountname
