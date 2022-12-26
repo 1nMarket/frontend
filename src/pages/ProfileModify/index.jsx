@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import SaveHeader from '../../components/common/Header/SaveHeader';
 import UserProfileForm from '../../components/user/UserProfileForm';
 
 const ProfileModify = () => {
-  const [profileImg, setProfileImg] = useState('');
-  const [username, setUsername] = useState('');
-  const [accountname, setAccountname] = useState('');
-  const [intro, setIntro] = useState('');
+  const { state } = useLocation();
+  console.log(state);
+  const [profileImg, setProfileImg] = useState(state.image || '');
+  const [username, setUsername] = useState(state.username || '');
+  const [accountname, setAccountname] = useState(state.accountname || '');
+  const [intro, setIntro] = useState(state.intro || '');
   const [canSave, setCanSave] = useState(false);
 
   return (
