@@ -31,7 +31,7 @@ const PostItem = ({ post, setPostsList }) => {
               {post.hearted ? <LikeIcon /> : <UnLikeIcon />}
               <span>{post.heartCount}</span>
             </S.LikeBtn>
-            <S.CommentLink to={`/post/$post.id`}>
+            <S.CommentLink to={`/post/${post.id}`}>
               <CommentIcon />
               <span>{post.commentCount}</span>
             </S.CommentLink>
