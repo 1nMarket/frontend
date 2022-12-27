@@ -8,10 +8,23 @@ export const Content = styled.main`
 
 export const ChatList = styled.ul``;
 
-export const ChatItem = styled.li``;
+export const ChatItem = styled.li`
+    display: flex;
+    justify-content: space-between;
+    height: 42px;
+`;
+
+export const IconContentWrapper = styled.div`
+    display: flex;
+    align-items: center;
+`;
 
 export const IconDiv = styled.div`
     position: relative;
+`;
+
+export const ChatContentDiv = styled.div`
+    margin-left: 12px;
 `;
 
 export const BasicProfileIcon = styled.img.attrs({
@@ -35,6 +48,7 @@ export const NewChatMark = styled.img.attrs({
 export const ChatUserName = styled.p`
     font-size: 14px;
     color: ${({ theme }) => theme.palette.black};
+    margin-bottom: 4px;
 `;
 
 export const ChatContent = styled.p`
@@ -45,4 +59,5 @@ export const ChatContent = styled.p`
 export const ChatDate = styled.p`
     font-size: 10px;
     color: ${({ theme }) => theme.palette.border};
+    margin-top: 26px;
 `;
