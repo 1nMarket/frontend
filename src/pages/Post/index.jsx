@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { axiosPrivate } from '../../apis/axios';
 import { useParams } from 'react-router-dom';
 import PostsList from '../../components/post/PostsList';
-import CommentCard from '../../components/comment/CommentCard';
+import CommentBox from '../../components/comment/CommentBox';
 import CommentInput from '../../components/comment/CommentInput';
-import ProfileHeader from './../../components/common/Header/ProfileHeader/index';
+import ProfileHeader from './../../components/common/Header/ProfileHeader';
+import ProfileModal from '../../components/modals/ProfileModal';
 import * as S from './style';
 
 const Post = () => {
   const { postId } = useParams();
-
+  const [openModal, setOpenModal] = useState(false);
   const [postsList, setPostsList] = useState([]);
   const [comments, setComments] = useState([]);
 
@@ -34,10 +35,10 @@ const Post = () => {
 
   return (
     <>
-      <ProfileHeader />
+      <ProfileHeader setOpenModal={setOpenModal} />
       <S.PostContainer>
         <PostsList postsList={postsList} setPostsList={setPostsList} />
-        <CommentCard
+        <CommentBox
           postId={postId}
           comments={comments}
           setComments={setComments}
@@ -48,6 +49,7 @@ const Post = () => {
         postId={postId}
         setComments={setComments}
       />
+      {openModal && <ProfileModal setOpenModal={setOpenModal} />}
     </>
   );
 };
