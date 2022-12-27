@@ -76,9 +76,9 @@ const UserProfileForm = ({
   // 계정 ID 유효성 체크
   useEffect(() => {
     const result = ACCOUNTNAME_REGEX.test(accountname);
-    setValidDupAccountName(false);
 
     if (accountname.length && !result) {
+      setValidDupAccountName(false);
       setErrAccountNameMsg(
         '영문 소문자,숫자와 특수문자 마침표(.),밑줄(_)만 사용 가능합니다.',
       );
