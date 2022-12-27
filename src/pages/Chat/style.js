@@ -12,6 +12,7 @@ export const ChatItem = styled.li`
     display: flex;
     justify-content: space-between;
     height: 42px;
+    margin-bottom: 20px;
 `;
 
 export const IconContentWrapper = styled.div`
