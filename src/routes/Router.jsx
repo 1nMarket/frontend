@@ -14,11 +14,8 @@ import Search from '../pages/Search';
 import Signup from '../pages/Signup';
 import SignupProfile from '../pages/SignupProfile';
 import Missing from '../pages/Missing';
-<<<<<<< HEAD
 import Post from '../pages/Post';
-=======
 import ProductModify from '../pages/ProductModify';
->>>>>>> c7dd4bea56fd3ee434b80c6a2a5431e1178955ec
 
 const Router = () => {
   return (
@@ -47,18 +44,13 @@ const Router = () => {
               <Route path='search' element={<Search />} />
             </Route>
 
-<<<<<<< HEAD
             <Route path='post'>
               <Route path='upload' element={<PostUpload />} />
               <Route path=':postId' element={<Post />} />
-=======
-            <Route path='product/:productId/edit' element={<ProductModify/>} />
-            
-            <Route path='post'>
-              <Route path='upload' element={<PostUpload />} />
->>>>>>> c7dd4bea56fd3ee434b80c6a2a5431e1178955ec
             </Route>
+
             <Route path='profile/:userId/edit' element={<ProfileModify />} />
+            <Route path='product/:productId/edit' element={<ProductModify/>} />
           </Route>
 
           <Route path='*' element={<Missing />} />
