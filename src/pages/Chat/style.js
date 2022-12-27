@@ -10,6 +10,10 @@ export const ChatList = styled.ul``;
 
 export const ChatItem = styled.li``;
 
+export const IconDiv = styled.div`
+    position: relative;
+`;
+
 export const BasicProfileIcon = styled.img.attrs({
     src: BasicProfile,
     alt: '기본 프로필 아이콘',
@@ -23,7 +27,9 @@ export const NewChatMark = styled.img.attrs({
     alt: '새로운 메세지 표시',
   })`
     width: 12px;
-    height: 12px;  
+    height: 12px;
+    position: absolute;
+    left: 0px;
 `;
 
 export const ChatUserName = styled.p`
