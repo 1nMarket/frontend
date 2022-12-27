@@ -14,6 +14,7 @@ import Search from '../pages/Search';
 import Signup from '../pages/Signup';
 import SignupProfile from '../pages/SignupProfile';
 import Missing from '../pages/Missing';
+import ProductModify from '../pages/ProductModify';
 
 const Router = () => {
   return (
@@ -34,14 +35,17 @@ const Router = () => {
 
               <Route path='profile/:accountname'>
                 <Route index element={<Profile />} />
-                <Route path='product' element={<ProdcutUpload />} />
+                <Route path='product' element={<ProdcutUpload />}/>
                 <Route path='followings' element={<Follows />} />
                 <Route path='followers' element={<Follows />} />
               </Route>
 
               <Route path='search' element={<Search />} />
+
             </Route>
 
+            <Route path='product/:productId/edit' element={<ProductModify/>} />
+            
             <Route path='post'>
               <Route path='upload' element={<PostUpload />} />
             </Route>
