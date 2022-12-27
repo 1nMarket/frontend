@@ -17,7 +17,7 @@ export const AuthorProfileLink = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
-`
+`;
 
 export const AuthorImage = styled.img`
   width: 42px;
@@ -29,7 +29,7 @@ export const AuthorNameWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 12px;
-`
+`;
 
 export const UserName = styled.strong`
   font-weight: 500;
@@ -63,7 +63,7 @@ export const LikeCommentCount = styled.div`
   display: flex;
   column-gap: 16px;
   margin-bottom: 18px;
-`
+`;
 
 export const LikeBtn = styled.button`
   display: flex;
@@ -75,7 +75,7 @@ export const LikeBtn = styled.button`
   font-weight: 400;
   font-size: 12px;
   line-height: 12px;
-`
+`;
 
 export const CommentLink = styled(Link)`
   display: flex;

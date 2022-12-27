@@ -45,7 +45,7 @@ const PostItem = ({ post, setPostsList }) => {
               {heart ? <LikeIcon /> : <UnLikeIcon />}
               <span>{post.heartCount}</span>
             </S.LikeBtn>
-            <S.CommentLink>
+            <S.CommentLink to={`/post/${post.id}`}>
               <CommentIcon />
               <span>{post.commentCount}</span>
             </S.CommentLink>
@@ -61,7 +61,11 @@ const PostItem = ({ post, setPostsList }) => {
       </S.PostArticle>
       {openModal &&
         (accountname === post.author.username ? (
-          <MyPostModal setOpenModal={setOpenModal} postId={post.id} setPostsList={setPostsList} />
+          <MyPostModal
+            setOpenModal={setOpenModal}
+            postId={post.id}
+            setPostsList={setPostsList}
+          />
         ) : (
           <PostModal setOpenModal={setOpenModal} />
         ))}
