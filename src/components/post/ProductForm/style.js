@@ -39,6 +39,7 @@ export const ProductImg = styled.img`
   height: 100%;
   border-radius: 10px;
   border: none;
+  object-fit: cover;
 `;
 
 export const InputWrapper = styled.div`

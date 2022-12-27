@@ -43,9 +43,7 @@ const Router = () => {
 
             </Route> 
 
-            <Route path='product' element={<ProductModify/>}>
-                <Route path=':postId/edit'/>
-            </Route>
+            <Route path='product/:productId/edit' element={<ProductModify/>} />
             
             <Route path='post'>
                 <Route path='upload' element={<PostUpload />} />
