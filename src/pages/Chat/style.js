@@ -50,6 +50,7 @@ export const ChatUserName = styled.p`
     font-size: 14px;
     color: ${({ theme }) => theme.palette.black};
     margin-bottom: 4px;
+    font-weight: 500;
 `;
 
 export const ChatContent = styled.p`
