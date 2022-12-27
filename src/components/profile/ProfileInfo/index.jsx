@@ -11,7 +11,8 @@ const ProfileInfo = () => {
   const [profile, setProfile] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { followerCount, followingCount, image, intro, isfollow, username } = profile;
+  const { followerCount, followingCount, image, intro, isfollow, username } =
+    profile;
 
   useEffect(() => {
     const getUserInfo = async () => {
@@ -30,12 +31,16 @@ const ProfileInfo = () => {
       : false;
 
   const handleFollow = async () => {
-    const { data: { profile } } = await axiosPrivate.post(`/profile/${accountname}/follow`);
+    const {
+      data: { profile },
+    } = await axiosPrivate.post(`/profile/${accountname}/follow`);
     setProfile(profile);
   };
 
   const handleUnfollow = async () => {
-    const { data: { profile }} = await axiosPrivate.delete(`/profile/${accountname}/unfollow`);
+    const {
+      data: { profile },
+    } = await axiosPrivate.delete(`/profile/${accountname}/unfollow`);
     setProfile(profile);
   };
 
@@ -48,10 +53,7 @@ const ProfileInfo = () => {
           <S.Count>{followerCount}</S.Count>
           <S.CountInfo>followers</S.CountInfo>
         </S.CustomLink>
-        <S.ProfileImg
-          src={image}
-          alt={`${accountname}의 프로필 사진`}
-        />
+        <S.ProfileImg src={image} alt={`${accountname}의 프로필 사진`} />
 
         <S.CustomLink to={`followings`}>
           <S.Count>{followingCount}</S.Count>
@@ -66,7 +68,7 @@ const ProfileInfo = () => {
       <S.ButtonWrapper>
         {isMyProfile ? (
           <>
-            <Link to='edit'>
+            <Link to='edit' state={{ image, username, accountname, intro }}>
               <S.MyProfileButton>프로필 수정</S.MyProfileButton>
             </Link>
             <Link to='product'>
@@ -79,17 +81,11 @@ const ProfileInfo = () => {
               <MessageIcon />
             </S.IconButton>
             {isfollow ? (
-              <S.YourProfileButton
-                onClick={handleUnfollow}
-                isfollow={isfollow}
-              >
+              <S.YourProfileButton onClick={handleUnfollow} isfollow={isfollow}>
                 언팔로우
               </S.YourProfileButton>
             ) : (
-              <S.YourProfileButton
-                onClick={handleFollow}
-                isfollow={isfollow}
-              >
+              <S.YourProfileButton onClick={handleFollow} isfollow={isfollow}>
                 팔로우
               </S.YourProfileButton>
             )}

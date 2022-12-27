@@ -79,14 +79,14 @@ const ProductForm = ({
         <label htmlFor="img">
           {imgFiles ? <S.ProductImg src={imgFiles} /> : null}
           <S.BtnImg/>
-          <input 
-            type="file"
-            id="img"
-            accept=".jpg, .gif, .png, .jpeg, .bmp, .tif, .heic"
-            className="ir"
-            onChange={handleImgUpload}
-          />
-        </label>
+            <input 
+              type="file"
+              id="img"
+              accept=".jpg, .gif, .png, .jpeg, .bmp, .tif, .heic"
+              className="ir"
+              onChange={handleImgUpload}
+             />
+              </label>
 
             </S.ProductImgDiv>
         </S.ImgWrapper>
