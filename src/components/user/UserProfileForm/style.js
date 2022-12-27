@@ -4,8 +4,6 @@ import uploadIcon from '../../../assets/icons/upload-file.svg';
 
 export const ProfileForm = styled.form`
   width: calc(100% - 70px);
-  display: flex;
-  flex-direction: column;
 `;
 
 export const FileWrapper = styled.div`
