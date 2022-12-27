@@ -16,6 +16,7 @@ import SignupProfile from '../pages/SignupProfile';
 import Missing from '../pages/Missing';
 import Post from '../pages/Post';
 import ProductModify from '../pages/ProductModify';
+import Chat from '../pages/Chat';
 
 const Router = () => {
   return (
@@ -42,7 +43,10 @@ const Router = () => {
               </Route>
 
               <Route path='search' element={<Search />} />
-            </Route>
+
+              <Route path='chat' element={<Chat/>}/>
+
+            </Route> 
 
             <Route path='post'>
               <Route path='upload' element={<PostUpload />} />
