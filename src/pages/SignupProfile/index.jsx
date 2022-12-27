@@ -13,7 +13,7 @@ const SignupProfile = () => {
   const [profileImg, setProfileImg] = useState(
     'https://mandarin.api.weniv.co.kr/1671431659709.png',
   );
-  const [canSignup, setCanSignup] = useState(false);
+  const [canSave, setCanSave] = useState(false);
 
   useEffect(() => {
     if (!state?.email || !state?.password) navigate('/signup');
@@ -21,7 +21,7 @@ const SignupProfile = () => {
 
   const handleUserSignup = async (e) => {
     e.preventDefault();
-    if (!canSignup) return;
+    if (!canSave) return;
     await axiosPrivate.post(
       '/user',
       JSON.stringify({
@@ -44,8 +44,7 @@ const SignupProfile = () => {
         <S.Title>프로필 설정</S.Title>
         <S.Desc>나중에 언제든지 변경할 수 있습니다.</S.Desc>
         <UserProfileForm
-          canSignup={canSignup}
-          setCanSignup={setCanSignup}
+          setCanSave={setCanSave}
           handleUserSignup={handleUserSignup}
           username={username}
           setUsername={setUsername}
@@ -56,7 +55,7 @@ const SignupProfile = () => {
           profileImg={profileImg}
           setProfileImg={setProfileImg}
         />
-        <S.SignupButton disabled={!canSignup} onClick={handleUserSignup}>
+        <S.SignupButton disabled={!canSave} onClick={handleUserSignup}>
           1n마켓 시작하기
         </S.SignupButton>
       </S.SignupWrapper>

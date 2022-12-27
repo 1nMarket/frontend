@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import PostUpload from '../pages/PostUpload';
 import ProdcutUpload from '../pages/ProductUpload';
 import Profile from '../pages/Profile';
+import ProfileModify from '../pages/ProfileModify';
 import Public from '../pages/Public';
 import Search from '../pages/Search';
 import Signup from '../pages/Signup';
@@ -41,13 +42,14 @@ const Router = () => {
 
               <Route path='search' element={<Search />} />
 
-            </Route> 
+            </Route>
 
             <Route path='product/:productId/edit' element={<ProductModify/>} />
             
             <Route path='post'>
-                <Route path='upload' element={<PostUpload />} />
+              <Route path='upload' element={<PostUpload />} />
             </Route>
+            <Route path='profile/:userId/edit' element={<ProfileModify />} />
           </Route>
 
           <Route path='*' element={<Missing />} />
