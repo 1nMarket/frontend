@@ -17,6 +17,7 @@ import Missing from '../pages/Missing';
 import Post from '../pages/Post';
 import ProductModify from '../pages/ProductModify';
 import Chat from '../pages/Chat';
+import PostModify from '../pages/PostModify';
 
 const Router = () => {
   return (
@@ -49,7 +50,10 @@ const Router = () => {
 
             <Route path='post'>
               <Route path='upload' element={<PostUpload />} />
-              <Route path=':postId' element={<Post />} />
+              <Route path=':postId'>
+                <Route index element={<Post />} />
+                <Route path='edit' element={<PostModify />} />
+              </Route>
             </Route>
 
             <Route path='profile/:userId/edit' element={<ProfileModify />} />
