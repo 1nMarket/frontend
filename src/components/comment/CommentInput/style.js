@@ -21,6 +21,8 @@ export const InputSection = styled.section`
 export const ProfileImg = styled.img`
   width: 36px;
   height: 36px;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const InputText = styled.input`
