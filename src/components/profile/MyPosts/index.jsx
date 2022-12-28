@@ -10,6 +10,7 @@ const MyPosts = () => {
   const { accountname } = useParams();
   const [postsList, setPostsList] = useState([]);
   const [selectList, setSelectList] = useState(true);
+  const filteredPostsList = postsList.filter((item) => item.image);
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -40,7 +41,7 @@ const MyPosts = () => {
       {selectList ? (
         <PostsList postsList={postsList} setPostsList={setPostsList} />
       ) : (
-        <PostAlbum postsList={postsList} />
+        <PostAlbum postsList={filteredPostsList} />
       )}
     </>
   );
