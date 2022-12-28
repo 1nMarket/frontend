@@ -11,17 +11,21 @@ import { axiosPrivate } from '../../../apis/axios';
 const PostItem = ({ post, setPostsList }) => {
   const [openModal, setOpenModal] = useState(false);
   const [heart, setHeart] = useState(post.hearted || false);
+  const [heartCount, setHearCount] = useState(post.heartCount || 0);
   const images = post.image.split(',');
   const accountname = JSON.parse(localStorage.getItem('accountname'));
-  
+
   const handleLike = async () => {
     await axiosPrivate.post(`/post/${post.id}/heart`);
     setHeart((prev) => !prev);
+    setHearCount((prev) => prev + 1);
   };
 
   const handleUnLike = async () => {
-    await axiosPrivate.post(`/post/${post.id}/unheart`);
+    const { data } = await axiosPrivate.delete(`/post/${post.id}/unheart`);
+    console.log(data);
     setHeart((prev) => !prev);
+    setHearCount((prev) => prev - 1);
   };
 
   return (
@@ -41,9 +45,9 @@ const PostItem = ({ post, setPostsList }) => {
           <S.PostText>{post.content}</S.PostText>
           {!!images[0] && <ImageSlide images={images} />}
           <S.LikeCommentCount>
-            <S.LikeBtn onClick={post.hearted ? handleUnLike : handleLike}>
+            <S.LikeBtn onClick={heart ? handleUnLike : handleLike}>
               {heart ? <LikeIcon /> : <UnLikeIcon />}
-              <span>{post.heartCount}</span>
+              <span>{heartCount}</span>
             </S.LikeBtn>
             <S.CommentLink to={`/post/${post.id}`}>
               <CommentIcon />
