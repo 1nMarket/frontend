@@ -64,7 +64,7 @@ const PostItem = ({ post, setPostsList }) => {
         <S.RightIcon onClick={() => setOpenModal(true)} />
       </S.PostArticle>
       {openModal &&
-        (accountname === post.author.username ? (
+        (accountname === post.author.accountname ? (
           <MyPostModal
             setOpenModal={setOpenModal}
             postId={post.id}
