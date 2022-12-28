@@ -39,6 +39,8 @@ export const CountInfo = styled.span`
 export const ProfileImg = styled.img`
   width: 110px;
   height: 110px;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const Name = styled.strong`
@@ -102,5 +104,7 @@ export const YourProfileButton = styled.button`
 export const IconButton = styled.button`
   background-color: ${({ theme }) => theme.palette.white};
   border: 1px solid ${({ theme }) => theme.palette.border};
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
 `;
