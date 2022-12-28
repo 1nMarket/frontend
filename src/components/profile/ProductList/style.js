@@ -28,8 +28,9 @@ export const ProductItem = styled.li`
   img {
     width: 140px;
     height: 90px;
-    border-radius: 8px;
     object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid ${({ theme }) => theme.palette.border};
   }
 
   p {
