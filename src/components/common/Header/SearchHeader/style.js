@@ -4,7 +4,9 @@ import LeftArrowIcon from '../../../../assets/icons/icon-arrow-left.svg';
 export const LeftIcon = styled.img.attrs({
   src: LeftArrowIcon,
   alt: '뒤로가기',
-})``;
+})`
+  cursor: pointer;
+`;
 
 export const SearchInput = styled.input`
   flex-shrink: 1;
