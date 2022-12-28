@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import LeftArrowIcon from '../../../../assets/icons/icon-arrow-left.svg';
-import FollowText from '../../../../assets/icons/FollowHeaderText.svg';
 
 export const LeftIcon = styled.img.attrs({
   src: LeftArrowIcon,
@@ -9,7 +8,9 @@ export const LeftIcon = styled.img.attrs({
   cursor: pointer;
 `;
 
-export const RightIcon = styled.img.attrs({
-  src: FollowText,
-  alt: '1N마켓 피드',
-})``;
+export const FollowersText = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  color: ${({ theme }) => theme.palette.black};
+  margin-top: 3px; // 가운데 맞춤
+`;

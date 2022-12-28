@@ -7,8 +7,8 @@ const FollowHeader = () => {
   const navigate = useNavigate();
   return (
     <HeaderWrapper style={{display:"flex", justifyContent:"start"}}>
-        <S.LeftIcon style={{marginRight:"10px"}} onClick={() => navigate(-1)}/>
-        <S.RightIcon/>
+        <S.LeftIcon style={{marginRight:"8px"}} onClick={() => navigate(-1)}/>
+        <S.FollowersText>Followers</S.FollowersText>
     </HeaderWrapper>
   );
 };
