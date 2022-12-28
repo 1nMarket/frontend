@@ -5,6 +5,10 @@ import * as S from './style';
 import { setTime } from '../../utils/setTime';
 
 function CommentList({ comments }) {
+  const onErrorImg = (e) => {
+    e.target.src = 'https://mandarin.api.weniv.co.kr/1671431659709.png';
+  };
+
   return (
     <S.CommentListWrapper>
       <S.CommentListContainer>
@@ -13,7 +17,7 @@ function CommentList({ comments }) {
             return (
               <S.CommentListLi key={data.id}>
                 <S.CommentAuthor>
-                  <S.ProfileImg src={data.author.image} />
+                  <S.ProfileImg src={data.author.image} onError={onErrorImg} />
                   <S.InformationBox>
                     <span>{data.author.username}</span>
                     <small>{setTime(data.createdAt)}</small>
