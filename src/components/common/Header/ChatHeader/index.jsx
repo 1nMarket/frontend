@@ -7,8 +7,10 @@ const ChatHeader = () => {
   const navigate = useNavigate();
   return (
     <HeaderWrapper>
-        <S.LeftIcon/>
-        <S.MiddleIcon style={{marginLeft:"-150px"}} onClick={() => navigate(-1)}/>
+      <S.FlexDiv>
+        <S.LeftIcon onClick={() => navigate(-1)}/>
+        <S.ChatUserName>애월읍 위니브 감귤농장</S.ChatUserName>
+        </S.FlexDiv>
         <S.RightIcon/>
     </HeaderWrapper>
   );
