@@ -104,5 +104,7 @@ export const YourProfileButton = styled.button`
 export const IconButton = styled.button`
   background-color: ${({ theme }) => theme.palette.white};
   border: 1px solid ${({ theme }) => theme.palette.border};
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
 `;
