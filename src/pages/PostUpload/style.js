@@ -12,12 +12,14 @@ export const Conatiner = styled.main`
 export const ProfileImg = styled.img`
   width: 42px;
   height: 42px;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const PostForm = styled.form`
   padding-top: 10px;
   width: 100%;
-`
+`;
 
 export const PostComment = styled.textarea`
   width: 100%;
@@ -37,7 +39,7 @@ export const ImgLabel = styled.label`
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 16px;;
+  bottom: 16px;
   right: 16px;
   width: 50px;
   height: 50px;
