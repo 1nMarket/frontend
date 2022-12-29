@@ -17,12 +17,12 @@ export const SplashWrapper = styled.div`
   justify-content: center;
   align-items: center;
   animation-name: ${logoAnimation};
-  animation-duration: 2s;
+  animation-duration: 3s;
 `;
 
 export const Logo = styled.div`
   width: 166px;
   height: 166px;
   margin-bottom: 228px;
-  background: url(${fullLogo});
+  background: url(${fullLogo}) no-repeat;
 `;
