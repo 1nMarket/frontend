@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import LeftArrowIcon from '../../../../assets/icons/icon-arrow-left.svg';
-import SaveIcon from '../../../../assets/icons/Ms--Disabled-button.svg';
 
 export const LeftIcon = styled.img.attrs({
   src: LeftArrowIcon,
@@ -8,11 +7,6 @@ export const LeftIcon = styled.img.attrs({
 })`
   cursor: pointer;
 `;
-
-export const RightIcon = styled.img.attrs({
-  src: SaveIcon,
-  alt: '1N마켓 피드',
-})``;
 
 export const UploadButton = styled.button`
   padding: 7px 25px;

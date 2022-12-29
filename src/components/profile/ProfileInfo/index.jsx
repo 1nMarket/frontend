@@ -78,7 +78,13 @@ const ProfileInfo = () => {
         ) : (
           <>
             <S.IconButton>
-              <MessageIcon />
+              <MessageIcon
+                style={{
+                  width: '22px',
+                  height: '22px',
+                  margin: '3px 5px 3px 6px',
+                }}
+              />
             </S.IconButton>
             {isfollow ? (
               <S.YourProfileButton onClick={handleUnfollow} isfollow={isfollow}>
@@ -90,7 +96,13 @@ const ProfileInfo = () => {
               </S.YourProfileButton>
             )}
             <S.IconButton>
-              <ShareIcon />
+              <ShareIcon
+                style={{
+                  width: '20px',
+                  height: '20px',
+                  margin: '6px 5px',
+                }}
+              />
             </S.IconButton>
           </>
         )}

@@ -4,19 +4,19 @@ import styled from 'styled-components';
 export const User = styled.li`
   ${({ theme }) => theme.common.flexSpaceBetween}
   padding: 8px 16px;
-`
+`;
 
 export const StyleLink = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
-`
+`;
 
 export const UserImage = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-`
+`;
 
 export const UserInfo = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ export const UserInfo = styled.div`
   justify-content: center;
   gap: 6px;
   margin-left: 12px;
-`
+`;
 
 export const UserName = styled.strong`
   color: ${({ theme }) => theme.palette.black};
@@ -44,7 +44,7 @@ export const UserIntro = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-`
+`;
 
 export const FollowButton = styled.button`
   width: 56px;
@@ -52,5 +52,5 @@ export const FollowButton = styled.button`
   border-radius: 26px;
   font-weight: 400;
   font-size: 12px;
-  line-height: 15px
-`
+  line-height: 15px;
+`;
