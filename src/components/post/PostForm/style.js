@@ -50,6 +50,7 @@ export const ImgLabel = styled.label`
 
 export const ImgList = styled.ul`
   width: 100%;
+  height: 10%;
   display: flex;
   gap: 8px;
   overflow-x: scroll;
@@ -61,11 +62,13 @@ export const ImgItem = styled.li`
   overflow: hidden;
   border: 0.5px solid ${({ theme }) => theme.palette.border};
   border-radius: 10px;
+  width: calc(100%/3);
 `;
 
 export const PostImg = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover; 
 `;
 
 export const RemoveButton = styled.button`
