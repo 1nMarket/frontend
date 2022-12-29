@@ -37,16 +37,15 @@ const Router = () => {
 
               <Route path='profile/:accountname'>
                 <Route index element={<Profile />} />
-                <Route path='product' element={<ProdcutUpload />}/>
+                <Route path='product' element={<ProdcutUpload />} />
                 <Route path='followings' element={<Follows />} />
                 <Route path='followers' element={<Follows />} />
               </Route>
 
               <Route path='search' element={<Search />} />
 
-              <Route path='chat' element={<Chat/>}/>
-
-            </Route> 
+              <Route path='chat' element={<Chat />} />
+            </Route>
 
             <Route path='post'>
               <Route path='upload' element={<PostUpload />} />
@@ -54,7 +53,7 @@ const Router = () => {
             </Route>
 
             <Route path='profile/:userId/edit' element={<ProfileModify />} />
-            <Route path='product/:productId/edit' element={<ProductModify/>} />
+            <Route path='product/:productId/edit' element={<ProductModify />} />
           </Route>
 
           <Route path='*' element={<Missing />} />
