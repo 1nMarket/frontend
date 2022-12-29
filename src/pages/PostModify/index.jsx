@@ -1,22 +1,28 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { axiosPrivate } from '../../apis/axios';
 import UploadHeader from '../../components/common/Header/UploadHeader';
 import PostForm from '../../components/post/PostForm';
 
-const PostUpload = () => {
+const PostModify = () => {
+
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const [content, setContent] = useState('');
-  const [imgFiles, setImgFiles] = useState([]);
+  const { postId } = useParams();
+  const accountName = JSON.parse(localStorage.getItem('accountname'));
+
+  const [content, setContent] = useState(state?.content || '');
+  const [imgFiles, setImgFiles] = useState(!state?.image ? [] : state?.image.split(","));
 
   const canSave = !!imgFiles.length || !!content;
 
   const handlePostUpload = async (e) => {
-    console.log(content, imgFiles);
+
     e.preventDefault();
     if (!canSave) return;
-    await axiosPrivate.post(
-      '/post',
+    await axiosPrivate.put(
+      `/post/${postId}`,
       JSON.stringify({
         post: {
           content,
@@ -24,8 +30,13 @@ const PostUpload = () => {
         },
       }),
     );
-    navigate('/home');
+
+    navigate(`/profile/${accountName}`);
   };
+
+  useEffect(() => {
+    if(!state) navigate('/home');
+  }, []);
 
   return (
     <>
@@ -37,7 +48,7 @@ const PostUpload = () => {
         setImgFiles={setImgFiles}
         />
     </>
-  );
-};
+  )
+}
 
-export default PostUpload;
+export default PostModify

@@ -69,6 +69,7 @@ const PostItem = ({ post, setPostsList }) => {
             setOpenModal={setOpenModal}
             postId={post.id}
             setPostsList={setPostsList}
+            post={post}
           />
         ) : (
           <PostModal setOpenModal={setOpenModal} />

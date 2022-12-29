@@ -4,7 +4,7 @@ import ModalLayout from '../ModalLayout';
 import PostRemoveModal from '../../alertModals/PostRemoveModal';
 import * as S from './style';
 
-const MyPostModal = ({ setOpenModal, postId, setPostsList }) => {
+const MyPostModal = ({ setOpenModal, postId, setPostsList, post }) => {
   const [openAelrt, setOpenAlert] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ const MyPostModal = ({ setOpenModal, postId, setPostsList }) => {
       <ModalLayout setOpenModal={setOpenModal}>
         <li onClick={() => setOpenAlert(true)}>삭제</li>
         <li>
-          <S.PostEditLink to={`/post/${postId}/edit`}>수정</S.PostEditLink>
+          <S.PostEditLink to={`/post/${postId}/edit`} state={{ ...post }}>수정</S.PostEditLink>
         </li>
       </ModalLayout>
       {openAelrt && (
