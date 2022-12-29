@@ -9,6 +9,8 @@ const PostUpload = () => {
   const [content, setContent] = useState('');
   const [imgFiles, setImgFiles] = useState([]);
 
+  console.log(imgFiles);
+
   const canSave = !!imgFiles.length || !!content;
 
   const handlePostUpload = async (e) => {
@@ -32,7 +34,7 @@ const PostUpload = () => {
       <UploadHeader canSave={canSave} handlePostUpload={handlePostUpload} />
       <PostForm 
         content={content} 
-        setcontent={setContent} 
+        setContent={setContent} 
         imgFiles={imgFiles}
         setImgFiles={setImgFiles}
         />
