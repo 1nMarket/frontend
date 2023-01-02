@@ -2,12 +2,20 @@
 
 ## 주요기능
 
-### SEO 최적화
-
 <details>
-  <summary>useTitle로 페이지 타이틀 최적화</summary>
+  <summary>useTitle로 효율적인 Doc Title 설정하기</summary>
 
-각 페이지의 타이틀을 짓기 위해서 고민해서 다음과 같이 useTitle 훅을 만들어 해결했다.
+### 페이지 타이틀
+
+브라우저를 통해 웹사이트에 접속하면 대표적으로 상단 탭에 페이지 제목이 위치하게 됩니다. 이 페이지 제목이 `Document Title`입니다. 가장 대표적인 웹사이트의 타이틀로 사용자한테도 중요하게 보이는 요소이자 각 페이지마다 해당 페이지의 주제를 잘 나타낼 수 있는 요소라 생각합니다.
+
+<div style="display: flex; justify-content: center">
+  <img width="518" alt="스크린샷 2023-01-02 오후 9 03 49" src="https://user-images.githubusercontent.com/97153666/210228808-2bc81167-ca94-4c1d-b022-c3891ad8892b.png">
+</div>
+
+하지만 React는 SPA이고 하나의 `index.html`을 가지기 때문에 각 페이지마다의 타이틀을 `<title></title>` 요소로 변경할 수가 없습니다. 따라서 다음과 같이 `useTitle` 커스텀 훅을 만들었습니다.
+
+### useTitle
 
 ```js
 import { useEffect } from 'react';
@@ -17,19 +25,38 @@ const useTitle = (title) => {
     const prevTitle = document.title;
     document.title = title;
 
-    return () => (document.title = prevTitle);
+    return () => document.title = prevTitle;
   }, [title]);
 };
 
 export default useTitle;
 ```
 
-<img width="1130" alt="스크린샷 2023-01-02 오후 2 07 45" src="https://user-images.githubusercontent.com/97153666/210196657-b1443ad9-6e22-441c-a7ca-795428e2bc48.png">
+`useTitle`은 `unmount`시까지 이전 페이지 타이틀이다가 새 페이지 `mount`하는 경우에 그 페이지의 타이틀로 바꿀 수 있도록 만들었습니다.
+
+#### useTitle 적용
+
+```jsx
+const Login = () => {
+  useTitle('1nMarket - Login');
+
+  // ...
+}
+```
+
+<img width="1191" alt="스크린샷 2023-01-02 오후 9 16 07" src="https://user-images.githubusercontent.com/97153666/210230071-ddc55885-8048-4f51-8e82-476169b12562.png">
+
+다음처럼 useTitle에 인자로 `1nMarket - Login`을 넘겨주게 되면 해당 페이지의 타이틀로 변경하게 됩니다.
 
 </details>
 
 <details>
   <summary>ObserverIntersection Api 통해서 피드 무한스크롤 구현</summary>
+
+```js
+
+```
+
 </details>
 
 ## 트러블 슈팅
