@@ -11,7 +11,7 @@ export const SignupWrapper = styled.section`
 export const Title = styled.h2`
   text-align: center;
   font-size: 24px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   line-height: 30px;
   margin: 30px 0 12px 0;
 `;
@@ -27,7 +27,6 @@ export const SignupButton = styled.button`
   width: calc(100% - 70px);
   height: 44px;
   font-size: 15px;
-  font-weight: 500;
   border-radius: 44px;
   border: none;
   color: ${({ theme }) => theme.palette.white};

@@ -3,63 +3,65 @@ import BasicProfile from '../../assets/icons/basic-profile.svg';
 import NewChat from '../../assets/icons/NewChat.svg';
 
 export const Content = styled.main`
-    padding: 72px 16px 0px;
+  padding: 72px 16px 0px;
 `;
 
-export const ChatList = styled.ul``;
+export const ChatList = styled.ul`
+  height: 100vh;
+`;
 
 export const ChatItem = styled.li`
-    display: flex;
-    justify-content: space-between;
-    height: 42px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 42px;
+  margin-bottom: 20px;
 `;
 
 export const IconContentWrapper = styled.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const IconDiv = styled.div`
-    position: relative;
+  position: relative;
 `;
 
 export const ChatContentDiv = styled.div`
-    margin-left: 12px;
+  margin-left: 12px;
 `;
 
 export const BasicProfileIcon = styled.img.attrs({
-    src: BasicProfile,
-    alt: '기본 프로필 아이콘',
-  })`
-    width: 42px;
-    height: 42px;
+  src: BasicProfile,
+  alt: '기본 프로필 아이콘',
+})`
+  width: 42px;
+  height: 42px;
 `;
 
 export const NewChatMark = styled.img.attrs({
-    src: NewChat,
-    alt: '새로운 메세지 표시',
-  })`
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    left: 0px;
+  src: NewChat,
+  alt: '새로운 메세지 표시',
+})`
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  left: 0px;
 `;
 
 export const ChatUserName = styled.p`
-    font-size: 14px;
-    color: ${({ theme }) => theme.palette.black};
-    margin-bottom: 4px;
-    font-weight: 500;
+  font-size: 14px;
+  color: ${({ theme }) => theme.palette.black};
+  margin-bottom: 4px;
+  font-family: Pretendard-M;
 `;
 
 export const ChatContent = styled.p`
-    font-size: 12px;
-    color: ${({ theme }) => theme.palette.mediumGray};
+  font-size: 12px;
+  color: ${({ theme }) => theme.palette.mediumGray};
 `;
 
 export const ChatDate = styled.p`
-    font-size: 10px;
-    color: ${({ theme }) => theme.palette.border};
-    margin-top: 26px;
+  font-size: 10px;
+  color: ${({ theme }) => theme.palette.border};
+  margin-top: 26px;
 `;

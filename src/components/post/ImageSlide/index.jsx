@@ -11,12 +11,16 @@ const ImageSlide = ({ images }) => {
     setSelectBtn(i);
   };
 
+  const onErrorImg = (e) => {
+    e.target.src = 'https://mandarin.api.weniv.co.kr/1672556398304.png';
+  };
+
   return (
     <S.SlideContainer imgLength={images.length}>
       <S.Slide ref={slideRef} imgLength={images.length}>
         {images.map((image, i) => (
           <S.SlideItem key={i}>
-            <S.PostImage src={image} alt='' />
+            <S.PostImage src={image} alt='' onError={onErrorImg} />
           </S.SlideItem>
         ))}
       </S.Slide>
@@ -24,7 +28,7 @@ const ImageSlide = ({ images }) => {
         {images.length > 1 &&
           images.map((_, i) => (
             <S.SlideButton
-              style={{ backgroundColor: selectBtn === i && '#495573' }}
+              style={{ backgroundColor: selectBtn === i && '#EB7F5F' }}
               key={i}
               onClick={() => handleSlide(i)}
             />

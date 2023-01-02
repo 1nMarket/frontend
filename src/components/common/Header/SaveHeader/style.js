@@ -10,7 +10,7 @@ export const LeftIcon = styled.img.attrs({
 
 export const UploadButton = styled.button`
   padding: 7px 25px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 14px;
   line-height: 18px;
   color: ${({ theme }) => theme.palette.white};

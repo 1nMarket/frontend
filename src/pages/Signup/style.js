@@ -11,7 +11,7 @@ export const SignupWrapper = styled.section`
 export const Title = styled.h1`
   text-align: center;
   font-size: 24px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   line-height: 30px;
   margin: 30px 0 40px 0;
 `;
@@ -30,7 +30,7 @@ export const InputWrapper = styled.div`
 export const SignupLabel = styled.label`
   display: block;
   font-size: 12px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   color: ${theme.palette.mediumGray};
   margin-bottom: 10px;
   line-height: 15px;
@@ -46,7 +46,6 @@ export const SignupInput = styled.input`
   outline: none;
 
   &::placeholder {
-    font-weight: 400;
     color: ${theme.palette.lightGray};
   }
 
@@ -61,7 +60,7 @@ export const SignupInput = styled.input`
 
 export const ErrMsg = styled.p`
   font-size: 12px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   color: ${({ validcheck }) =>
     validcheck ? theme.palette.primary : theme.palette.alarm};
   margin-top: 6px;
@@ -71,7 +70,6 @@ export const NextButton = styled.button`
   width: 100%;
   height: 44px;
   font-size: 15px;
-  font-weight: 500;
   border-radius: 44px;
   border: none;
   color: ${theme.palette.white};

@@ -23,31 +23,49 @@ const ProductList = () => {
     getProductList();
   }, [accountname]);
 
+  const onErrorImg = (e) => {
+    e.target.src = 'https://mandarin.api.weniv.co.kr/1672556398304.png';
+  };
+
   return (
     <>
       {productList.length === 0 ? null : (
         <S.ProductListWrapper>
-          <S.Title>판매 중인 상품</S.Title>
-          <S.ProductList>
-            {productList.map((product, i) => (
-              <Fragment key={product.id}>
-                <S.ProductItem onClick={() => setOpenModal(true)}>
-                  <img src={product.itemImage} alt='' />
-                  <p>{product.itemName}</p>
-                  <strong>{product.price.toLocaleString()}원</strong>
-                </S.ProductItem>
-                {openModal && (
-                  <ProductModal
-                    link={product.link}
-                    productId={product.id}
-                    product={product}
-                    setProductList={setProductList}
-                    setOpenModal={setOpenModal}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </S.ProductList>
+          <S.ProductBox>
+            <S.Title>1/N하고 있는 상품</S.Title>
+            <S.ProductList>
+              {productList.map((product, i) => (
+                <Fragment key={product.id}>
+                  <S.ProductItem onClick={() => setOpenModal(true)}>
+                    <S.ProductListImg
+                      src={product.itemImage}
+                      alt=''
+                      onError={onErrorImg}
+                    />
+                    <S.ProductMember>
+                      <S.ProductMemberTxt>
+                        모집인원 <span>4</span>
+                      </S.ProductMemberTxt>
+                    </S.ProductMember>
+                    <p>{product.itemName}</p>
+                    <strong>
+                      <S.ProductItemTxt>1인당</S.ProductItemTxt>{' '}
+                      {product.price.toLocaleString()}원
+                    </strong>
+                  </S.ProductItem>
+                  {openModal && (
+                    <ProductModal
+                      link={product.link}
+                      productId={product.id}
+                      product={product}
+                      setProductList={setProductList}
+                      setOpenModal={setOpenModal}
+                    />
+                  )}
+                </Fragment>
+              ))}
+            </S.ProductList>
+          </S.ProductBox>
         </S.ProductListWrapper>
       )}
     </>

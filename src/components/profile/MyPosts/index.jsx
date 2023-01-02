@@ -25,19 +25,21 @@ const MyPosts = () => {
 
   return (
     <>
-      <S.PostHeader>
-        {selectList ? (
-          <>
-            <S.PostListOnIcon />
-            <S.PostAlbumOffIcon onClick={() => setSelectList(false)} />
-          </>
-        ) : (
-          <>
-            <S.PostListOffIcon onClick={() => setSelectList(true)} />
-            <S.PostAlbumOnIcon />
-          </>
-        )}
-      </S.PostHeader>
+      <S.HeaderWrapper>
+        <S.PostHeader>
+          {selectList ? (
+            <>
+              <S.PostListOnIcon />
+              <S.PostAlbumOffIcon onClick={() => setSelectList(false)} />
+            </>
+          ) : (
+            <>
+              <S.PostListOffIcon onClick={() => setSelectList(true)} />
+              <S.PostAlbumOnIcon />
+            </>
+          )}
+        </S.PostHeader>
+      </S.HeaderWrapper>
       {selectList ? (
         <PostsList postsList={postsList} setPostsList={setPostsList} />
       ) : (

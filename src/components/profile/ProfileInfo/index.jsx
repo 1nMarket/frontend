@@ -46,6 +46,10 @@ const ProfileInfo = () => {
 
   if (!isLoading) return <PulseLoader color='#000' />;
 
+  const onErrorImg = (e) => {
+    e.target.src = 'https://mandarin.api.weniv.co.kr/1671431659709.png';
+  };
+
   return (
     <S.ProfileSection>
       <S.TopContent>
@@ -53,10 +57,14 @@ const ProfileInfo = () => {
           <S.Count>{followerCount}</S.Count>
           <S.CountInfo>followers</S.CountInfo>
         </S.CustomLink>
-        <S.ProfileImg src={image} alt={`${accountname}의 프로필 사진`} />
+        <S.ProfileImg
+          src={image}
+          alt={`${accountname}의 프로필 사진`}
+          onError={onErrorImg}
+        />
 
         <S.CustomLink to={`followings`}>
-          <S.Count>{followingCount}</S.Count>
+          <S.Count right>{followingCount}</S.Count>
           <S.CountInfo>followings</S.CountInfo>
         </S.CustomLink>
       </S.TopContent>
@@ -72,7 +80,7 @@ const ProfileInfo = () => {
               <S.MyProfileButton>프로필 수정</S.MyProfileButton>
             </Link>
             <Link to='product'>
-              <S.MyProfileButton>상품 등록</S.MyProfileButton>
+              <S.MyProfileButton>1/N 모집하기</S.MyProfileButton>
             </Link>
           </>
         ) : (

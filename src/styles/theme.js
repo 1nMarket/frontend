@@ -10,6 +10,7 @@ const palette = {
   kakao: '#f2c94c',
   facebook: '#2d9cdb',
   alarm: '#eb7f5f',
+  bg: '#f2f2f2',
 };
 
 const common = {

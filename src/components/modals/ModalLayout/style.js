@@ -37,7 +37,6 @@ export const ModalList = styled.ul`
 
   > li {
     padding: 14px 0;
-    font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     cursor: pointer;

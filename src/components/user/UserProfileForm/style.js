@@ -47,7 +47,7 @@ export const InputWrapper = styled.div`
 export const ProfileLabel = styled.label`
   display: block;
   font-size: 12px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   color: ${theme.palette.mediumGray};
   margin-bottom: 10px;
   line-height: 15px;
@@ -63,7 +63,6 @@ export const ProfileInput = styled.input`
   outline: none;
 
   &::placeholder {
-    font-weight: 400;
     color: ${theme.palette.lightGray};
   }
 
@@ -78,7 +77,7 @@ export const ProfileInput = styled.input`
 
 export const ErrMsg = styled.p`
   font-size: 12px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   color: ${({ validcheck }) =>
     validcheck ? theme.palette.primary : theme.palette.alarm};
   margin-top: 6px;

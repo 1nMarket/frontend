@@ -19,7 +19,9 @@ export const SearchItem = styled.li`
 export const UserImage = styled.img`
   width: 50px;
   height: 50px;
+  object-fit: cover;
   border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const UserInfo = styled.div`
