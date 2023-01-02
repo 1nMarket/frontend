@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { axiosPrivate } from '../../apis/axios';
-import UploadHeader from '../../components/common/Header/UploadHeader';
-import PostForm from '../../components/post/PostForm';
+import { axiosPrivate } from 'apis/axios';
+import { UploadHeader, PostForm } from 'components';
+import { useTitle } from 'hooks';
 
 const PostModify = () => {
+  useTitle('1nMarket - PostModify');
   const { state } = useLocation();
   const navigate = useNavigate();
   const { postId } = useParams();

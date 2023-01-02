@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { axiosPrivate } from '../../../apis/axios';
+import { axiosPrivate } from 'apis/axios';
 import * as S from './style';
 import { ReactComponent as MessageIcon } from '../../../assets/icons/icon-message-circle.svg';
 import { ReactComponent as ShareIcon } from '../../../assets/icons/icon-share.svg';
@@ -9,8 +9,14 @@ const ProfileInfo = () => {
   const { accountname } = useParams();
   const [profile, setProfile] = useState({});
 
-  const { followerCount, followingCount, image, intro, isfollow, username } =
-    profile;
+  const {
+    followerCount,
+    followingCount,
+    image = '',
+    intro,
+    isfollow,
+    username,
+  } = profile;
 
   useEffect(() => {
     const getUserInfo = async () => {

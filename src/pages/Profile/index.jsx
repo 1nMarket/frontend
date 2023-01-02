@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import ProfileInfo from '../../components/profile/ProfileInfo';
-import ProductList from '../../components/profile/ProductList';
+import {
+  ProfileInfo,
+  ProductList,
+  MyPosts,
+  ProfileHeader,
+  ProfileModal,
+} from 'components';
 import * as S from './style';
-import MyPosts from '../../components/profile/MyPosts';
-import ProfileHeader from '../../components/common/Header/ProfileHeader'
-import ProfileModal from '../../components/modals/ProfileModal';
-
+import { useTitle } from 'hooks';
 
 const Profile = () => {
+  useTitle('1nMarket - Profile');
   const [openModal, setOpenModal] = useState(false);
 
   return (

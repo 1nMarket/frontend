@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import UserProfileForm from '../../components/user/UserProfileForm';
-import { axiosPrivate } from '../../apis/axios';
+import { axiosPrivate } from 'apis/axios';
+import { UserProfileForm } from 'components';
+import { useTitle } from 'hooks';
 import * as S from './style';
 
 const SignupProfile = () => {
+  useTitle('1nMarket - SignupProfile');
   const { state } = useLocation();
   const navigate = useNavigate();
   const [username, setUsername] = useState('');

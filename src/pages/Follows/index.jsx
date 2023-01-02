@@ -1,11 +1,9 @@
-import React, { useRef, useState } from 'react';
-import { useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { axiosPrivate } from '../../apis/axios';
-import FollowHeader from '../../components/common/Header/FollowHeader';
+import { FollowHeader, FollowUser } from 'components';
+import { axiosPrivate } from 'apis/axios';
+import { useTitle } from 'hooks';
 import * as S from './style';
-import FolowUser from '../../components/profile/FollowUser';
-import useTitle from '../../hooks/useTitle';
 
 const Follows = () => {
   useTitle('1nMarket - Follow');
@@ -55,7 +53,7 @@ const Follows = () => {
       <S.Content>
         <S.UsersList>
           {usersList.map((user, i) => (
-            <FolowUser key={user._id} {...user} />
+            <FollowUser key={user._id} {...user} />
           ))}
         </S.UsersList>
 

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { axiosPrivate } from '../../apis/axios';
-import SearchHeader from '../../components/common/Header/SearchHeader';
-import SearchList from '../../components/search/SearchList';
-import useDebounce from '../../hooks/useDebounce';
+import { axiosPrivate } from 'apis/axios';
+import { SearchHeader, SearchList } from 'components';
+import { useDebounce, useTitle } from 'hooks';
 import * as S from './style';
 
 const Search = () => {
+  useTitle('1nMarket - Search');
   const [keyword, setKeyword] = useState('');
   const debouncedValue = useDebounce(keyword);
   const [searchList, setSearchList] = useState([]);

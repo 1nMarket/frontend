@@ -19,9 +19,13 @@ const ImageSlide = ({ images }) => {
     <S.SlideContainer imgLength={images.length}>
       <S.Slide ref={slideRef} imgLength={images.length}>
         {images.map((image, i) => (
-          <S.SlideItem key={i}>
-            <S.PostImage src={image} alt='' onError={onErrorImg} />
-          </S.SlideItem>
+          <React.Fragment key={i}>
+            {image && (
+              <S.SlideItem>
+                <S.PostImage src={image} alt='' onError={onErrorImg} />
+              </S.SlideItem>
+            )}
+          </React.Fragment>
         ))}
       </S.Slide>
       <S.ButtonWrapper>

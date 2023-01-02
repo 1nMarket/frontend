@@ -3,6 +3,7 @@ import ModalIcon from '../../../assets/icons/icon-more-vertical.svg';
 
 // 댓글 wrapper
 export const CommentListWrapper = styled.section`
+  border-top: 0.5px solid ${({ theme }) => theme.palette.border};
   max-width: 390px;
   padding: 20px 16px 0;
   margin: 0 auto;
@@ -71,8 +72,11 @@ export const InformationBox = styled.div`
 `;
 
 // 댓글 내용
-export const CommentText = styled.span`
+export const CommentTextBox = styled.div`
   padding-left: 48px;
+`;
+
+export const CommentText = styled.span`
   font-size: 14px;
   line-height: 18px;
   color: #333333;

@@ -1,8 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from 'hooks';
 import * as S from './style';
 
 function Missing() {
+  useTitle('1nMarket - Missing');
   const navigate = useNavigate();
 
   return (

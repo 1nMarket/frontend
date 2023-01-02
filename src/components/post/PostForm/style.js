@@ -7,6 +7,10 @@ export const Conatiner = styled.main`
   display: flex;
   column-gap: 12px;
   position: relative;
+
+  @media screen and (max-width: 300px) {
+    min-height: 100svh;
+  }
 `;
 
 export const ProfileImg = styled.img`
@@ -24,7 +28,6 @@ export const PostForm = styled.form`
 
 export const PostComment = styled.textarea`
   width: 100%;
-  min-height: 16px;
   margin-bottom: 16px;
   font-size: 14px;
   line-height: 18px;

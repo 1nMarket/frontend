@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { axiosPrivate } from '../../../apis/axios';
+import { axiosPrivate } from 'apis/axios';
 import * as S from './style';
 
 const FollowUser = ({ image, accountname, username, intro, isfollow }) => {

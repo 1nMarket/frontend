@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { axiosPrivate } from '../../../apis/axios';
-import ProductModal from '../../modals/ProductModal';
+import { axiosPrivate } from 'apis/axios';
+import { ProductModal } from 'components';
 import * as S from './style';
 
 const ProductList = () => {
@@ -42,9 +42,7 @@ const ProductList = () => {
                       onError={onErrorImg}
                     />
                     <S.ProductMember>
-                      <S.ProductMemberTxt>
-                        모집인원 <span>4</span>
-                      </S.ProductMemberTxt>
+                      <S.ProductMemberTxt>모집중</S.ProductMemberTxt>
                     </S.ProductMember>
                     <p>{product.itemName}</p>
                     <strong>
