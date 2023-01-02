@@ -5,14 +5,16 @@ import * as S from './style';
 const FollowUser = ({ image, accountname, username, intro, isfollow }) => {
   const [follow, setFollow] = useState(isfollow);
 
+  const onErrorImg = (e) => {
+    e.target.src = 'https://mandarin.api.weniv.co.kr/1671431659709.png';
+  };
+
   const handleFollow = async () => {
-    console.log(accountname);
     await axiosPrivate.post(`/profile/${accountname}/follow`);
     setFollow(!follow);
   };
 
   const handleUnfollow = async () => {
-    console.log(accountname);
     await axiosPrivate.delete(`/profile/${accountname}/unfollow`);
     setFollow(!follow);
   };
@@ -20,7 +22,11 @@ const FollowUser = ({ image, accountname, username, intro, isfollow }) => {
   return (
     <S.User>
       <S.StyleLink to={`/profile/${accountname}`}>
-        <S.UserImage src={image} alt='사용자 프로필 이미지' />
+        <S.UserImage
+          src={image}
+          alt='사용자 프로필 이미지'
+          onError={onErrorImg}
+        />
 
         <S.UserInfo>
           <S.UserName>{username}</S.UserName>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { axiosPrivate } from '../../apis/axios';
 import SaveHeader from '../../components/common/Header/SaveHeader';
 import { useState } from 'react';
@@ -12,32 +12,28 @@ const ProductUpload = () => {
   const [imgFiles, setImgFiles] = useState('');
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
-  const [productLink, setProductLink] = useState('');  
-  const [canSave, setCansave] = useState(false); 
-  
+  const [productLink, setProductLink] = useState('');
+  const [canSave, setCansave] = useState(false);
+
   // 전체 폼 데이터 전송
   const handleProductUpload = async (e) => {
-    console.log(productName, productPrice, productLink, imgFiles);
     e.preventDefault();
     if (!canSave) return;
-    await axiosPrivate.post(
-      '/product',
-      {
-        product: {
-          itemName: productName,
-          price: Number(productPrice.replaceAll(",", "")),
-          link: productLink,
-          itemImage: imgFiles
-        },
+    await axiosPrivate.post('/product', {
+      product: {
+        itemName: productName,
+        price: Number(productPrice.replaceAll(',', '')),
+        link: productLink,
+        itemImage: imgFiles,
       },
-    )
+    });
     navigate(`/profile/${accountname}`);
   };
 
   return (
     <>
-      <SaveHeader canSave={canSave} handleProductUpload={handleProductUpload}/>
-      
+      <SaveHeader canSave={canSave} handleProductUpload={handleProductUpload} />
+
       <ProductForm
         imgFiles={imgFiles}
         setImgFiles={setImgFiles}
@@ -50,8 +46,7 @@ const ProductUpload = () => {
         setCansave={setCansave}
       />
     </>
-  )
-}
-
+  );
+};
 
 export default ProductUpload;

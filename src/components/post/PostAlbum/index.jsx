@@ -4,7 +4,6 @@ import * as S from './style';
 
 const PostAlubm = ({ postsList }) => {
   const postsImage = postsList.map((post) => [post.id, post.image.split(',')]);
-  console.log(postsImage);
 
   return (
     <>

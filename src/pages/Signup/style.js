@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 
 export const SignupWrapper = styled.section`
-  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;

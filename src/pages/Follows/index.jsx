@@ -5,8 +5,10 @@ import { axiosPrivate } from '../../apis/axios';
 import FollowHeader from '../../components/common/Header/FollowHeader';
 import * as S from './style';
 import FolowUser from '../../components/profile/FollowUser';
+import useTitle from '../../hooks/useTitle';
 
 const Follows = () => {
+  useTitle('1nMarket - Follow');
   const { pathname } = useLocation();
   const { accountname } = useParams();
   const [usersList, setUsersList] = useState([]);
@@ -33,10 +35,9 @@ const Follows = () => {
         setHasNextUsers(data.length % 20 === 0);
         page.current += 20;
       }
-    }
+    };
 
     const io = new IntersectionObserver((entries, observer) => {
-      console.log(entries[0].isIntersecting);
       if (entries[0].isIntersecting) {
         getUsersData();
       }

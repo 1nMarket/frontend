@@ -17,7 +17,6 @@ const ProductList = () => {
       const {
         data: { product },
       } = await axiosPrivate.get(`/product/${accountname}`);
-      console.log(product);
       setProductList(product);
     };
     getProductList();

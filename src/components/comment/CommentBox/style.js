@@ -3,10 +3,9 @@ import ModalIcon from '../../../assets/icons/icon-more-vertical.svg';
 
 // 댓글 wrapper
 export const CommentListWrapper = styled.section`
-  border-top: 0.5px solid ${({ theme }) => theme.palette.border};
   max-width: 390px;
   padding: 20px 16px 0;
-  margin: 0 18.6px;
+  margin: 0 auto;
   box-sizing: border-box;
   /* width: 100%; */
   display: block;
@@ -18,7 +17,6 @@ export const CommentListContainer = styled.ul`
   margin: 0 auto;
 `;
 
-//
 export const CommentListLi = styled.li`
   position: relative;
   margin-bottom: 16px;

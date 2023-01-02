@@ -28,7 +28,6 @@ const ProductForm = ({
     const form = new FormData();
     form.append('image', e.target.files[0]);
     const { data } = await axiosImgUpload.post('/image/uploadfile', form);
-    // console.log(data.filename);
 
     // 업로드 취소시 나타나는 엑스박스 이미지 없애기 위한 조건문
     if (!e.target.files[0]) return setImgFiles('');

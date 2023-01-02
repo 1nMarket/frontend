@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.main`
-  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -12,7 +12,7 @@ const PostItem = ({ post, setPostsList }) => {
   const [openModal, setOpenModal] = useState(false);
   const [heart, setHeart] = useState(post.hearted || false);
   const [heartCount, setHearCount] = useState(post.heartCount || 0);
-  const images = post.image.split(',');
+  const images = post?.image?.split(',');
   const accountname = JSON.parse(localStorage.getItem('accountname'));
 
   const handleLike = async () => {
@@ -22,8 +22,7 @@ const PostItem = ({ post, setPostsList }) => {
   };
 
   const handleUnLike = async () => {
-    const { data } = await axiosPrivate.delete(`/post/${post.id}/unheart`);
-    console.log(data);
+    await axiosPrivate.delete(`/post/${post.id}/unheart`);
     setHeart((prev) => !prev);
     setHearCount((prev) => prev - 1);
   };
@@ -43,7 +42,7 @@ const PostItem = ({ post, setPostsList }) => {
 
         <S.PostContent>
           <S.PostText>{post.content}</S.PostText>
-          {!!images[0] && <ImageSlide images={images} />}
+          {!!images && <ImageSlide images={images} />}
           <S.LikeCommentCount>
             <S.LikeBtn onClick={heart ? handleUnLike : handleLike}>
               {heart ? <LikeIcon /> : <UnLikeIcon />}

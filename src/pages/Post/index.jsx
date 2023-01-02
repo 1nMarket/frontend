@@ -6,9 +6,11 @@ import CommentBox from '../../components/comment/CommentBox';
 import CommentInput from '../../components/comment/CommentInput';
 import ProfileHeader from './../../components/common/Header/ProfileHeader';
 import ProfileModal from '../../components/modals/ProfileModal';
+import useTitle from '../../hooks/useTitle';
 import * as S from './style';
 
 const Post = () => {
+  useTitle('1nMarket - Post');
   const { postId } = useParams();
   const [openModal, setOpenModal] = useState(false);
   const [postsList, setPostsList] = useState([]);

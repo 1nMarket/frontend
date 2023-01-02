@@ -12,7 +12,6 @@ const PostUpload = () => {
   const canSave = !!imgFiles.length || !!content;
 
   const handlePostUpload = async (e) => {
-    console.log(content, imgFiles);
     e.preventDefault();
     if (!canSave) return;
     await axiosPrivate.post(
@@ -30,12 +29,12 @@ const PostUpload = () => {
   return (
     <>
       <UploadHeader canSave={canSave} handlePostUpload={handlePostUpload} />
-      <PostForm 
-        content={content} 
-        setContent={setContent} 
+      <PostForm
+        content={content}
+        setContent={setContent}
         imgFiles={imgFiles}
         setImgFiles={setImgFiles}
-        />
+      />
     </>
   );
 };

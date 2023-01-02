@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# 1인마켓
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 주요기능
 
-## Available Scripts
+### SEO 최적화
 
-In the project directory, you can run:
+<details>
+  <summary>useTitle로 페이지 타이틀 최적화</summary>
 
-### `npm start`
+각 페이지의 타이틀을 짓기 위해서 고민해서 다음과 같이 useTitle 훅을 만들어 해결했다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```js
+import { useEffect } from 'react';
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+const useTitle = (title) => {
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = title;
 
-### `npm test`
+    return () => (document.title = prevTitle);
+  }, [title]);
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+export default useTitle;
+```
 
-### `npm run build`
+<img width="1130" alt="스크린샷 2023-01-02 오후 2 07 45" src="https://user-images.githubusercontent.com/97153666/210196657-b1443ad9-6e22-441c-a7ca-795428e2bc48.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+</details>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 트러블 슈팅
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+  <summary>useDebounce 사용해서 검색 최적화하기</summary>
 
-### `npm run eject`
+한 글자만 쳐도 검색되는 문제 발견. 필요없는 요청이 많아진다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<img width="1656" alt="스크린샷 2023-01-02 오후 2 15 55" src="https://user-images.githubusercontent.com/97153666/210197695-9f83b85e-c657-44ae-abbe-d9ced33d1aec.png">
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### useDebounce 커스텀 훅
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```js
+// hooks/useDebounce.js
+import { useEffect, useState } from 'react';
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebounceValue] = useState(value);
 
-## Learn More
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounceValue(value), delay || 500);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [value, delay]);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  return debouncedValue;
+};
 
-### Code Splitting
+export default useDebounce;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### useDbounce 훅 적용
 
-### Analyzing the Bundle Size
+```jsx
+const Search = () => {
+  const [keyword, setKeyword] = useState('');
+  const debouncedValue = useDebounce(keyword);
+  const [searchList, setSearchList] = useState([]);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  useEffect(() => {
+    if (!keyword.length) return;
 
-### Making a Progressive Web App
+    const searchUsers = async () => {
+      const { data } = await axiosPrivate.get(
+        `/user/searchuser/?keyword=${keyword}`,
+      );
+      setSearchList(data);
+    };
+    searchUsers();
+  }, [debouncedValue]);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  return (
+    <>
+      <SearchHeader setKeyword={setKeyword} />
+      <S.Content>
+        <SearchList searchList={searchList} />
+      </S.Content>
+    </>
+  );
+};
+```
 
-### Advanced Configuration
+<img width="1583" alt="스크린샷 2023-01-02 오후 2 29 22" src="https://user-images.githubusercontent.com/97153666/210197700-4d5b8275-cfce-4344-b103-4b3446b89692.png">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- 불필요한 리렌더링을 막을 수 있다.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</details>
