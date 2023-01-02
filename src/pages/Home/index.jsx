@@ -1,9 +1,6 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { axiosPrivate } from '../../apis/axios';
-import PostsList from '../../components/post/PostsList';
-import HomeHeader from '../../components/common/Header/HomeHeader';
+import React, { useRef, useEffect, useState } from 'react';
+import { HomeHeader, PostsList } from 'components';
+import { axiosPrivate } from 'apis/axios';
 import * as S from './style';
 
 const Home = () => {
@@ -43,7 +40,7 @@ const Home = () => {
       <HomeHeader />
       <S.Container>
         {isLoading ? (
-          <p>Loading...</p>
+          <></>
         ) : postsList.length ? (
           <PostsList postsList={postsList} />
         ) : (

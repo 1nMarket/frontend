@@ -1,6 +1,5 @@
-import React from 'react';
+import { PostItem } from 'components';
 import * as S from './style';
-import PostItem from '../PostItem';
 
 const PostsList = ({ postsList, setPostsList }) => {
   return (

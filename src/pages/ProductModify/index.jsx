@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import { axiosPrivate } from '../../apis/axios';
-import SaveHeader from '../../components/common/Header/SaveHeader';
-import ProductForm from '../../components/post/ProductForm';
+import { SaveHeader, ProductForm } from 'components';
+import { axiosPrivate } from 'apis/axios';
+import { useTitle } from 'hooks';
 
 const ProductModify = () => {
+  useTitle('1nMarket - ProductModify');
   // 마운트 시에 수정 사항 페이지에 기존 상품정보들을 인풋창에 미리 렌더링 시키기
   const { state } = useLocation();
   const [imgFiles, setImgFiles] = useState(state?.itemImage || '');

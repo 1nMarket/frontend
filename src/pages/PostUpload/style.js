@@ -7,6 +7,10 @@ export const Conatiner = styled.main`
   display: flex;
   column-gap: 12px;
   position: relative;
+
+  @media screen and (max-width: 300px) {
+    min-height: 100svh;
+  }
 `;
 
 export const ProfileImg = styled.img`

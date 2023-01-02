@@ -1,6 +1,6 @@
 import React from 'react';
-import AlertModalLayout from '../AlertModalLayout';
 import { useNavigate } from 'react-router-dom';
+import AlertModalLayout from '../AlertModalLayout';
 
 const LogoutModal = ({ setOpenModal, setOpenAlert }) => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const LogoutModal = ({ setOpenModal, setOpenAlert }) => {
     localStorage.removeItem('accountname');
     localStorage.removeItem('profile-img');
     navigate('/');
-  }
+  };
 
   return (
     <AlertModalLayout comment='로그아웃 하시겠어요?'>

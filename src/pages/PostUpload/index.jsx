@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { axiosPrivate } from '../../apis/axios';
-import UploadHeader from '../../components/common/Header/UploadHeader';
-import PostForm from '../../components/post/PostForm';
+import { axiosPrivate } from 'apis/axios';
+import { UploadHeader, PostForm } from 'components';
+import { useTitle } from 'hooks';
 
 const PostUpload = () => {
+  useTitle('1nMarket - PostUpload');
   const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [imgFiles, setImgFiles] = useState([]);
@@ -23,7 +24,7 @@ const PostUpload = () => {
         },
       }),
     );
-    navigate('/home');
+    navigate(`/profile/${JSON.parse(localStorage.getItem('accountname'))}`);
   };
 
   return (

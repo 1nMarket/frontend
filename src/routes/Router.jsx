@@ -1,23 +1,23 @@
+import {
+  Follows,
+  Home,
+  Login,
+  PostUpload,
+  ProductUpload,
+  Public,
+  Signup,
+  SignupProfile,
+  Profile,
+  ProfileModify,
+  Search,
+  Chat,
+  Post,
+  PostModify,
+  ProductModify,
+  Missing,
+} from 'pages';
+import { Layout, Navbar, RequireAuth } from 'components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from '../components/common/Layout';
-import Navbar from '../components/common/Navbar';
-import RequireAuth from '../components/common/RequireAuth';
-import Follows from '../pages/Follows';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import PostUpload from '../pages/PostUpload';
-import ProdcutUpload from '../pages/ProductUpload';
-import Profile from '../pages/Profile';
-import ProfileModify from '../pages/ProfileModify';
-import Public from '../pages/Public';
-import Search from '../pages/Search';
-import Signup from '../pages/Signup';
-import SignupProfile from '../pages/SignupProfile';
-import Missing from '../pages/Missing';
-import Post from '../pages/Post';
-import ProductModify from '../pages/ProductModify';
-import Chat from '../pages/Chat';
-import PostModify from '../pages/PostModify';
 
 const Router = () => {
   return (
@@ -38,7 +38,7 @@ const Router = () => {
 
               <Route path='profile/:accountname'>
                 <Route index element={<Profile />} />
-                <Route path='product' element={<ProdcutUpload />} />
+                <Route path='product' element={<ProductUpload />} />
                 <Route path='followings' element={<Follows />} />
                 <Route path='followers' element={<Follows />} />
               </Route>

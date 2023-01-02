@@ -1,11 +1,11 @@
-import React from 'react';
-import { axiosPrivate } from '../../apis/axios';
-import SaveHeader from '../../components/common/Header/SaveHeader';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import ProductForm from '../../components/post/ProductForm';
+import { SaveHeader, ProductForm } from 'components';
+import { axiosPrivate } from 'apis/axios';
+import { useTitle } from 'hooks';
 
 const ProductUpload = () => {
+  useTitle('1nMarket - ProductUpload');
   const { accountname } = useParams();
   const navigate = useNavigate();
 

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useTitle from '../../hooks/useTitle';
-import axios from '../../apis/axios';
+import axios from 'apis/axios';
+import { useTitle } from 'hooks';
 import * as S from './style';
 
 const Login = () => {

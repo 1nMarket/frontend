@@ -1,8 +1,5 @@
-import React from 'react';
-// import moment from 'moment';
-import 'moment/locale/ko';
+import { setTime } from 'utils/setTime';
 import * as S from './style';
-import { setTime } from '../../utils/setTime';
 
 function CommentList({ comments }) {
   const onErrorImg = (e) => {
@@ -24,7 +21,9 @@ function CommentList({ comments }) {
                   </S.InformationBox>
                 </S.CommentAuthor>
                 <S.RightIcon />
-                <S.CommentText>{data.content}</S.CommentText>
+                <S.CommentTextBox>
+                  <S.CommentText>{data.content}</S.CommentText>
+                </S.CommentTextBox>
               </S.CommentListLi>
             );
           })}

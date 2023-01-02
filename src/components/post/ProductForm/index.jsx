@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
+import { axiosImgUpload } from 'apis/axios';
 import * as S from './style';
-import { axiosImgUpload } from '../../../apis/axios';
 
 /* eslint-disable */
 const URL_REGEX =
@@ -92,20 +92,22 @@ const ProductForm = ({
       </S.ImgWrapper>
 
       <S.InputWrapper>
-        <S.ProductInputLabel htmlFor='itemName'>상품명</S.ProductInputLabel>
+        <S.ProductInputLabel htmlFor='itemName'>
+          [모집인원] 공구명
+        </S.ProductInputLabel>
         <S.ProductInput
           id='itemName'
           required
-          placeholder='2~15자 이내여야 합니다.'
+          placeholder='예시) [3명] 감귤 같이사요!!'
           type='text'
           minLength='2'
-          maxLength='15'
+          maxLength='100'
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
         />
         {errProductNameMsg && <p>{errProductNameMsg}</p>}
 
-        <S.ProductInputLabel htmlFor='price'>금액 (인당)</S.ProductInputLabel>
+        <S.ProductInputLabel htmlFor='price'>1인당 금액</S.ProductInputLabel>
         <S.ProductInput
           id='price'
           required
@@ -117,7 +119,7 @@ const ProductForm = ({
           }}
         />
 
-        <S.ProductInputLabel htmlFor='link'>판매 링크</S.ProductInputLabel>
+        <S.ProductInputLabel htmlFor='link'>1/N할 상품 URL</S.ProductInputLabel>
         <S.ProductInput
           id='link'
           required

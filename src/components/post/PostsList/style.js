@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const PostsContainer = styled.section`
   width: 100%;
   background-color: ${({ theme }) => theme.palette.white};
-  border-bottom: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const PostWrapper = styled.div`
