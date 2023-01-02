@@ -1,11 +1,67 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from '../components/common/Layout';
+import Navbar from '../components/common/Navbar';
+import RequireAuth from '../components/common/RequireAuth';
+import Follows from '../pages/Follows';
 import Home from '../pages/Home';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from '../pages/Login';
+import PostUpload from '../pages/PostUpload';
+import ProdcutUpload from '../pages/ProductUpload';
+import Profile from '../pages/Profile';
+import ProfileModify from '../pages/ProfileModify';
+import Public from '../pages/Public';
+import Search from '../pages/Search';
+import Signup from '../pages/Signup';
+import SignupProfile from '../pages/SignupProfile';
+import Missing from '../pages/Missing';
+import Post from '../pages/Post';
+import ProductModify from '../pages/ProductModify';
+import Chat from '../pages/Chat';
+import PostModify from '../pages/PostModify';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Public />} />
+          <Route path='login' element={<Login />} />
+
+          <Route path='signup'>
+            <Route index element={<Signup />} />
+            <Route path='profile' element={<SignupProfile />} />
+          </Route>
+
+          <Route element={<RequireAuth />}>
+            <Route element={<Navbar />}>
+              <Route path='home' element={<Home />} />
+
+              <Route path='profile/:accountname'>
+                <Route index element={<Profile />} />
+                <Route path='product' element={<ProdcutUpload />} />
+                <Route path='followings' element={<Follows />} />
+                <Route path='followers' element={<Follows />} />
+              </Route>
+
+              <Route path='search' element={<Search />} />
+
+              <Route path='chat' element={<Chat />} />
+            </Route>
+
+            <Route path='post'>
+              <Route path='upload' element={<PostUpload />} />
+              <Route path=':postId'>
+                <Route index element={<Post />} />
+                <Route path='edit' element={<PostModify />} />
+              </Route>
+            </Route>
+
+            <Route path='profile/:userId/edit' element={<ProfileModify />} />
+            <Route path='product/:productId/edit' element={<ProductModify />} />
+          </Route>
+
+          <Route path='*' element={<Missing />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

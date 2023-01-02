@@ -1,8 +1,8 @@
 ---
 name: Refactor issue template
-about: Refactor issue template
-title: ''
-labels: ''
+about: 리팩터링할 대상 작성
+title: "[refactor] 페이지명_작업사항"
+labels: Refactor✂️
 assignees: ''
 
 ---

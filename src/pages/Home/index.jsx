@@ -1,7 +1,62 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { axiosPrivate } from '../../apis/axios';
+import PostsList from '../../components/post/PostsList';
+import HomeHeader from '../../components/common/Header/HomeHeader';
+import * as S from './style';
 
 const Home = () => {
-  return <div>Home</div>;
+  const [postsList, setPostList] = useState([]);
+  const [hasNextFeed, setHasNextFeed] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const page = useRef(0);
+  const observerTargetEl = useRef(null);
+
+  useEffect(() => {
+    if (!observerTargetEl.current || !hasNextFeed) return;
+
+    const getFeed = async () => {
+      const {
+        data: { posts },
+      } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
+      setPostList((prev) => [...prev, ...posts]);
+      setHasNextFeed(posts.length % 10 === 0);
+      setIsLoading(false);
+      page.current += 10;
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        getFeed();
+      }
+    });
+    io.observe(observerTargetEl.current);
+
+    return () => {
+      io.disconnect();
+    };
+  }, [hasNextFeed]);
+
+  return (
+    <>
+      <HomeHeader />
+      <S.Container>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : postsList.length ? (
+          <PostsList postsList={postsList} />
+        ) : (
+          <S.NoneFeedBox>
+            <S.NoneFeedAlert>유저를 검색해 팔로우 해보세요!</S.NoneFeedAlert>
+            <S.SearchLink to='/search'>검색하기</S.SearchLink>
+          </S.NoneFeedBox>
+        )}
+
+        <div ref={observerTargetEl} />
+      </S.Container>
+    </>
+  );
 };
 
 export default Home;
