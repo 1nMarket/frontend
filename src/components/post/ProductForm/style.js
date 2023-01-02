@@ -69,10 +69,12 @@ export const ProductInput = styled.input`
   ::placeholder {
     color: ${({ theme }) => theme.palette.border};
   }
+
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+
   &:focus {
     border-bottom: 1px solid ${({ theme }) => theme.palette.primary};
   }

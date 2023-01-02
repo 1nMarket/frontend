@@ -39,6 +39,7 @@ export const LoginInput = styled.input`
   padding: 5px 0;
   outline: none;
   border-bottom: 1px solid ${({ theme }) => theme.palette.border};
+
   &:focus {
     border-bottom: 1px solid ${({ theme }) => theme.palette.primary};
   }
