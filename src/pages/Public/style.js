@@ -24,20 +24,19 @@ export const MarketLogoIcon = styled.img.attrs({
   width: 101px;
   height: 123px;
   position: absolute;
-  top: 198px;
+  top: 183px;
   left: 50%;
   transform: translateX(-50%);
 `;
 
 export const LoginSection = styled.section`
   background-color: ${({ theme }) => theme.palette.white};
-  padding: 50px 34px 100px;
+  padding: 50px 34px 80px;
   border-radius: 20px 20px 0 0;
 
   > button {
     width: 100%;
     background-color: ${({ theme }) => theme.palette.white};
-    font-weight: 400;
     font-size: 14px;
     color: ${({ theme }) => theme.palette.mediumGray};
     padding: 13px 0;
@@ -103,9 +102,9 @@ export const LinkBox = styled.div`
   margin-top: 20px;
 
   > a {
-    font-weight: 400;
     font-size: 12px;
     text-decoration: none;
+    font-family: Pretendard-M;
     color: ${({ theme }) => theme.palette.mediumGray};
     padding: 0 12px;
 

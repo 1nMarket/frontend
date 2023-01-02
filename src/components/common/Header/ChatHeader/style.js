@@ -14,7 +14,7 @@ export const LeftIcon = styled.img.attrs({
 
 export const ChatUserName = styled.p`
   font-size: 14px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   color: ${({ theme }) => theme.palette.black};
   margin: 2px 0 0 10px;
 `;

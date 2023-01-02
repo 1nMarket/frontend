@@ -9,7 +9,7 @@ export const Container = styled.main`
 `;
 
 export const Title = styled.h1`
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 24px;
   line-height: 30px;
   padding: 30px 0 40px;
@@ -27,7 +27,7 @@ export const InputWrapper = styled.div`
 export const Label = styled.label`
   display: block;
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 12px;
   line-height: 15px;
   margin-bottom: 10px;
@@ -61,7 +61,7 @@ export const LoginButton = styled.button`
 
 export const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
+  font-family: Pretendard-M;
   font-size: 12px;
   line-height: 15px;
   text-decoration: none;
@@ -70,7 +70,7 @@ export const StyledLink = styled(Link)`
 
 export const AlarmParagraph = styled.p`
   margin-top: 6px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 12px;
   line-height: 14px;
   color: ${({ theme }) => theme.palette.alarm};

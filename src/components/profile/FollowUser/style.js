@@ -30,14 +30,13 @@ export const UserInfo = styled.div`
 
 export const UserName = styled.strong`
   color: ${({ theme }) => theme.palette.black};
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 14px;
   line-height: 18px;
 `;
 
 export const UserIntro = styled.p`
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   overflow: hidden;
@@ -52,7 +51,6 @@ export const FollowButton = styled.button`
   width: 56px;
   padding: 5px 0;
   border-radius: 26px;
-  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
 `;

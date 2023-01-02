@@ -4,14 +4,21 @@ import { ReactComponent as PostListOff } from '../../../assets/icons/icon-post-l
 import { ReactComponent as PostAlbumOn } from '../../../assets/icons/icon-post-album-on.svg';
 import { ReactComponent as PostAlbumOff } from '../../../assets/icons/icon-post-album-off.svg';
 
+export const HeaderWrapper = styled.div`
+  width: 100%;
+  background-color: ${({ theme }) => theme.palette.white};
+  border-top: 0.5px solid ${({ theme }) => theme.palette.border};
+  border-bottom: 0.5px solid ${({ theme }) => theme.palette.border};
+`;
+
 export const PostHeader = styled.div`
-  margin-top: 6px;
+  max-width: 390px;
+  margin: 0 auto;
   display: flex;
   justify-content: flex-end;
   column-gap: 10px;
   padding: 9px 16px;
-  border-top: 0.5px solid ${({ theme }) => theme.palette.border};
-  border-bottom: 0.5px solid ${({ theme }) => theme.palette.border};
+  background-color: ${({ theme }) => theme.palette.white};
 `;
 
 export const PostListOnIcon = styled(PostListOn)`

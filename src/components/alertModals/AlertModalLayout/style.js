@@ -17,12 +17,13 @@ export const AlertModal = styled.div`
   width: 252px;
   background-color: ${({ theme }) => theme.palette.white};
   border-radius: 10px;
-`
+`;
 
 export const ModalComment = styled.p`
   text-align: center;
+  font-family: Pretendard-M;
   padding: 22px;
-  border-bottom: .5px solid ${({ theme }) => theme.palette.border};
+  border-bottom: 0.5px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const ModalList = styled.ul`
@@ -32,17 +33,16 @@ export const ModalList = styled.ul`
     width: 50%;
     padding: 14px 0;
     text-align: center;
-    font-weight: 400;
     font-size: 14px;
     line-height: 18px;
     cursor: pointer;
 
     &:first-child {
-      border-right: .5px solid ${({ theme }) => theme.palette.border};
+      border-right: 0.5px solid ${({ theme }) => theme.palette.border};
     }
 
     &:last-child {
-      color: ${({ theme }) => theme.palette.alarm}
+      color: ${({ theme }) => theme.palette.alarm};
     }
   }
 `;

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const SlideContainer = styled.div`
-  width: 292px;
   position: relative;
   overflow: hidden;
   margin-bottom: 12px;
@@ -11,7 +10,7 @@ export const Slide = styled.ul`
   display: flex;
   height: inherit;
   width: calc(${({ imgLength }) => imgLength * 100}%);
-  transition: transform .4s;
+  transition: transform 0.4s;
 `;
 
 export const SlideItem = styled.li`
@@ -36,12 +35,12 @@ export const ButtonWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-`
+`;
 
 export const SlideButton = styled.button`
   width: 8px;
   height: 8px;
   background-color: ${({ theme }) => theme.palette.white};
-  border: none;
+  border: 0.5px solid ${({ theme }) => theme.palette.lightGray};
   border-radius: 50%;
 `;

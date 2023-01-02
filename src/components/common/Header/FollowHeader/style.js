@@ -10,7 +10,7 @@ export const LeftIcon = styled.img.attrs({
 
 export const FollowersText = styled.p`
   font-size: 14px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   color: ${({ theme }) => theme.palette.black};
   margin-top: 3px; // 가운데 맞춤
 `;

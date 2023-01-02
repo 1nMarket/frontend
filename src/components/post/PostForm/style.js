@@ -26,7 +26,6 @@ export const PostComment = styled.textarea`
   width: 100%;
   min-height: 16px;
   margin-bottom: 16px;
-  font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   border: none;
@@ -50,8 +49,6 @@ export const ImgLabel = styled.label`
 `;
 
 export const ImgList = styled.ul`
-  width: 100%;
-  height: 10%;
   display: flex;
   gap: 8px;
   overflow-x: scroll;
@@ -63,7 +60,8 @@ export const ImgItem = styled.li`
   overflow: hidden;
   border: 0.5px solid ${({ theme }) => theme.palette.border};
   border-radius: 10px;
-  width: calc(100% / 3);
+  width: 168px;
+  height: 126px;
 `;
 
 export const PostImg = styled.img`

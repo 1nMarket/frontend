@@ -8,16 +8,18 @@ const PostAlubm = ({ postsList }) => {
 
   return (
     <>
-      <S.PostContainer>
-        {postsImage.map(([id, images]) => (
-          <S.PostAlbumItem key={id}>
-            {images.length >= 2 && <S.ImageLayerIcon />}
-            <Link to={`/postdetail/${id}`}>
-              <S.AlbumImg src={images[0]} alt=''  />
-            </Link>
-          </S.PostAlbumItem>
-        ))}
-      </S.PostContainer>
+      <S.AlbumWrapper>
+        <S.PostContainer>
+          {postsImage.map(([id, images]) => (
+            <S.PostAlbumItem key={id}>
+              {images.length >= 2 && <S.ImageLayerIcon />}
+              <Link to={`/postdetail/${id}`}>
+                <S.AlbumImg src={images[0]} alt='' />
+              </Link>
+            </S.PostAlbumItem>
+          ))}
+        </S.PostContainer>
+      </S.AlbumWrapper>
     </>
   );
 };

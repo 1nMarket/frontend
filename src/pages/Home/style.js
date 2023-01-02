@@ -25,16 +25,15 @@ export const NoneFeedAlert = styled.p`
   align-items: center;
   gap: 27px;
   margin-bottom: 20px;
-  font-weight: 400;
   font-size: 14px;
   color: ${({ theme }) => theme.palette.mediumGray};
-  
+
   &::before {
     content: '';
     display: block;
     width: 71px;
     height: 86px;
-    background: url(${feedIcon}) no-repeat center / 71px 86px;;
+    background: url(${feedIcon}) no-repeat center / 71px 86px;
   }
 `;
 
@@ -42,8 +41,8 @@ export const SearchLink = styled(Link)`
   padding: 13px 34px;
   background-color: ${({ theme }) => theme.palette.primary};
   border-radius: 40px;
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 14px;
   text-decoration: none;
   color: ${({ theme }) => theme.palette.white};
-`
+`;

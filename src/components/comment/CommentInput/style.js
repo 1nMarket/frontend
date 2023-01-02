@@ -37,7 +37,7 @@ export const InputText = styled.input`
 `;
 
 export const CommentBtn = styled.button`
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 14px;
   border: none;
   white-space: nowrap;

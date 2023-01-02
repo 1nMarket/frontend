@@ -26,7 +26,7 @@ export const CommentListLi = styled.li`
 
 // 댓글 작성자 프로필 정보
 export const CommentAuthor = styled.div`
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 14px;
   display: flex;
   align-items: flex-start;
@@ -51,9 +51,8 @@ export const InformationBox = styled.div`
   align-items: center;
   margin-top: 6px;
 
-  //
   span {
-    font-weight: 500;
+    font-family: Pretendard-M;
     font-size: 14px;
     line-height: 18px;
     margin-right: 6px;
@@ -62,9 +61,9 @@ export const InformationBox = styled.div`
   // 댓글 작성 시간
   small {
     color: ${(props) => props.theme.palette['mediumGray']};
-    font-weight: 400;
     font-size: 10px;
     line-height: 13px;
+    font-family: Pretendard-R;
 
     &::before {
       content: '·';
@@ -78,7 +77,6 @@ export const CommentText = styled.span`
   padding-left: 48px;
   font-size: 14px;
   line-height: 18px;
-  font-size: 400;
   color: #333333;
 `;
 

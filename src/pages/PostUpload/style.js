@@ -12,6 +12,7 @@ export const Conatiner = styled.main`
 export const ProfileImg = styled.img`
   width: 42px;
   height: 42px;
+  object-fit: cover;
   border-radius: 50%;
   border: 1px solid ${({ theme }) => theme.palette.border};
 `;
@@ -25,7 +26,6 @@ export const PostComment = styled.textarea`
   width: 100%;
   min-height: 16px;
   margin-bottom: 16px;
-  font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   border: none;

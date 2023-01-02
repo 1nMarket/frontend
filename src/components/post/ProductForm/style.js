@@ -11,6 +11,7 @@ export const ImgWrapper = styled.div`
 
 export const ImgUploadText = styled.p`
   font-size: 12px;
+  font-family: Pretendard-M;
   color: ${({ theme }) => theme.palette.mediumGray};
 `;
 
@@ -46,7 +47,7 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   p {
     font-size: 12px;
-    font-weight: 500;
+    font-family: Pretendard-M;
     color: ${({ theme }) => theme.palette.alarm};
     margin: -10px 0 15px 0;
   }
@@ -54,6 +55,7 @@ export const InputWrapper = styled.div`
 
 export const ProductInputLabel = styled.label`
   color: ${({ theme }) => theme.palette.mediumGray};
+  font-family: Pretendard-M;
   font-size: 12px;
 `;
 
@@ -64,7 +66,6 @@ export const ProductInput = styled.input`
   border: none;
   border-bottom: 1px solid ${({ theme }) => theme.palette.border};
   outline: none;
-
   ::placeholder {
     color: ${({ theme }) => theme.palette.border};
   }

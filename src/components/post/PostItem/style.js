@@ -4,7 +4,7 @@ import ModalIcon from '../../../assets/icons/icon-more-vertical.svg';
 
 export const PostArticle = styled.article`
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   position: relative;
 `;
 
@@ -34,13 +34,12 @@ export const AuthorNameWrapper = styled.div`
 `;
 
 export const UserName = styled.strong`
-  font-weight: 500;
+  font-family: Pretendard-M;
   font-size: 14px;
   line-height: 18px;
 `;
 
 export const AccountName = styled.span`
-  font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   color: ${({ theme }) => theme.palette.mediumGray};
@@ -55,10 +54,9 @@ export const PostContent = styled.section`
 `;
 
 export const PostText = styled.p`
-  font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 `;
 
 export const LikeCommentCount = styled.div`
@@ -74,7 +72,6 @@ export const LikeBtn = styled.button`
   color: ${({ theme }) => theme.palette.mediumGray};
   background-color: ${({ theme }) => theme.palette.white};
   border: none;
-  font-weight: 400;
   font-size: 12px;
   line-height: 12px;
 `;
@@ -85,14 +82,12 @@ export const CommentLink = styled(Link)`
   column-gap: 6px;
   text-decoration: none;
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
   font-size: 12px;
   line-height: 12px;
 `;
 
 export const DateText = styled.p`
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
   font-size: 10px;
   line-height: 12px;
 `;

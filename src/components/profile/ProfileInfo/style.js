@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import theme from '../../../styles/theme';
 
 export const ProfileSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
   border-bottom: 0.5px solid ${({ theme }) => theme.palette.border};
-  padding: 30px 26px;
+  padding: 30px 16px 26px;
+  background-color: ${({ theme }) => theme.palette.white};
 `;
 
 export const TopContent = styled.div`
@@ -23,15 +26,15 @@ export const CustomLink = styled(Link)`
 `;
 
 export const Count = styled.strong`
-  color: ${({ theme }) => theme.palette.black};
-  font-weight: 700;
+  color: ${({ right }) =>
+    right ? theme.palette.mediumGray : theme.palette.black};
+  font-family: Pretendard-M;
   font-size: 18px;
   line-height: 23px;
 `;
 
 export const CountInfo = styled.span`
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
   font-size: 10px;
   line-height: 12px;
 `;
@@ -47,7 +50,7 @@ export const ProfileImg = styled.img`
 export const Name = styled.strong`
   padding-top: 16px;
   color: ${({ theme }) => theme.palette.black};
-  font-weight: 700;
+  font-family: Pretendard-B;
   font-size: 16px;
   line-height: 20px;
 `;
@@ -55,7 +58,6 @@ export const Name = styled.strong`
 export const AccountName = styled.strong`
   padding-top: 6px;
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
   font-size: 12px;
   line-height: 14px;
 
@@ -67,7 +69,6 @@ export const AccountName = styled.strong`
 export const Intro = styled.p`
   padding-top: 16px;
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 400;
   font-size: 14px;
   line-height: 18px;
 `;
@@ -82,7 +83,6 @@ export const MyProfileButton = styled.button`
   padding: 8px 26px;
   background-color: ${({ theme }) => theme.palette.white};
   color: ${({ theme }) => theme.palette.mediumGray};
-  font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   border: 1px solid ${({ theme }) => theme.palette.border};
@@ -95,7 +95,6 @@ export const YourProfileButton = styled.button`
     isfollow ? theme.palette.white : theme.palette.primary};
   color: ${({ theme, isfollow }) =>
     isfollow ? theme.palette.mediumGray : theme.palette.white};
-  font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   border: 1px solid ${({ theme }) => theme.palette.border};
