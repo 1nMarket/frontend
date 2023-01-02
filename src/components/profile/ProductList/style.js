@@ -38,6 +38,10 @@ export const ProductItem = styled.li`
     line-height: 18px;
     margin-top: 4px;
     margin-bottom: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
   }
 
   strong {
