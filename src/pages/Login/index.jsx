@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from '../../apis/axios';
 import * as S from './style';
@@ -9,6 +9,7 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
+  const inputRef = useRef();
 
   const from = location.state?.from?.pathname || '/';
 
@@ -51,6 +52,10 @@ const Login = () => {
     setErrMsg('');
   }, [email, password]);
 
+  useEffect(() => {
+    if (inputRef.current !== null) inputRef.current.focus();
+  }, []);
+
   return (
     <S.Container>
       <S.Title>로그인</S.Title>
@@ -60,6 +65,7 @@ const Login = () => {
           <S.LoginInput
             id='email'
             type='text'
+            ref={inputRef}
             onChange={(e) => setEmail(e.target.value)}
           />
         </S.InputWrapper>
