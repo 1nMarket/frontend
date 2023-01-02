@@ -84,7 +84,7 @@ export const ProductListImg = styled.img`
 `;
 
 export const ProductMember = styled.div`
-  width: 74px;
+  width: 56px;
   height: 18px;
   position: absolute;
   top: 8px;
@@ -103,10 +103,6 @@ export const ProductMemberTxt = styled.span`
   padding-right: 7px;
   line-height: 11.6px;
   color: ${({ theme }) => theme.palette.white};
-
-  span {
-    color: ${({ theme }) => theme.palette.alarm};
-  }
 
   &::before {
     content: '';

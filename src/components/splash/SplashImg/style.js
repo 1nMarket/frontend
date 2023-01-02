@@ -3,7 +3,10 @@ import fullLogo from '../../../assets/icons/fullLogo.svg';
 import { keyframes } from 'styled-components';
 
 const logoAnimation = keyframes`
-    0%{
+    0% {
+      opacity: 0;
+    }
+    50% {
         opacity: 1;
     }
     100% {
@@ -16,8 +19,11 @@ export const SplashWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  animation-name: ${logoAnimation};
-  animation-duration: 3s;
+  animation: ${logoAnimation} 2s 1;
+
+  @media screen and (max-width: 300px) {
+    height: 100svh;
+  }
 `;
 
 export const Logo = styled.div`

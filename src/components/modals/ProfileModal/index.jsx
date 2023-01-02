@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import LogoutModal from '../../alertModals/LogoutModal';
-import ModalLayout from '../ModalLayout';
+import { LogoutModal, ModalLayout } from 'components';
 
 const ProfileModal = ({ setOpenModal }) => {
   const [openAlert, setOpenAlert] = useState(false);

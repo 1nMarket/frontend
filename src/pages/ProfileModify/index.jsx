@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { axiosPrivate } from '../../apis/axios';
-import SaveHeader from '../../components/common/Header/SaveHeader';
-import UserProfileForm from '../../components/user/UserProfileForm';
+import { axiosPrivate } from 'apis/axios';
+import { UserProfileForm, SaveHeader } from 'components';
+import { useTitle } from 'hooks';
 import * as S from './style';
 
 const ProfileModify = () => {
+  useTitle('1nMarket - ProfileModify');
   const { state } = useLocation();
   const navigate = useNavigate();
   const [profileImg, setProfileImg] = useState(state?.image || '');

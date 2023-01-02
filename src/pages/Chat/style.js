@@ -10,6 +10,10 @@ export const ChatList = styled.ul`
   max-width: 390px;
   height: 100vh;
   margin: 0 auto;
+
+  @media screen and (max-width: 300px) {
+    height: 100svh;
+  }
 `;
 
 export const ChatItem = styled.li`

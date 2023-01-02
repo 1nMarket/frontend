@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { axiosPrivate } from '../../apis/axios';
+import { axiosPrivate } from 'apis/axios';
+import { useTitle } from 'hooks';
 import * as S from './style';
 
 // 이메일 유효성 체크
@@ -9,6 +10,7 @@ const EMAIL_REGEX =
 const PWD_REGEX = /^[a-zA-Z0-9]{6,}$/;
 
 const Signup = () => {
+  useTitle('1nMarket - Signup');
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [validRegEmail, setValidRegEmail] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { axiosImgUpload, axiosPrivate } from '../../../apis/axios';
+import { axiosImgUpload, axiosPrivate } from 'apis/axios';
 import * as S from './style';
 
 const USERNAME_REGEX = /^[a-zA-Z0-9ㄱ-ㅎ가-힣]{2,10}$/;

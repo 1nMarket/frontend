@@ -28,6 +28,10 @@ export default useTitle;
 
 </details>
 
+<details>
+  <summary>ObserverIntersection Api 통해서 피드 무한스크롤 구현</summary>
+</details>
+
 ## 트러블 슈팅
 
 <details>
@@ -94,5 +98,82 @@ const Search = () => {
 <img width="1583" alt="스크린샷 2023-01-02 오후 2 29 22" src="https://user-images.githubusercontent.com/97153666/210197700-4d5b8275-cfce-4344-b103-4b3446b89692.png">
 
 - 불필요한 리렌더링을 막을 수 있다.
+
+</details>
+
+<details>
+  <summary>memo 사용해서 피드 무한스크롤 시 이전 게시글 최적화 작업</summary>
+
+</details>
+
+<details>
+  <summary>토큰 검증을 통한 사용자 인증 확인</summary>
+
+### 기존 RequireAuth 컴포넌트
+
+```jsx
+const RequireAuth = () => {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const location = useLocation();
+
+  return (
+    <>
+      {token ? (
+        <Outlet />
+      ) : (
+        <Navigate to='login' state={{ from: location }} replace />
+      )}
+    </>
+  );
+};
+
+export default RequireAuth;
+```
+
+<img width="1194" alt="스크린샷 2023-01-02 오후 4 25 09" src="https://user-images.githubusercontent.com/97153666/210203674-d1ad5521-adad-483c-907a-39082a6d5a5e.png">
+
+### isValid 검증을 통해 알맞은 토큰인지 검증
+
+```jsx
+const RequireAuth = () => {
+  const token = JSON.parse(localStorage.getItem('token'));
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isValid = async () => {
+      try {
+        const { data: isValid } = await axiosPrivate.get('/user/checktoken');
+        if (!isValid) {
+          localStorage.removeItem('token');
+          navigate('/login');
+        }
+      } catch (err) {
+        localStorage.removeItem('token');
+        navigate('/login');
+      }
+    };
+    isValid();
+  }, []);
+
+  return (
+    <>
+      {token ? (
+        <Outlet />
+      ) : (
+        <Navigate to='login' state={{ from: location }} replace />
+      )}
+    </>
+  );
+};
+
+export default RequireAuth;
+```
+
+</details>
+
+<details>
+
+<summary>복잡한 경로 jsconfig.json으로 깔끔하게 정리하기</summary>
 
 </details>

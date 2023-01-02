@@ -1,12 +1,11 @@
 import React, { memo, useState } from 'react';
+import { axiosPrivate } from 'apis/axios';
 import ImageSlide from '../ImageSlide';
 import * as S from './style';
-import { ReactComponent as UnLikeIcon } from '../../../assets/icons/unheart.svg';
-import { ReactComponent as LikeIcon } from '../../../assets/icons/heart.svg';
-import { ReactComponent as CommentIcon } from '../../../assets/icons/message-circle.svg';
-import MyPostModal from '../../modals/MyPostModal';
-import PostModal from '../../modals/PostModal';
-import { axiosPrivate } from '../../../apis/axios';
+import { ReactComponent as UnLikeIcon } from 'assets/icons/unheart.svg';
+import { ReactComponent as LikeIcon } from 'assets/icons/heart.svg';
+import { ReactComponent as CommentIcon } from 'assets/icons/message-circle.svg';
+import { MyPostModal, PostModal } from 'components';
 
 const PostItem = ({ post, setPostsList }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -41,7 +40,11 @@ const PostItem = ({ post, setPostsList }) => {
         </S.AuthorInfo>
 
         <S.PostContent>
-          <S.PostText>{post.content}</S.PostText>
+          <S.PostText>
+            {post.content?.split('\n').map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
+          </S.PostText>
           {!!images && <ImageSlide images={images} />}
           <S.LikeCommentCount>
             <S.LikeBtn onClick={heart ? handleUnLike : handleLike}>

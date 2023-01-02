@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { axiosPrivate } from '../../../apis/axios';
-import PostsList from '../../post/PostsList';
-import PostAlbum from '../../post/PostAlbum';
+import { axiosPrivate } from 'apis/axios';
+import { PostsList, PostAlbum } from 'components';
 
 import * as S from './style';
 

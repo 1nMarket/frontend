@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { axiosPrivate } from 'apis/axios';
 import * as S from './style';
-import { axiosPrivate } from '../../../apis/axios';
 
 const CommentInput = ({ setPostsList, postId, setComments }) => {
   const image = JSON.parse(localStorage.getItem('profile-img'));
@@ -21,7 +21,7 @@ const CommentInput = ({ setPostsList, postId, setComments }) => {
         },
       }),
     );
-    setComments((prev) => [...prev, comment]);
+    setComments((prev) => [comment, ...prev]);
     setPostsList((prev) => [
       {
         ...prev[0],

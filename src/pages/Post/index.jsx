@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { axiosPrivate } from '../../apis/axios';
+import { axiosPrivate } from 'apis/axios';
 import { useParams } from 'react-router-dom';
-import PostsList from '../../components/post/PostsList';
-import CommentBox from '../../components/comment/CommentBox';
-import CommentInput from '../../components/comment/CommentInput';
-import ProfileHeader from './../../components/common/Header/ProfileHeader';
-import ProfileModal from '../../components/modals/ProfileModal';
-import useTitle from '../../hooks/useTitle';
+import {
+  PostsList,
+  CommentBox,
+  CommentInput,
+  ProfileHeader,
+  ProfileModal,
+} from 'components';
+import { useTitle } from 'hooks';
 import * as S from './style';
 
 const Post = () => {
