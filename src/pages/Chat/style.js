@@ -7,7 +7,9 @@ export const Content = styled.main`
 `;
 
 export const ChatList = styled.ul`
+  max-width: 390px;
   height: 100vh;
+  margin: 0 auto;
 `;
 
 export const ChatItem = styled.li`

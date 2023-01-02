@@ -6,19 +6,17 @@ import UploadHeader from '../../components/common/Header/UploadHeader';
 import PostForm from '../../components/post/PostForm';
 
 const PostModify = () => {
-
   const { state } = useLocation();
   const navigate = useNavigate();
   const { postId } = useParams();
   const accountName = JSON.parse(localStorage.getItem('accountname'));
 
   const [content, setContent] = useState(state?.content || '');
-  const [imgFiles, setImgFiles] = useState(!state?.image ? [] : state?.image.split(","));
+  const [imgFiles, setImgFiles] = useState(state?.image?.split(',') || []);
 
   const canSave = !!imgFiles.length || !!content;
 
   const handlePostUpload = async (e) => {
-
     e.preventDefault();
     if (!canSave) return;
     await axiosPrivate.put(
@@ -35,20 +33,20 @@ const PostModify = () => {
   };
 
   useEffect(() => {
-    if(!state) navigate('/home');
+    if (!state) navigate('/home');
   }, []);
 
   return (
     <>
       <UploadHeader canSave={canSave} handlePostUpload={handlePostUpload} />
-      <PostForm 
-        content={content} 
-        setContent={setContent} 
+      <PostForm
+        content={content}
+        setContent={setContent}
         imgFiles={imgFiles}
         setImgFiles={setImgFiles}
-        />
+      />
     </>
-  )
-}
+  );
+};
 
-export default PostModify
+export default PostModify;

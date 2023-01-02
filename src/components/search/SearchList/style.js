@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const SearchList = styled.ul`
-  padding: 12px 16px;
-`;
+export const SearchList = styled.ul``;
 
 export const StyledLink = styled(Link)`
   text-decoration: none;

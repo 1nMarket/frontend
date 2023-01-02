@@ -1,9 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import axios from '../../apis/axios';
 import * as S from './style';
 
 const Login = () => {
+  useTitle('1nMarket - Login');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');

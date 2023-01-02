@@ -30,6 +30,9 @@ export const MarketLogoIcon = styled.img.attrs({
 `;
 
 export const LoginSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: ${({ theme }) => theme.palette.white};
   padding: 50px 34px 80px;
   border-radius: 20px 20px 0 0;
@@ -46,6 +49,7 @@ export const LoginSection = styled.section`
 `;
 
 export const KakaoLoginButton = styled.button`
+  max-width: 390px;
   position: relative;
   border: 1px solid ${({ theme }) => theme.palette.kakao};
 
@@ -63,6 +67,7 @@ export const KakaoLoginButton = styled.button`
 `;
 
 export const GoogleLoginButton = styled.button`
+  max-width: 390px;
   position: relative;
   border: 1px solid ${({ theme }) => theme.palette.mediumGray};
 
@@ -80,6 +85,7 @@ export const GoogleLoginButton = styled.button`
 `;
 
 export const FacebookLoginButton = styled.button`
+  max-width: 390px;
   position: relative;
   border: 1px solid ${({ theme }) => theme.palette.facebook};
 

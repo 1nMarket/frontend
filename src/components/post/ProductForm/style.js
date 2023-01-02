@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import FindImgBtn from '../../../assets/icons/img-button.svg';
 
 export const Form = styled.form`
+  max-width: 390px;
+  margin: 0 auto;
   padding: 78px 34px 0px;
 `;
 

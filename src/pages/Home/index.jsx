@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { axiosPrivate } from '../../apis/axios';
 import PostsList from '../../components/post/PostsList';
-import HomeHeader from '../../components/common/Header/HomeHeader'
+import HomeHeader from '../../components/common/Header/HomeHeader';
 import * as S from './style';
 
 const Home = () => {
   const [postsList, setPostList] = useState([]);
   const [hasNextFeed, setHasNextFeed] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const page = useRef(0);
   const observerTargetEl = useRef(null);
 
@@ -16,12 +17,15 @@ const Home = () => {
     if (!observerTargetEl.current || !hasNextFeed) return;
 
     const getFeed = async () => {
-      const { data: { posts } } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
+      const {
+        data: { posts },
+      } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
       setPostList((prev) => [...prev, ...posts]);
       setHasNextFeed(posts.length % 10 === 0);
+      setIsLoading(false);
       page.current += 10;
-    }
-    
+    };
+
     const io = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
         getFeed();
@@ -31,14 +35,16 @@ const Home = () => {
 
     return () => {
       io.disconnect();
-    }
+    };
   }, [hasNextFeed]);
 
   return (
     <>
       <HomeHeader />
       <S.Container>
-        {postsList.length ? (
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : postsList.length ? (
           <PostsList postsList={postsList} />
         ) : (
           <S.NoneFeedBox>

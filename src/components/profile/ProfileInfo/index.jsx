@@ -4,12 +4,10 @@ import { axiosPrivate } from '../../../apis/axios';
 import * as S from './style';
 import { ReactComponent as MessageIcon } from '../../../assets/icons/icon-message-circle.svg';
 import { ReactComponent as ShareIcon } from '../../../assets/icons/icon-share.svg';
-import PulseLoader from 'react-spinners/PulseLoader';
 
 const ProfileInfo = () => {
   const { accountname } = useParams();
   const [profile, setProfile] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
 
   const { followerCount, followingCount, image, intro, isfollow, username } =
     profile;
@@ -20,7 +18,6 @@ const ProfileInfo = () => {
         data: { profile },
       } = await axiosPrivate.get(`/profile/${accountname}`);
       setProfile(profile);
-      setIsLoading(true);
     };
     getUserInfo();
   }, [accountname]);
@@ -43,8 +40,6 @@ const ProfileInfo = () => {
     } = await axiosPrivate.delete(`/profile/${accountname}/unfollow`);
     setProfile(profile);
   };
-
-  if (!isLoading) return <PulseLoader color='#000' />;
 
   const onErrorImg = (e) => {
     e.target.src = 'https://mandarin.api.weniv.co.kr/1671431659709.png';
