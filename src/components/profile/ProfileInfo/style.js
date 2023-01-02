@@ -39,6 +39,7 @@ export const CountInfo = styled.span`
 export const ProfileImg = styled.img`
   width: 110px;
   height: 110px;
+  object-fit: cover;
   border-radius: 50%;
   border: 1px solid ${({ theme }) => theme.palette.border};
 `;

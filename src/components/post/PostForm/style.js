@@ -12,6 +12,7 @@ export const Conatiner = styled.main`
 export const ProfileImg = styled.img`
   width: 42px;
   height: 42px;
+  object-fit: cover;
   border-radius: 50%;
   border: 1px solid ${({ theme }) => theme.palette.border};
 `;
@@ -62,13 +63,13 @@ export const ImgItem = styled.li`
   overflow: hidden;
   border: 0.5px solid ${({ theme }) => theme.palette.border};
   border-radius: 10px;
-  width: calc(100%/3);
+  width: calc(100% / 3);
 `;
 
 export const PostImg = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 `;
 
 export const RemoveButton = styled.button`

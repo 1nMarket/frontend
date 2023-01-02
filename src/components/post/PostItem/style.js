@@ -22,7 +22,9 @@ export const AuthorProfileLink = styled(Link)`
 export const AuthorImage = styled.img`
   width: 42px;
   height: 42px;
+  object-fit: cover;
   border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const AuthorNameWrapper = styled.div`

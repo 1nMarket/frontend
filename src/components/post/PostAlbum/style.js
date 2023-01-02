@@ -14,8 +14,9 @@ export const PostAlbumItem = styled.li`
 `;
 
 export const AlbumImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 114px;
+  height: 114px;
+  object-fit: cover;
 `;
 
 export const ImageLayerIcon = styled(ImageLayer)`
