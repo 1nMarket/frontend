@@ -1,5 +1,12 @@
 # 1인마켓
 
+## 팀원 및 역할분담
+
+|**프론트**|**디자인 & 프론트**|**프론트**|**프론트**|
+|:--------:|:--------:|:--------:|:--------:|
+|[재원](https://github.com/oneny)|[승미](https://github.com/wSeungMi)|[석규](https://github.com/angenehms)|[민희](https://github.com/dev-chu)| 
+|<img src="https://avatars.githubusercontent.com/u/97153666?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/104605709?v=4" width='100'/>|<img src="https://avatars.githubusercontent.com/u/111214565?v=4"  width='100'/>|<img src='https://avatars.githubusercontent.com/u/108019693?v=4' width='100' />
+
 ## 주요기능
 
 <details>
