@@ -15,7 +15,9 @@ export const StyleLink = styled(Link)`
 export const UserImage = styled.img`
   width: 50px;
   height: 50px;
+  object-fit: cover;
   border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.palette.border};
 `;
 
 export const UserInfo = styled.div`
