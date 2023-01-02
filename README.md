@@ -1,4 +1,4 @@
-# # 자취러들의 현명한 소비생활, 1인마켓 🛒
+# 1인마켓
 
 ## 주요기능
 
@@ -202,5 +202,74 @@ export default RequireAuth;
 <details>
 
 <summary>복잡한 경로 jsconfig.json으로 깔끔하게 정리하기</summary>
+
+### 절대 경로 적용 전 router.jsx 파일
+
+```jsx
+// src/routes/Route.jsx
+import Layout from '../components/common/Layout';
+import Navbar from '../components/common/Navbar';
+import RequireAuth from '../components/common/RequireAuth';
+import Follows from '../pages/Follows';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import PostUpload from '../pages/PostUpload';
+import ProdcutUpload from '../pages/ProductUpload';
+import Profile from '../pages/Profile';
+// ...
+```
+
+상대 경로로 멀리 떨어진 컴포넌트 참조 시 경로가 지저분해질 수 있고, 현재 컴포넌트 위치를 옮기면 vscode에서 import Path를 제대로 못 잡아주는 경우가 간혹 있습니다. 따라서 절대 경로를 설정해줘 이를 해결하고자 했습니다.
+
+### 절대경로 설정
+
+루트폴더에 `jsonconfig.json`을 생성하여 다음과 같이 `"baseUrl": "src"`를 작성하면 루트폴더가 src 폴더로 설정되고, 절대경로 작성시 src폴더에서부터 경로를 찾게 됩니다.
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "src"
+  }
+}
+```
+
+### `export ... from ...`로 모듈 다시 내보내기
+
+```js
+// pages/index.js
+export { default as Home } from './Home';
+export { default as Chat } from './Chat';
+export { default as Follows } from './Follows';
+export { default as Login } from './Login';
+// ...
+```
+
+`components`와 `pages` 폴더에 index.js 파일을 생성해 다음과 같이 모듈을 다시 내보내줘 경로를 참조하는 경우 `components`와 `pages`만 작성해도 참조할 수 있도록 만들어줬습니다.
+  * `export default`로 내보내는 경우에는 저희처럼 `export { default as Home } from './Home'`으로 작성해줘야 합니다.
+  * 만약 그냥 `export`로 내보내는 경우는 `export * from './Home'`으로도 가능합니다.
+
+### 경로 참조
+
+```jsx
+// routes/Route.jsx
+import {
+  Follows,
+  Home,
+  // ...
+} from 'pages';
+import { Layout, Navbar, RequireAuth } from 'components';
+```
+```jsx
+// pages/Search
+import { useState, useEffect } from 'react';
+import { SearchHeader, SearchList } from 'components';
+import { useDebounce, useTitle } from 'hooks';
+import { axiosPrivate } from 'apis/axios';
+import * as S from './style';
+
+// ...
+```
+
+위의 과정을 통해 경로를 깔끔하게 관리하는 것만으로 import하기 위한 코드를 한 줄로 줄일 수 있고, 파일 위치 파악을 간단히 할 수 있도록 만들 수 있습니다. 그리고, 현재 컴포넌트 위치를 옮겨도 절대 경로와 `index.js`로 참조하므로 IDE에 종속적이지 않습니다.
 
 </details>
