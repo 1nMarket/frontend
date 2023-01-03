@@ -524,6 +524,133 @@ import * as S from './style';
 
 </details>
 
+<details>
+  <summary>5-5. state로 렌더링 지연문제 해결</summary>
+
+### axios 데이터 호출 코드
+상품 수정 페이지가 마운트 될 때 수정하려는 상품의 데이터가 렌더링 되어야 합니다. 이 때 보통의 경우 axios를 사용하여 기존 데이터를 불러오는 경우가 대부분입니다. 
+
+```js
+useEffect(() => {
+   const getProduct = async () => {
+     const { data: { product } } = await axiosPrivate.get(`/product/detail/${productId}`);
+     setImgFiles(product.itemImage);
+     setProductName(product.itemName);
+     setProductLink(product.link);
+     setProductPrice(product.price);
+   }
+   getProduct();
+ }, []);
+```
+   
+### ❓ 문제원인
+하지만 이런 방식으로 데이터를 호출할 경우 서버와 통신하는 시간이 필요하게 되어 곧바로 데이터가 보이지 않습니다. 즉 바로 아래와 같이 통신이 완료되는 시간동안 지연된 이후에 데이터 값이 보이게 됩니다. 
+
+<br>
+
+<img src="https://user-images.githubusercontent.com/97153666/210312394-d507748f-3e31-4975-a74d-a31a0c6c02af.gif" width="200">
+
+<br>
+
+### 🛠 해결방법 : ProductList 컴포넌트 내 서버에서 이미 받아온 데이터를 props로 전달
+저희 조는 이러한 `데이터 호출 지연문제를 해결하기 위해` 상품리스트에서 미리 서버로부터 통신이 완료된 데이터를 props로 받아와 사용하였습니다.
+
+<br>
+
+ props는 `ProductList 컴포넌트에서 axios로 데이터 호출 👉 ProductList 컴포넌트에서 ProductModal로 props 내려주기 👉 ProductModal 컴포넌트에서 모달창 링크를 통해 state로 데이터값 내려주기 👉 내려받은 state로 ProductModify에서 초기 렌더링 값 설정` 의 과정을 거쳐 값을 전달해줍니다. 
+
+<br>
+
+#### `ProductList 컴포넌트에서 axios로 데이터 호출`
+
+```js
+useEffect(() => {
+  const getProductList = async () => {
+    const {
+      data: { product },
+    } = await axiosPrivate.get(`/product/${accountname}`);
+    setProductList(product);
+  };
+  getProductList();
+ }, [accountname]);
+```
+
+<br>
+
+👇
+
+<br>
+
+#### `ProductList 컴포넌트에서 ProductModal로 props 내려주기`
+
+```js
+<ProductModal
+  link={product.link}
+  productId={product.id}
+  product={product}
+  setProductList={setProductList}
+  setOpenModal={setOpenModal}
+/>
+```
+
+<br>
+
+👇
+
+<br>
+
+#### `ProductModal 컴포넌트에서 모달창 링크를 통해 state로 데이터 값(...product) 내려주기`
+
+```js
+<ModalLayout setOpenModal={setOpenModal}>
+  <li onClick={() => setOpenAlert(true)}>삭제</li>
+  <li>
+    <S.StyledLink
+      to={`/product/${productId}/edit`}
+      state={{ ...product }}
+    >
+      수정
+    </S.StyledLink>
+  </li>
+  <li>
+    <S.ProductLink href={`${link}`}>웹사이트에서 상품 보기</S.ProductLink>
+  </li>
+</ModalLayout>
+```
+
+<br>
+
+✅ 수정 페이지의 경우 url을 통하여 접근하는 경우는 거의 없기 떄문에 위와 같이 Link에 state 값을 넘겨주었습니다. 혹시나 url이 들어간 경우에는 오류가 발생하기 떄문에 "`/home`"으로 이동할 수 있도록 처리하였습니다.
+
+<br>
+
+👇
+
+<br>
+
+#### `내려받은 state로 ProductModify에서 초기 렌더링 값 설정`
+
+```js
+const { state } = useLocation();
+const [imgFiles, setImgFiles] = useState(state?.itemImage || '');
+const [productName, setProductName] = useState(state?.itemName || '');
+const [productLink, setProductLink] = useState(state?.link || '');
+const [productPrice, setProductPrice] = useState(state?.price || '');
+```
+
+<br>
+
+이와 같은 과정을 통해 필요이상의 통신과정을 건너뛸 수 있게되고, 따라서 페이지 마운트 시에 바로 기존의 데이터를 접할 수 있게 되어 사용자로 하여금 쾌적한 환경을 경험할 수 있도록 합니다. 아래와 같이 바로 데이터 값을 볼 수 있게 됩니다. 
+
+<br>
+
+<img src="https://user-images.githubusercontent.com/111214565/210313778-2d9e923b-c53e-4213-ae68-4b6a883637f8.gif" width="200">
+
+<br>
+
+앞서 설명한 부분은 게시글 수정 페이지에서도 같은 맥락으로 적용됩니다. 
+</details>
+
 <br />
 
 ## 5. UI 및 페이지 기능
