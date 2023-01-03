@@ -23,10 +23,14 @@
 
 ## 2. 팀원 및 역할분담
 
-|**프론트**|**디자인 & 프론트**|**프론트**|**프론트**|
+|**팀리더 & 프론트**|**디자인 & 프론트**|**프론트**|**프론트**|
 |:--------:|:--------:|:--------:|:--------:|
 |[재원](https://github.com/oneny)|[승미](https://github.com/wSeungMi)|[석규](https://github.com/angenehms)|[민희](https://github.com/dev-chu)| 
 |<img src="https://avatars.githubusercontent.com/u/97153666?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/104605709?v=4" width='100'/>|<img src="https://avatars.githubusercontent.com/u/111214565?v=4"  width='100'/>|<img src='https://avatars.githubusercontent.com/u/108019693?v=4' width='100' />
+
+<br>
+
+<img src="https://user-images.githubusercontent.com/111214565/210323336-dc6e0741-5fe1-4035-992f-7f7398377892.png" width="1000">
 
 <br />
 
