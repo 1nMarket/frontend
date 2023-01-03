@@ -527,7 +527,7 @@ import * as S from './style';
 
 <br />
 
-## 6. 쁘2조만의 스페셜 포인트
+## 6. 쁘2조의 팀빌딩
 ### 1) 매일 오전 9시 데일리스크럼 진행
 <div align="center"><img src="https://user-images.githubusercontent.com/104605709/210311021-8e5cd96a-4731-4cb7-bde5-a1e31f9c671f.png" width="350px"></div>
 
