@@ -23,10 +23,10 @@
 
 ## 2. 팀원 및 역할분담
 
-|**팀리더 & 프론트**|**디자인 & 프론트**|**프론트**|**프론트**|
-|:--------:|:--------:|:--------:|:--------:|
-|[재원](https://github.com/oneny)|[승미](https://github.com/wSeungMi)|[석규](https://github.com/angenehms)|[민희](https://github.com/dev-chu)| 
-|<img src="https://avatars.githubusercontent.com/u/97153666?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/104605709?v=4" width='100'/>|<img src="https://avatars.githubusercontent.com/u/111214565?v=4"  width='100'/>|<img src='https://avatars.githubusercontent.com/u/108019693?v=4' width='100' />
+|                              **팀리더 & 프론트**                               |                              **디자인 & 프론트**                               |                                   **프론트**                                    |                                   **프론트**                                    |
+| :----------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
+|                        [재원](https://github.com/oneny)                        |                      [승미](https://github.com/wSeungMi)                       |                      [석규](https://github.com/angenehms)                       |                       [민희](https://github.com/dev-chu)                        |
+| <img src="https://avatars.githubusercontent.com/u/97153666?v=4" width="100" /> | <img src="https://avatars.githubusercontent.com/u/104605709?v=4" width='100'/> | <img src="https://avatars.githubusercontent.com/u/111214565?v=4"  width='100'/> | <img src='https://avatars.githubusercontent.com/u/108019693?v=4' width='100' /> |
 
 <br>
 
@@ -35,9 +35,18 @@
 <br />
 
 ## 3. 개발환경
-|**Front-End**|**Back-End**|**디자인**|**버전 관리 및 협업 도구**|
-|------|-----|-----|-----|
-|  `HTML Living Standard` <br>  `styled-components` <br> `React`|  제공된 API | `Photoshop` <br> `illustrator` <br> `Figma` | `Git` <br> `Github` [Wiki(컨벤션)](https://github.com/1nMarket/frontend/wiki) / [Project](https://github.com/orgs/1nMarket/projects/1) <br> `Notion` 주요 회의록 및 일정관리  <br> `Discord` 웹훅(실시간 커밋&PR관리)사용 및 회의/실시간 소통
+
+### [기술]
+
+* Frontend: React, React-router, Styled-components, Axios, Eslint, Prettier
+* Backend: 제공된 API 사용
+
+### [협업 도구]
+
+* `Git`
+* `Github` [Wiki(컨벤션)](https://github.com/1nMarket/frontend/wiki) / [Project](https://github.com/orgs/1nMarket/projects/1)
+* `Notion` 주요 회의록 및 일정관리
+* `Discord` 웹훅(실시간 커밋&PR관리)사용 및 회의/실시간 소통
 
 <details>
   <summary><strong>폴더트리 보기</strong></summary>
@@ -127,13 +136,8 @@
    ┣ App.js
    ┗ index.js
 ```
-</details>
 
-### 3-1. 패키지 모듈
-- `create-react-app` : 리액트 설치 및 개발환경 셋팅
-- `react-router-dom` : 페이지 간 이동 처리(라우팅)
-- `axios` : HTTP-API 연동
-- `eslint`, `prettier` : 협업을 위한 동일 코드 포맷팅 처리 및 코드 품질 관리
+</details>
 
 <br />
 
@@ -144,7 +148,7 @@
 
 ### 페이지 타이틀
 
-웹사이트에 접속하면 브라우저의 상단 탭에서 페이지 제목을 볼 수 있습니다. 이 페이지 제목을 Document Title이라고 합니다.    
+웹사이트에 접속하면 브라우저의 상단 탭에서 페이지 제목을 볼 수 있습니다. 이 페이지 제목을 Document Title이라고 합니다.  
 Document Title은 가장 대표적인 웹사이트의 타이틀로, 각 페이지의 주제를 잘 나타낼 수 있는 요소이자 해당 웹사이트를 사용하는 유저에게 현재 자신이 있는 위치를 알려주는 중요한 요소입니다.
 
 <div style="display: flex; justify-content: center">
@@ -163,7 +167,7 @@ const useTitle = (title) => {
     const prevTitle = document.title;
     document.title = title;
 
-    return () => document.title = prevTitle;
+    return () => (document.title = prevTitle);
   }, [title]);
 };
 
@@ -179,7 +183,7 @@ const Login = () => {
   useTitle('1nMarket - Login');
 
   // ...
-}
+};
 ```
 
 <img width="1191" alt="스크린샷 2023-01-02 오후 9 16 07" src="https://user-images.githubusercontent.com/97153666/210230071-ddc55885-8048-4f51-8e82-476169b12562.png">
@@ -209,7 +213,9 @@ const Home = () => {
     if (!observerTargetEl.current || !hasNextFeed) return;
 
     const getFeed = async () => {
-      const { data: { posts } } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
+      const {
+        data: { posts },
+      } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
       setPostList((prev) => [...prev, ...posts]);
       setHasNextFeed(posts.length % 10 === 0);
       setIsLoading(false);
@@ -241,16 +247,16 @@ const Home = () => {
 };
 ```
 
-* `<div ref={observerTargetEl}>`으로 관찰하려고 하는 엘리먼트를 생성하고, useRef를 이용하여 지정해줬습니다.
-* `/post/feed/?limit=10&skip=${page.current}`
-  * limit으로 한 번에 10개의 포스트들을 받아오도록 하고, skip을 통해 변수를 넘겨서 0 ~ 9, 10 ~ 19, 20 ~ 29번의 포스트들을 가져올 수 있도록 설정했습니다.
-* `hasNextPage` 상태를 통해 다음 페이지가 존재하는지 체크하고, 만약 10의 배수로 떨어지지 않는다면 다음 포스트가 없으므로 `false`로 되도록 설정했습니다.
-  * 만약 100개의 포스트라는 10으로 나누어 떨어지기 때문에 한 번 더 요청한다는 단점이 있습니다.
-* `io.observer(observerTargetEl.current)`를 통해 해당 엘리먼트를 관찰합니다.
-* `if (entries[0].isIntersecting) { getFeed() }`
+- `<div ref={observerTargetEl}>`으로 관찰하려고 하는 엘리먼트를 생성하고, useRef를 이용하여 지정해줬습니다.
+- `/post/feed/?limit=10&skip=${page.current}`
+  - limit으로 한 번에 10개의 포스트들을 받아오도록 하고, skip을 통해 변수를 넘겨서 0 ~ 9, 10 ~ 19, 20 ~ 29번의 포스트들을 가져올 수 있도록 설정했습니다.
+- `hasNextPage` 상태를 통해 다음 페이지가 존재하는지 체크하고, 만약 10의 배수로 떨어지지 않는다면 다음 포스트가 없으므로 `false`로 되도록 설정했습니다.
+  - 만약 100개의 포스트라는 10으로 나누어 떨어지기 때문에 한 번 더 요청한다는 단점이 있습니다.
+- `io.observer(observerTargetEl.current)`를 통해 해당 엘리먼트를 관찰합니다.
+- `if (entries[0].isIntersecting) { getFeed() }`
   ![intersection-observer-is-intersecting](https://user-images.githubusercontent.com/97153666/210304150-610bb400-a885-4638-82b2-d8cc387bf938.jpg)
-  * 출처: [Intersection Observer - 요소의 가시성 관찰](https://heropy.blog/2019/10/27/intersection-observer/)
-  * 관찰 대상이 루트 요소와 교차 상태로 들어가거나(`true`) 교차 상태에서 나가는지 (`false`) 여부를 나타내는 값(`Boolean`)을 이용하여 `useRef`로 지정한 요소가 교차 상태가 되면 `getFeed`가 실행되도록 설정했습니다.
+  - 출처: [Intersection Observer - 요소의 가시성 관찰](https://heropy.blog/2019/10/27/intersection-observer/)
+  - 관찰 대상이 루트 요소와 교차 상태로 들어가거나(`true`) 교차 상태에서 나가는지 (`false`) 여부를 나타내는 값(`Boolean`)을 이용하여 `useRef`로 지정한 요소가 교차 상태가 되면 `getFeed`가 실행되도록 설정했습니다.
 
 ### 무한 스크롤 구현 시 문제점
 
@@ -277,7 +283,7 @@ const Home = () => {
 
 #### memo란?
 
-React는 먼저 컴포넌트를 렌더링(rendering)한 뒤, 이전 렌더된 결과와 비교하여 DOM 업데이트를 결정합니다. 그래서 렌더 결과가 이전과 다르다면, React는 DOM을 업데이트합니다.   
+React는 먼저 컴포넌트를 렌더링(rendering)한 뒤, 이전 렌더된 결과와 비교하여 DOM 업데이트를 결정합니다. 그래서 렌더 결과가 이전과 다르다면, React는 DOM을 업데이트합니다.  
 컴포넌트가 `React.memo()`로 래핑될 때, React는 컴포넌트를 렌더링하고 결과를 메모이징(`Memoizing`)합니다. 그리고 자주 다음 렌더링이 일어날 때 `props`가 같다면 React는 메모이징된 내용을 재사용합니다. 이를 활용하여 다음 10개의 게시글을 받아올 때 이전 게시글들을 메모이징하여 다시 렌더링하지 않도록 만들 수 있습니다.
 
 #### memo 적용
@@ -286,7 +292,7 @@ React는 먼저 컴포넌트를 렌더링(rendering)한 뒤, 이전 렌더된 �
 import { memo } from 'react';
 const PostItem = ({ post }) => {
   // ...
-}
+};
 export default memo(PostItem);
 ```
 
@@ -311,12 +317,13 @@ const Search = () => {
     if (!keyword.length) return;
 
     const searchUsers = async () => {
-      const { data } = await axiosPrivate.get(`/user/searchuser/?keyword=${keyword}`);
+      const { data } = await axiosPrivate.get(
+        `/user/searchuser/?keyword=${keyword}`,
+      );
       setSearchList(data);
     };
     searchUsers();
   }, [keyword]);
-
 };
 ```
 
@@ -346,7 +353,7 @@ const useDebounce = (value, delay) => {
 export default useDebounce;
 ```
 
-입력된 값(`value`)를 state로 재정의(`debouncedValue`)한 후, `useEffect`에서 `setTimeout`을 이용하여 특정 시간이 지난 후에 전달받은 `debouncedValue`의 값을 변경하도록 작성했습니다.    
+입력된 값(`value`)를 state로 재정의(`debouncedValue`)한 후, `useEffect`에서 `setTimeout`을 이용하여 특정 시간이 지난 후에 전달받은 `debouncedValue`의 값을 변경하도록 작성했습니다.  
 `delay`는 기본 500밀리초를 기본으로 `setDebounceValue`가 실행되기까지의 지연 시간입니다.
 
 #### useDbounce 훅 적용
@@ -381,8 +388,9 @@ const Search = () => {
   <summary>5-3. 사용자 토큰 검증</summary>
 
 ### ❓ 문제원인
+
 ### 기존 RequireAuth 컴포넌트
-   
+
 ```jsx
 const RequireAuth = () => {
   const token = JSON.parse(localStorage.getItem('token'));
@@ -405,7 +413,6 @@ const RequireAuth = () => {
 <img width="1194" alt="스크린샷 2023-01-02 오후 4 25 09" src="https://user-images.githubusercontent.com/97153666/210203674-d1ad5521-adad-483c-907a-39082a6d5a5e.png">
 
 위 사진처럼 인위적으로 localStorage에 `token`과 그 값으로 아무렇게나 정하고 저장하면 로그인 후에만 들어갈 수 있는 페이지도 들어갈 수 있게 됩니다. 따라서 토큰의 유무 확인만으로는 부족하고, `token`을 검증하는 과정이 필요하다고 느끼게 되었습니다.
-
 
 ### 🛠 해결방법 : `/user/checktoken` api를 통해 알맞은 토큰인지 검증
 
@@ -453,6 +460,7 @@ const RequireAuth = () => {
 <summary>5-4. 복잡한 경로 jsconfig.json으로 깔끔하게 정리하기</summary>
 
 ### ❓ 문제원인
+
 ### 절대 경로 적용 전 router.jsx 파일
 
 ```jsx
@@ -495,8 +503,9 @@ export { default as Login } from './Login';
 ```
 
 `components`와 `pages` 폴더에 index.js 파일을 생성해 다음과 같이 모듈을 다시 내보내줘 경로를 참조하는 경우 `component`와 `pages`만 작성해도 참조할 수 있도록 만들어줬습니다.
-  * `export default`로 내보내는 경우에는 저희처럼 `export { default as Home } from './Home'`으로 작성해줘야 합니다.
-  * 만약 그냥 `export`로 내보내는 경우는 `export * from './Home'`으로도 가능합니다.
+
+- `export default`로 내보내는 경우에는 저희처럼 `export { default as Home } from './Home'`으로 작성해줘야 합니다.
+- 만약 그냥 `export`로 내보내는 경우는 `export * from './Home'`으로도 가능합니다.
 
 ### 경로 참조
 
@@ -509,6 +518,7 @@ import {
 } from 'pages';
 import { Layout, Navbar, RequireAuth } from 'components';
 ```
+
 ```jsx
 // pages/Search
 import { useState, useEffect } from 'react';
@@ -525,158 +535,99 @@ import * as S from './style';
 </details>
 
 <details>
-  <summary>5-5. state로 렌더링 지연문제 해결</summary>
+  <summary>5-5. Link를 통해 State 전달하기</summary>
 
-### axios 데이터 호출 코드
-상품 수정 페이지가 마운트 될 때 수정하려는 상품의 데이터가 렌더링 되어야 합니다. 이 때 보통의 경우 axios를 사용하여 기존 데이터를 불러오는 경우가 대부분입니다. 
+### 상품 상세 페이지 데이터 호출
+
+상품 수정 페이지가 마운트 될 때 수정하려는 상품의 데이터가 초깃값으로 렌더링되게 만드려고 했습니다. 이 때, 보통의 경우 상품 상제 조회를 통해 데이터를 불러오는 경우가 대부분입니다.
 
 ```js
 useEffect(() => {
-   const getProduct = async () => {
-     const { data: { product } } = await axiosPrivate.get(`/product/detail/${productId}`);
-     setImgFiles(product.itemImage);
-     setProductName(product.itemName);
-     setProductLink(product.link);
-     setProductPrice(product.price);
-   }
-   getProduct();
- }, []);
+  const getProduct = async () => {
+    const { data: { product } } = await axiosPrivate.get(`/product/detail/${productId}`);
+    setImgFiles(product.itemImage);
+    setProductName(product.itemName);
+    setProductLink(product.link);
+    setProductPrice(product.price);
+  };
+  getProduct();
+}, []);
 ```
-   
-### ❓ 문제원인
-하지만 이런 방식으로 데이터를 호출할 경우 서버와 통신하는 시간이 필요하게 되어 곧바로 데이터가 보이지 않습니다. 즉 바로 아래와 같이 통신이 완료되는 시간동안 지연된 이후에 데이터 값이 보이게 됩니다. 
 
-<br>
+### ❓ 문제원인
+
+하지만 이런 방식으로 데이터를 호출할 경우 서버와 통신하는 시간이 필요하게 되어 곧바로 데이터가 보이지 않습니다. 즉, 바로 아래와 같이 통신이 완료되기까지 초기값을 보여주다 응답을 받은 후에 조회한 데이터 값을 렌더링합니다.
 
 <img src="https://user-images.githubusercontent.com/97153666/210312394-d507748f-3e31-4975-a74d-a31a0c6c02af.gif" width="200">
 
-<br>
+### 🛠 해결방법 : ProductModal 컴포넌트에서 Link를 통해 state 전달하기
 
-### 🛠 해결방법 : ProductList 컴포넌트 내 서버에서 이미 받아온 데이터를 props로 전달
-저희 조는 이러한 `데이터 호출 지연문제를 해결하기 위해` 상품리스트에서 미리 서버로부터 통신이 완료된 데이터를 props로 받아와 사용하였습니다.
-
-<br>
-
- props는 `ProductList 컴포넌트에서 axios로 데이터 호출 👉 ProductList 컴포넌트에서 ProductModal로 props 내려주기 👉 ProductModal 컴포넌트에서 모달창 링크를 통해 state로 데이터값 내려주기 👉 내려받은 state로 ProductModify에서 초기 렌더링 값 설정` 의 과정을 거쳐 값을 전달해줍니다. 
-
-<br>
-
-#### `ProductList 컴포넌트에서 axios로 데이터 호출`
-
-```js
-useEffect(() => {
-  const getProductList = async () => {
-    const {
-      data: { product },
-    } = await axiosPrivate.get(`/product/${accountname}`);
-    setProductList(product);
-  };
-  getProductList();
- }, [accountname]);
+```jsx
+// components/modals/ProductModal
+const ProductModal = ({ product }) => {
+  <ModalContainer>
+    <li>
+      <Link to={`/product/${productId}/edit`} state={{ ...product }}>
+        수정
+      </Link>
+    </li>
+    // ...
+  </ModalContainer>;
+};
 ```
 
-<br>
+저희는 이러한 **렌더링 지연문제를 해결하기 위해** `react-router-dom`의 `Link`를 통해 state 값을 전달하여 초기값으로 사용했습니다.
 
-👇
-
-<br>
-
-#### `ProductList 컴포넌트에서 ProductModal로 props 내려주기`
+#### 전달받은 state로 ProductModify 컴포넌트에서 초깃값 설정
 
 ```js
-<ProductModal
-  link={product.link}
-  productId={product.id}
-  product={product}
-  setProductList={setProductList}
-  setOpenModal={setOpenModal}
-/>
-```
-
-<br>
-
-👇
-
-<br>
-
-#### `ProductModal 컴포넌트에서 모달창 링크를 통해 state로 데이터 값(...product) 내려주기`
-
-```js
-<ModalLayout setOpenModal={setOpenModal}>
-  <li onClick={() => setOpenAlert(true)}>삭제</li>
-  <li>
-    <S.StyledLink
-      to={`/product/${productId}/edit`}
-      state={{ ...product }}
-    >
-      수정
-    </S.StyledLink>
-  </li>
-  <li>
-    <S.ProductLink href={`${link}`}>웹사이트에서 상품 보기</S.ProductLink>
-  </li>
-</ModalLayout>
-```
-
-<br>
-
-✅ 수정 페이지의 경우 url을 통하여 접근하는 경우는 거의 없기 떄문에 위와 같이 Link에 state 값을 넘겨주었습니다. 혹시나 url이 들어간 경우에는 오류가 발생하기 떄문에 "`/home`"으로 이동할 수 있도록 처리하였습니다.
-
-<br>
-
-👇
-
-<br>
-
-#### `내려받은 state로 ProductModify에서 초기 렌더링 값 설정`
-
-```js
+// pages/ProductModify.jsx
 const { state } = useLocation();
+
 const [imgFiles, setImgFiles] = useState(state?.itemImage || '');
 const [productName, setProductName] = useState(state?.itemName || '');
 const [productLink, setProductLink] = useState(state?.link || '');
 const [productPrice, setProductPrice] = useState(state?.price || '');
 ```
 
-<br>
-
-이와 같은 과정을 통해 필요이상의 통신과정을 건너뛸 수 있게되고, 따라서 페이지 마운트 시에 바로 기존의 데이터를 접할 수 있게 되어 사용자로 하여금 쾌적한 환경을 경험할 수 있도록 합니다. 아래와 같이 바로 데이터 값을 볼 수 있게 됩니다. 
-
-<br>
-
 <img src="https://user-images.githubusercontent.com/111214565/210313778-2d9e923b-c53e-4213-ae68-4b6a883637f8.gif" width="200">
 
-<br>
+그러면 페이지 렌더링될 때 이전 페이지(`Profile 페이지`)의 데이터를 활용하기 때문에 불필요한 통신과정을 건너뛰고, 사용자가 깜빡거리는 현상을 보지 않아도 되게 만들 수 있습니다.
 
-앞서 설명한 부분은 게시글 수정 페이지에서도 같은 맥락으로 적용됩니다. 
 </details>
 
 <br />
 
 ## 5. UI 및 페이지 기능
 
-
 <br />
 
 ## 6. 쁘2조 팀빌딩
+
 ### 1) 매일 오전 9시 데일리스크럼 진행
+
 <div align="center"><img src="https://user-images.githubusercontent.com/104605709/210311021-8e5cd96a-4731-4cb7-bde5-a1e31f9c671f.png" width="350px"></div>
 
 매일 오전 9시에 모여 오늘 진행할 자신의 업무와 어려운 점들을 공유하였습니다. 그 과정에서 프로젝트의 진행 속도와 해결되지 않는 이슈들, 또한 각 팀원의 컨디션을 파악하여 **모든 팀원이 프로젝트를 끝까지 마무리할 수 있도록 일정조율 및 이슈를 함께 해결하는 문화를 만들었습니다.**
 
 ### 2) 매일 30분 페어프로그래밍
+
 데일리스크럼을 통해 파악된 각 팀원들의 개발 속도 및 실력 편차를 줄이고자 매일 30분간 팀리더의 주도하에 페어프로그래밍을 진행했습니다. 이를 통해 **에러를 해결하는 방법을 배울 수 있었으며, 그 과정에서 의견을 전달하고 조율하는 소프트 스킬을 향상시킬 수 있었습니다.**
 
 <br />
 
 ## 7. 앞으로의 업데이트 계획
+
 ### 1) [리팩토링] 전역 상태관리 사용
+
 - 지금은 사용자의 정보나 반복해서 사용해야하는 데이터들을 로컬 스토리지 혹은 props로 관리하고 있어, 내용이 많아질수록 관리가 어려워집니다. 리팩토링 단계에서는 데이터를 효율적으로 관리하고자 전역 상태 관리 라이브러리를 사용해보고자 합니다.
 
 ### 2) [리팩토링] 이미지 스프라이트 기법 사용
+
 - 현재 단일 파일로 되어있는 아이콘 이미지들을 스프라이트 이미지로 변경하고, 이미지 로딩 속도를 개선시켜 사용자에게 좀 더 쾌적한 환경을 제공하고자 합니다.
 
 ### 3) 추가 기능 구현
+
 - 채팅 기능 구현 및 소셜 로그인 기능을 조금 더 완성도를 높일 예정입니다.
 
 <p align="right"><a href="#top">🔼 Top</a></p>
