@@ -1,18 +1,143 @@
-# 1인마켓
+# 자취러들의 현명한 소비생활, 1n마켓 🛒
 
-## 팀원 및 역할분담
+📌 **배포 URL** : https://1in-market.vercel.app/
+
+📌 **계정** `ID` 1nmarket@sharebuy.com <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `PW` 1nmarket
+
+<br />
+   
+![1nmarket_readme7](https://user-images.githubusercontent.com/104605709/210308994-3e9752d8-c24b-4659-97ed-9b2aa787c74a.jpg)
+
+<br />
+
+## 1. 프로젝트 소개
+
+> 🛒 **1n마켓**은 개인으로 사기에 부담스러운 용량의 물건들을 같이 구매함으로써 불필요한 구매를 줄이고 합리적인 소비를 할 수 있도록 도와주는 공동구매 커뮤니티 마켓입니다. <br /> <br />
+> 💡 1인 가구가 증가하고 있는 사회적 흐름에 따라 구매를 원하지만 개인에게는 과잉 구매가 될 수 있는 물건들을 같이 살 수 있으면 좋겠다는 생각에서 시작됐습니다. <br /> <br />
+> 👥 직접 공동구매를 모집하여 생필품, 식료품 등에서 나가는 불필요한 지출을 줄일 수 있습니다. <br /> <br />
+> 👋 본인의 자취생활 꿀팁 및 어려운 부분들은 게시글을 작성하여 공유할 수 있습니다. <br /> <br />
+> 💬 다른 자취러들의 꿀팁이 궁금하다면 친해지고 싶은 사용자를 팔로우하여 1인 가구 라이프스타일을 함께 공유해 보세요!
+
+<br />
+
+## 2. 팀원 및 역할분담
 
 |**프론트**|**디자인 & 프론트**|**프론트**|**프론트**|
 |:--------:|:--------:|:--------:|:--------:|
 |[재원](https://github.com/oneny)|[승미](https://github.com/wSeungMi)|[석규](https://github.com/angenehms)|[민희](https://github.com/dev-chu)| 
 |<img src="https://avatars.githubusercontent.com/u/97153666?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/104605709?v=4" width='100'/>|<img src="https://avatars.githubusercontent.com/u/111214565?v=4"  width='100'/>|<img src='https://avatars.githubusercontent.com/u/108019693?v=4' width='100' />
 
-## 주요기능
+<br />
+
+## 3. 개발환경
+|**Front-End**|**Back-End**|**디자인**|**버전 관리 및 협업 도구**|
+|------|-----|-----|-----|
+|  `HTML Living Standard` <br>  `styled-components` <br> `React`|  제공된 API | `Photoshop` <br> `illustrator` <br> `Figma` | `Git` <br> `Github` [Wiki(컨벤션)](https://github.com/1nMarket/frontend/wiki) / [Project](https://github.com/orgs/1nMarket/projects/1) <br> `Notion` 주요 회의록 및 일정관리  <br> `Discord` 웹훅(실시간 커밋&PR관리)사용 및 회의/실시간 소통
+
+<details>
+  <summary><strong>폴더트리 보기</strong></summary>
+
+```shell
+  src
+   ┣ apis
+   ┃ ┗ axios.js
+   ┣ assets
+   ┃ ┗ icons
+   ┣ components
+   ┃ ┣ alertModals
+   ┃ ┃ ┣ AlertModalLayout
+   ┃ ┃ ┣ LogoutModal
+   ┃ ┃ ┣ PostRemoveModal
+   ┃ ┃ ┣ ProductAlertModal
+   ┃ ┃ ┗ ReportModal
+   ┃ ┣ comment
+   ┃ ┃ ┣ CommentBox
+   ┃ ┃ ┗ CommentInput
+   ┃ ┣ common
+   ┃ ┃ ┣ Header
+   ┃ ┃ ┃ ┣ ChatHeader
+   ┃ ┃ ┃ ┣ FollowHeader
+   ┃ ┃ ┃ ┣ HomeHeader
+   ┃ ┃ ┃ ┣ ProfileHeader
+   ┃ ┃ ┃ ┣ SaveHeader
+   ┃ ┃ ┃ ┣ SearchHeader
+   ┃ ┃ ┃ ┣ UploadHeader
+   ┃ ┃ ┣ Layout
+   ┃ ┃ ┣ Navbar
+   ┃ ┃ ┗ RequireAuth
+   ┃ ┣ modals
+   ┃ ┃ ┣ ModalLayout
+   ┃ ┃ ┣ MyPostModal
+   ┃ ┃ ┣ PostModal
+   ┃ ┃ ┣ ProductModal
+   ┃ ┃ ┗ ProfileModal
+   ┃ ┣ post
+   ┃ ┃ ┣ ImageSlide
+   ┃ ┃ ┣ PostAlbum
+   ┃ ┃ ┣ PostForm
+   ┃ ┃ ┣ PostItem
+   ┃ ┃ ┣ PostsList
+   ┃ ┃ ┗ ProductForm
+   ┃ ┣ profile
+   ┃ ┃ ┣ FollowUser
+   ┃ ┃ ┣ MyPosts
+   ┃ ┃ ┣ ProductList
+   ┃ ┃ ┗ ProfileInfo
+   ┃ ┣ search
+   ┃ ┃ ┗ SearchList
+   ┃ ┣ splash
+   ┃ ┃ ┗ SplashImg
+   ┃ ┣ user
+   ┃ ┃ ┗ UserProfileForm
+   ┃ ┗ index.js
+   ┣ hooks
+   ┃ ┣ index.js
+   ┃ ┣ useDebounce.js
+   ┃ ┗ useTitle.js
+   ┣ pages
+   ┃ ┣ Chat
+   ┃ ┣ Follows
+   ┃ ┣ Home
+   ┃ ┣ Login
+   ┃ ┣ Missing
+   ┃ ┣ Post
+   ┃ ┣ PostModify
+   ┃ ┣ PostUpload
+   ┃ ┣ ProductModify
+   ┃ ┣ ProductUpload
+   ┃ ┣ Profile
+   ┃ ┣ ProfileModify
+   ┃ ┣ Public
+   ┃ ┣ Search
+   ┃ ┣ Signup
+   ┃ ┣ SignupProfile
+   ┃ ┗ index.js
+   ┣ routes
+   ┃ ┗ Router.jsx
+   ┣ styles
+   ┃ ┣ GlobalStyled.jsx
+   ┃ ┗ theme.js
+   ┣ utils
+   ┃ ┗ setTime.js
+   ┣ App.js
+   ┗ index.js
+```
+</details>
+
+### 3-1. 패키지 모듈
+- `create-react-app` : 리액트 설치 및 개발환경 셋팅
+- `react-router-dom` : 페이지 간 이동 처리(라우팅)
+- `axios` : HTTP-API 연동
+- `eslint`, `prettier` : 협업을 위한 동일 코드 포맷팅 처리 및 코드 품질 관리
+
+
+## 4. 주요기능
 
 <details>
   <summary>useTitle로 효율적인 Doc Title 설정하기</summary>
 
-### 페이지 타이틀
+### 4-1. 페이지 타이틀
 
 브웹사이트에 접속하면 브라우저의 상단 탭에서 페이지 제목을 볼 수 있습니다. 이 페이지 제목을 Document Title이라고 합니다.    
 Document Title은 가장 대표적인 웹사이트의 타이틀로, 각 페이지의 주제를 잘 나타낼 수 있는 요소이자 해당 웹사이트를 사용하는 유저에게 현재 자신이 있는 위치를 알려주는 중요한 요소입니다.
@@ -61,7 +186,7 @@ const Login = () => {
 <details>
   <summary>Intersection Observer 통해서 피드 무한스크롤 구현</summary>
 
-### Intersection Observer
+### 4-2. Intersection Observer
 
 기본적으로 브라우저 뷰포트(Viewport)와 설정한 요소(Element)의 교차점을 관찰하며, 요소가 뷰포트에 포함되는지 포함되지 않는지, 더 쉽게는 사용자 화면에 지금 보이는 요소인지 아닌지를 구별하는 기능을 제공합니다. 저희는 사용자 화면에 보이는 요소인지 구별하는 기능 즉, 관찰 대상의 교차 상태(Boolean) 확인할 수 있는 `isIntersecting`을 이용해 무한 스크롤을 구현하기로 했습니다.
 
@@ -128,20 +253,23 @@ const Home = () => {
 
 </details>
 
-## 트러블 슈팅
+<br />
+
+## 5. 트러블 슈팅
 
 <details>
   <summary>memo 사용해서 피드 무한스크롤 시 이전 게시글 최적화 작업</summary>
 
-### 게시글 무한 스크롤 문제점
+### 5-1. 게시글 무한 스크롤 문제점
+### ❓ 문제원인
 
 <img width="1080" alt="스크린샷 2023-01-03 오후 2 41 52" src="https://user-images.githubusercontent.com/97153666/210306801-7d3227d3-a181-4627-ba46-008f6955f1a2.png">
 
 위에서 `Intersection Oberserver`로 무한 스크롤 구현 시 10개의 포스트 렌더링 후 다음 10개의 포스트를 받아오면 20개의 포스트 렌더링 그 다음 10개의 포스트를 받아오면 30개의 포스트를 렌더링하는 문제가 발생한다고 했습니다. 이와 같은 문제를 `React Profiler`를 돌려보면 다음처럼 다음 10개의 포스트를 받아와도 제일 상단에 있는 게시글이 다시 렌더링되는 것을 확인할 수 있습니다.
 
-### memo 사용하기
+### 🛠 해결방법 : memo
 
-#### memo
+#### memo란?
 
 React는 먼저 컴포넌트를 렌더링(rendering)한 뒤, 이전 렌더된 결과와 비교하여 DOM 업데이트를 결정합니다. 그래서 렌더 결과가 이전과 다르다면, React는 DOM을 업데이트합니다.   
 컴포넌트가 `React.memo()`로 래핑될 때, React는 컴포넌트를 렌더링하고 결과를 메모이징(`Memoizing`)합니다. 그리고 자주 다음 렌더링이 일어날 때 `props`가 같다면 React는 메모이징된 내용을 재사용합니다. 이를 활용하여 다음 10개의 게시글을 받아올 때 이전 게시글들을 메모이징하여 다시 렌더링하지 않도록 만들 수 있습니다.
@@ -166,6 +294,7 @@ export default memo(PostItem);
   <summary>useDebounce 사용해서 검색 최적화하기</summary>
 
 ### 기존 Search 컴포넌트
+### ❓ 문제원인
 
 ```jsx
 const Search = () => {
@@ -190,7 +319,7 @@ const Search = () => {
 기존의 Search 페이지에서 검색칸에 값을 입력할 때마다 api를 호출하기 때문에 필요없는 요청을 너무 많이 하게 되어 이를 줄일 필요가 있다고 느끼게 되었습니다. 그래서 바로바로 호출하기 보다는 값을 입력한 후 시간이 어느 정도 흐른 후에 api를 호출하는 방식으로 만들기 위해서 useDebounce 커스텀 훅을 생성했습니다.
 이 때, `debounce`는 쉽게 말해 특정 시간이 지난 후에 한 번만 이벤트가 실행되도록 하는 것입니다.
 
-### useDebounce
+### 🛠 해결방법 : useDebounce
 
 ```js
 // hooks/useDebounce.js
@@ -246,6 +375,7 @@ const Search = () => {
   <summary>사용자 토큰 검증</summary>
 
 ### 기존 RequireAuth 컴포넌트
+### ❓ 문제원인
 
 ```jsx
 const RequireAuth = () => {
@@ -270,7 +400,8 @@ const RequireAuth = () => {
 
 위 사진처럼 인위적으로 localStorage에 `token`과 그 값으로 아무렇게나 정하고 저장하면 로그인 후에만 들어갈 수 있는 페이지도 들어갈 수 있게 됩니다. 따라서 토큰의 유무 확인만으로는 부족하고, `token`을 검증하는 과정이 필요하다고 느끼게 되었습니다.
 
-### `/user/checktoken` api를 통해 알맞은 토큰인지 검증
+
+### 🛠 해결방법 : `/user/checktoken` api를 통해 알맞은 토큰인지 검증
 
 ```jsx
 const RequireAuth = () => {
@@ -315,6 +446,7 @@ const RequireAuth = () => {
 
 <summary>복잡한 경로 jsconfig.json으로 깔끔하게 정리하기</summary>
 
+### ❓ 문제원인
 ### 절대 경로 적용 전 router.jsx 파일
 
 ```jsx
@@ -333,7 +465,7 @@ import Profile from '../pages/Profile';
 
 상대 경로로 멀리 떨어진 컴포넌트 참조 시 경로가 지저분해질 수 있고, 현재 컴포넌트 위치를 옮기면 vscode에서 import Path를 제대로 못 잡아주는 경우가 간혹 있습니다. 따라서 절대 경로를 설정해줘 이를 해결하고자 했습니다.
 
-### 절대경로 설정
+### 🛠 해결방법 : 절대 경로 설정
 
 루트폴더에 `jsonconfig.json`을 생성하여 다음과 같이 `"baseUrl": "src"`를 작성하면 루트폴더가 src 폴더로 설정되고, 절대경로 작성시 src폴더에서부터 경로를 찾게 됩니다.
 
@@ -385,3 +517,27 @@ import * as S from './style';
 위의 과정을 통해 경로를 깔끔하게 관리하는 것만으로 import하기 위한 코드를 한 줄로 줄일 수 있고, 파일 위치 파악을 간단히 할 수 있도록 만들 수 있습니다. 그리고, 현재 컴포넌트 위치를 옮겨도 절대 경로와 `index.js`로 참조하므로 IDE에 종속적이지 않습니다.
 
 </details>
+
+<br />
+
+## 5. UI 및 페이지 기능
+
+
+<br />
+
+## 6. 쁘2조만의 스페셜 포인트
+### 1) 매일 오전 9시 데일리스크럼 진행
+<div align="center"><img src="https://user-images.githubusercontent.com/104605709/210311021-8e5cd96a-4731-4cb7-bde5-a1e31f9c671f.png" width="350px"></div>
+
+매일 오전 9시에 모여 오늘 진행할 자신의 업무와 어려운 점들을 공유하였습니다. 그 과정에서 프로젝트의 진행 속도와 해결되지 않는 이슈들, 또한 각 팀원의 컨디션을 파악하여 **모든 팀원이 프로젝트를 끝까지 마무리할 수 있도록 일정조율 및 이슈를 함께 해결하는 문화를 만들었습니다.**
+
+### 2) 매일 30분 페어프로그래밍
+데일리스크럼을 통해 파악된 각 팀원들의 개발 속도 및 실력 편차를 줄이고자 매일 30분간 팀리더의 주도하에 페어프로그래밍을 진행했습니다. 이를 통해 **에러를 해결하는 방법을 배울 수 있었으며, 그 과정에서 의견을 전달하고 조율하는 소프트 스킬을 향상시킬 수 있었습니다.**
+
+<br />
+
+## 7. 앞으로의 진행일정
+
+
+
+<p align="right"><a href="#top">🔼 Top</a></p>
