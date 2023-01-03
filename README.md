@@ -131,13 +131,14 @@
 - `axios` : HTTP-API 연동
 - `eslint`, `prettier` : 협업을 위한 동일 코드 포맷팅 처리 및 코드 품질 관리
 
+<br />
 
 ## 4. 주요기능
 
 <details>
-  <summary>useTitle로 효율적인 Doc Title 설정하기</summary>
+  <summary>4-1. useTitle로 효율적인 Doc Title 설정하기</summary>
 
-### 4-1. 페이지 타이틀
+### 페이지 타이틀
 
 브웹사이트에 접속하면 브라우저의 상단 탭에서 페이지 제목을 볼 수 있습니다. 이 페이지 제목을 Document Title이라고 합니다.    
 Document Title은 가장 대표적인 웹사이트의 타이틀로, 각 페이지의 주제를 잘 나타낼 수 있는 요소이자 해당 웹사이트를 사용하는 유저에게 현재 자신이 있는 위치를 알려주는 중요한 요소입니다.
@@ -184,9 +185,9 @@ const Login = () => {
 </details>
 
 <details>
-  <summary>Intersection Observer 통해서 피드 무한스크롤 구현</summary>
+  <summary>4-2. Intersection Observer 통해서 피드 무한스크롤 구현</summary>
 
-### 4-2. Intersection Observer
+### Intersection Observer
 
 기본적으로 브라우저 뷰포트(Viewport)와 설정한 요소(Element)의 교차점을 관찰하며, 요소가 뷰포트에 포함되는지 포함되지 않는지, 더 쉽게는 사용자 화면에 지금 보이는 요소인지 아닌지를 구별하는 기능을 제공합니다. 저희는 사용자 화면에 보이는 요소인지 구별하는 기능 즉, 관찰 대상의 교차 상태(Boolean) 확인할 수 있는 `isIntersecting`을 이용해 무한 스크롤을 구현하기로 했습니다.
 
@@ -258,10 +259,11 @@ const Home = () => {
 ## 5. 트러블 슈팅
 
 <details>
-  <summary>memo 사용해서 피드 무한스크롤 시 이전 게시글 최적화 작업</summary>
+  <summary>5-1. memo 사용해서 피드 무한스크롤 시 이전 게시글 최적화 작업</summary>
 
-### 5-1. 게시글 무한 스크롤 문제점
 ### ❓ 문제원인
+
+### 게시글 무한 스크롤 문제점
 
 <img width="1080" alt="스크린샷 2023-01-03 오후 2 41 52" src="https://user-images.githubusercontent.com/97153666/210306801-7d3227d3-a181-4627-ba46-008f6955f1a2.png">
 
@@ -291,10 +293,10 @@ export default memo(PostItem);
 </details>
 
 <details>
-  <summary>useDebounce 사용해서 검색 최적화하기</summary>
-
-### 기존 Search 컴포넌트
+  <summary>5-2. useDebounce 사용해서 검색 최적화하기</summary>
+   
 ### ❓ 문제원인
+### 기존 Search 컴포넌트
 
 ```jsx
 const Search = () => {
@@ -372,11 +374,11 @@ const Search = () => {
 </details>
 
 <details>
-  <summary>사용자 토큰 검증</summary>
+  <summary>5-3. 사용자 토큰 검증</summary>
 
-### 기존 RequireAuth 컴포넌트
 ### ❓ 문제원인
-
+### 기존 RequireAuth 컴포넌트
+   
 ```jsx
 const RequireAuth = () => {
   const token = JSON.parse(localStorage.getItem('token'));
@@ -444,7 +446,7 @@ const RequireAuth = () => {
 
 <details>
 
-<summary>복잡한 경로 jsconfig.json으로 깔끔하게 정리하기</summary>
+<summary>5-4. 복잡한 경로 jsconfig.json으로 깔끔하게 정리하기</summary>
 
 ### ❓ 문제원인
 ### 절대 경로 적용 전 router.jsx 파일
