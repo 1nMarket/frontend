@@ -14,7 +14,8 @@
 
 ### 페이지 타이틀
 
-브라우저를 통해 웹사이트에 접속하면 대표적으로 상단 탭에 페이지 제목이 위치하게 됩니다. 이 페이지 제목이 `Document Title`입니다. 가장 대표적인 웹사이트의 타이틀로 사용자한테도 중요하게 보이는 요소이자 각 페이지마다 해당 페이지의 주제를 잘 나타낼 수 있는 요소라 생각합니다.
+브웹사이트에 접속하면 브라우저의 상단 탭에서 페이지 제목을 볼 수 있습니다. 이 페이지 제목을 Document Title이라고 합니다.    
+Document Title은 가장 대표적인 웹사이트의 타이틀로, 각 페이지의 주제를 잘 나타낼 수 있는 요소이자 해당 웹사이트를 사용하는 유저에게 현재 자신이 있는 위치를 알려주는 중요한 요소입니다.
 
 <div style="display: flex; justify-content: center">
   <img width="518" alt="스크린샷 2023-01-02 오후 9 03 49" src="https://user-images.githubusercontent.com/97153666/210228808-2bc81167-ca94-4c1d-b022-c3891ad8892b.png">
@@ -58,10 +59,16 @@ const Login = () => {
 </details>
 
 <details>
-  <summary>ObserverIntersection Api 통해서 피드 무한스크롤 구현</summary>
+  <summary>Intersection Observer 통해서 피드 무한스크롤 구현</summary>
+
+### Intersection Observer
+
+기본적으로 브라우저 뷰포트(Viewport)와 설정한 요소(Element)의 교차점을 관찰하며, 요소가 뷰포트에 포함되는지 포함되지 않는지, 더 쉽게는 사용자 화면에 지금 보이는 요소인지 아닌지를 구별하는 기능을 제공합니다. 저희는 사용자 화면에 보이는 요소인지 구별하는 기능 즉, 관찰 대상의 교차 상태(Boolean) 확인할 수 있는 `isIntersecting`을 이용해 무한 스크롤을 구현하기로 했습니다.
+
+### Intersection Observer 적용
 
 ```js
-onst Home = () => {
+const Home = () => {
   const [postsList, setPostList] = useState([]);
   const [hasNextFeed, setHasNextFeed] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -72,9 +79,7 @@ onst Home = () => {
     if (!observerTargetEl.current || !hasNextFeed) return;
 
     const getFeed = async () => {
-      const {
-        data: { posts },
-      } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
+      const { data: { posts } } = await axiosPrivate.get(`/post/feed/?limit=10&skip=${page.current}`);
       setPostList((prev) => [...prev, ...posts]);
       setHasNextFeed(posts.length % 10 === 0);
       setIsLoading(false);
@@ -106,9 +111,56 @@ onst Home = () => {
 };
 ```
 
+* `<div ref={observerTargetEl}>`으로 관찰하려고 하는 엘리먼트를 생성하고, useRef를 이용하여 지정해줬습니다.
+* `/post/feed/?limit=10&skip=${page.current}`
+  * limit으로 한 번에 10개의 포스트들을 받아오도록 하고, skip을 통해 변수를 넘겨서 0 ~ 9, 10 ~ 19, 20 ~ 29번의 포스트들을 가져올 수 있도록 설정했습니다.
+* `hasNextPage` 상태를 통해 다음 페이지가 존재하는지 체크하고, 만약 10의 배수로 떨어지지 않는다면 다음 포스트가 없으므로 `false`로 되도록 설정했습니다.
+  * 만약 100개의 포스트라는 10으로 나누어 떨어지기 때문에 한 번 더 요청한다는 단점이 있습니다.
+* `io.observer(observerTargetEl.current)`를 통해 해당 엘리먼트를 관찰합니다.
+* `if (entries[0].isIntersecting) { getFeed() }`
+  ![intersection-observer-is-intersecting](https://user-images.githubusercontent.com/97153666/210304150-610bb400-a885-4638-82b2-d8cc387bf938.jpg)
+  * 출처: [Intersection Observer - 요소의 가시성 관찰](https://heropy.blog/2019/10/27/intersection-observer/)
+  * 관찰 대상이 루트 요소와 교차 상태로 들어가거나(`true`) 교차 상태에서 나가는지 (`false`) 여부를 나타내는 값(`Boolean`)을 이용하여 `useRef`로 지정한 요소가 교차 상태가 되면 `getFeed`가 실행되도록 설정했습니다.
+
+### 무한 스크롤 구현 시 문제점
+
+10개의 포스트 렌더링 후 다음 10개의 포스트를 받아오면 20개의 포스트 렌더링 그 다음 10개의 포스트를 받아오면 30개의 포스트를 렌더링하는 문제가 발생합니다. 이를 해결하기 위해서 React에서 제공하는 `memo`를 사용하였는데 아래 트러블 슈팅에서 자세히 다루겠습니다.
+
 </details>
 
 ## 트러블 슈팅
+
+<details>
+  <summary>memo 사용해서 피드 무한스크롤 시 이전 게시글 최적화 작업</summary>
+
+### 게시글 무한 스크롤 문제점
+
+<img width="1080" alt="스크린샷 2023-01-03 오후 2 41 52" src="https://user-images.githubusercontent.com/97153666/210306801-7d3227d3-a181-4627-ba46-008f6955f1a2.png">
+
+위에서 `Intersection Oberserver`로 무한 스크롤 구현 시 10개의 포스트 렌더링 후 다음 10개의 포스트를 받아오면 20개의 포스트 렌더링 그 다음 10개의 포스트를 받아오면 30개의 포스트를 렌더링하는 문제가 발생한다고 했습니다. 이와 같은 문제를 `React Profiler`를 돌려보면 다음처럼 다음 10개의 포스트를 받아와도 제일 상단에 있는 게시글이 다시 렌더링되는 것을 확인할 수 있습니다.
+
+### memo 사용하기
+
+#### memo
+
+React는 먼저 컴포넌트를 렌더링(rendering)한 뒤, 이전 렌더된 결과와 비교하여 DOM 업데이트를 결정합니다. 그래서 렌더 결과가 이전과 다르다면, React는 DOM을 업데이트합니다.   
+컴포넌트가 `React.memo()`로 래핑될 때, React는 컴포넌트를 렌더링하고 결과를 메모이징(`Memoizing`)합니다. 그리고 자주 다음 렌더링이 일어날 때 `props`가 같다면 React는 메모이징된 내용을 재사용합니다. 이를 활용하여 다음 10개의 게시글을 받아올 때 이전 게시글들을 메모이징하여 다시 렌더링하지 않도록 만들 수 있습니다.
+
+#### memo 적용
+
+```jsx
+import { memo } from 'react';
+const PostItem = ({ post }) => {
+  // ...
+}
+export default memo(PostItem);
+```
+
+<img width="1243" alt="스크린샷 2023-01-03 오후 2 42 39" src="https://user-images.githubusercontent.com/97153666/210306691-134da416-d1d1-446b-91cc-ec4890d77f53.png">
+
+만약 `post`와 같은 `props`가 변경되지 않는다면 다음 렌더링 때 메모이징된 내용을 그대로 사용하고 다시 렌더링하지 않게 된 것을 React Profiler를 통해서 확인할 수 있습니다. 이제는 아무리 많은 게시글을 불러오더라도 마지막 10개의 게시글만 렌더링하게 되도록 만들었습니다.
+
+</details>
 
 <details>
   <summary>useDebounce 사용해서 검색 최적화하기</summary>
@@ -187,11 +239,6 @@ const Search = () => {
 <img width="1583" alt="스크린샷 2023-01-02 오후 2 29 22" src="https://user-images.githubusercontent.com/97153666/210197700-4d5b8275-cfce-4344-b103-4b3446b89692.png">
 
 기존의 `keyword`가 아닌 이제는 사용자가 입력하고 끝으로 500밀리초가 지나서 상태값이 바뀌는 `debouncedValue`를 통해 불필요한 리렌더링을 막을 수 있게 되었습니다.
-
-</details>
-
-<details>
-  <summary>memo 사용해서 피드 무한스크롤 시 이전 게시글 최적화 작업</summary>
 
 </details>
 
